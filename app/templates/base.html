@@ -6,6 +6,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+
 <link rel="shortcut icon" href="{{ url_for('static', filename = 'img/favicons/favicon.ico') }}" type="image/x-icon">
 <link rel="icon" href="{{ url_for('static', filename = 'img/favicons/favicon.ico') }}"type="image/x-icon">
 <link href="{{ url_for('static', filename='anita/css/select2.min.css') }}" rel="stylesheet">
@@ -21,14 +22,20 @@
 <link href="{{ url_for('static', filename='inspinia/css/plugins/jQueryUI/jquery-ui.css') }}" rel="stylesheet">
 <link href="{{ url_for('static', filename='anita/css/jquery.jqplot.min.css') }}" rel="stylesheet">
 <link href="{{ url_for('static', filename='anita/css/magicbox.css') }}" rel="stylesheet">
+<link href="{{ url_for('static', filename='anita/css/jquery.bootstrap-touchspin.css') }}" rel="stylesheet">
 
 
 <style>   
+    #cesiumContainer {
+        width: 100%; height: 100%; margin: 0; padding: 0; overflow: hidden;
+    }
+    .dialog_plot {margin-right: 20px; margin-left: 45px; margin-bottom: 5px;}
+    #currentUTC,#eventrate {display:inline-block;margin-right:10px;}
     .ui-dialog { z-index: 9000 !important ;} 
-    button, .select2-container{
+    .btn-primary, .select2-container, #keywords{
         margin: 7px 2px;
     }
-    input, .switchery{
+    .js-switch, .switchery{
         margin: 7px 2px;
     }
     /* the modal should be in the same z-index not overlay each other*/
@@ -77,6 +84,8 @@
             <li><a id='navbar_hk' href="{{ url_for('main.hk') }}"><i class="fa fa-th-list"></i>  <span class="nav-label">HK Viewer</span></a></li>
             <li><a id='navbar_trig' href="{{ url_for('main.trigmon') }}"><i class="fa fa-bolt"></i>  <span class="nav-label">Trigger Monitor</span></a></li>
             <li><a id='navbar_slow' href="{{ url_for('main.slowmo') }}"><i class="fa fa-ambulance"></i>  <span class="nav-label">Slow Monitor</span></a></li>
+            <li><a id='navbar_hd' href="{{ url_for('main.hd') }}"><i class="fa fa-header"></i>  <span class="nav-label">All Headers</span></a></li>
+            <li><a id='navbar_gps' href="{{ url_for('main.gps') }}"><i class="fa fa-circle-o-notch"></i>  <span class="nav-label">GPS</span></a></li>
             <li><a id='navbar_contact'href="{{ url_for('main.contactus') }}"><i class="fa fa-question"></i>  <span class="nav-label">Contact Us</span></a></li>
         </ul>
 
@@ -101,14 +110,14 @@
                 <li><button type="button" id='prev' class="btn btn-primary">Prev</button> </li>
                 <li><button type="button" id='first' class="btn btn-primary">First</button> </li>
                 <li><button type="button" id='last' class="btn btn-primary">Last</button> </li>
-                <li> Auto </li>
+                <li id="label_auto_checkbox"> Auto </li>
                 <li><input id='auto_checkbox' type="checkbox" class="js-switch" /></li>
                 <li id="label_sync_checkbox"> Sync </li>
                 <li> <input id='sync_checkbox' type="checkbox" class="js-switch" /> </li>
             </ul>
         </div>
        
-        <div class="input-group">
+        <div class="input-group"  id = 'search-input'>
           <input type="text" class="form-control" id = "keywords" placeholder="evnum or time">
           <span class="input-group-btn">
             <button class="btn btn-primary" id = 'goto' type="button">Go!</button>
@@ -128,6 +137,8 @@
         </ul> -->
     </nav>
 </div>
+Current UTC time: <div id = 'currentUTC'> </div>   <div id = 'eventrate'></div>
+
 
 
     {% endblock %}
@@ -169,17 +180,131 @@
     <script src="{{ url_for('static', filename='anita/js/jqplot/plugins/jqplot.canvasTextRenderer.min.js') }}"></script>
     <script src="{{ url_for('static', filename='anita/js/jqplot/plugins/jqplot.canvasAxisTickRenderer.min.js') }}"></script>
     <script src="{{ url_for('static', filename='anita/js/jqplot/plugins/jqplot.dateAxisRenderer.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='anita/js/jqplot/plugins/jqplot.logAxisRenderer.js') }}"></script>
+
     <script src="{{ url_for('static', filename='anita/js/jqplot/plugins/jqplot.cursor.min.js') }}"></script>
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>
     <script src="{{ url_for('static', filename='anita/js/magicbox.js') }}"></script>
+    <script src="{{ url_for('static', filename='anita/js/jquery.bootstrap-touchspin.js') }}"></script>
+    <script src="{{ url_for('static', filename='anita/js/jquery.hotkeys.js') }}"></script>
     <script>
-        var ip, db, ip_db;
+        //global time zone shift in micro seconds
+        var timeZoneShift = new Date().getTimezoneOffset() * 60000;
+        // var timeZoneShift = 0 ;
+
+        function getCookie(cname) {
+            var name = cname + "=";
+            var ca = document.cookie.split(';');
+            for(var i = 0; i <ca.length; i++) {
+                var c = ca[i];
+                while (c.charAt(0) == ' ') {
+                    c = c.substring(1);
+                }
+                if (c.indexOf(name) == 0) {
+                    return c.substring(name.length, c.length);
+                }
+            }
+            return "";
+        }
+
+        // global converting functions
+        function byteString(n) {
+          if (n < 0 || n > 65535 || n % 1 !== 0) {
+              throw new Error(n + " does not fit in a byte");
+          } 
+          binaryString = ("000000000000000000" + n.toString(2)).substr(-16);
+
+          return binaryString.substring(0,4) + ' ' + binaryString.substring(4,8) + ' ' + binaryString.substring(8,12) + ' ' + binaryString.substring(12,16);
+        }
+
+        function hexString(n) {
+          if (n < 0 || n > 65535 || n % 1 !== 0) {
+              throw new Error(n + " does not fit in a byte");
+          } 
+          result = ("0000" + n.toString(16)).substr(-4);
+
+          return '0x' + result.substring(2,4);
+        }
+
+        function timeConverter(UNIX_timestamp) {
+            var a = new Date(UNIX_timestamp * 1000);
+            var months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+            var year = a.getUTCFullYear();
+            var month = months[a.getUTCMonth()];
+            var date = a.getUTCDate();
+            var hour = a.getUTCHours();
+            var min = a.getUTCMinutes();
+            var sec = a.getUTCSeconds();
+            if (parseInt(min) < 10){
+                min = '0' + min;
+            }
+            if (parseInt(sec) < 10){
+                sec = '0' + sec;
+            }
+            var time = month + ' ' + date + ' ' + year + ' ' + hour + ':' + min + ':' + sec;
+            return time;
+        }
+
+        function unixtime2cesium(UNIX_timestamp) {
+            var a = new Date(UNIX_timestamp * 1000);
+            var months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+            var year = a.getUTCFullYear();
+            var month = a.getUTCMonth() + 1;
+            var date = a.getUTCDate();
+            var hour = a.getUTCHours();
+            var min = a.getUTCMinutes();
+            var sec = a.getUTCSeconds();
+            if (parseInt(date) < 10){
+                date = '0' + date;
+            }
+            if (parseInt(month) < 10){
+                month = '0' + month;
+            }
+            if (parseInt(hour) < 10){
+                hour = '0' + hour;
+            }
+            if (parseInt(min) < 10){
+                min = '0' + min;
+            }
+            if (parseInt(sec) < 10){
+                sec = '0' + sec;
+            }
+            var time = year + '-' + month + '-' + date + 'T' + hour + ':' + min + ':' + sec + 'Z';
+            return time;
+        }
         
+        var ip, db, ip_db;
+        function update() {
+          $('#currentUTC').html(new Date().toUTCString());
+
+        }
+        setInterval(update, 1000);
 
 
         $(document).ready(function () {
+            $(document).bind('keydown','c', function(){
+                $('#connect').trigger("click");
+            });
+            $(document).bind('keydown','n', function(){
+                $('#next').trigger("click");
+            });
+            $(document).bind('keydown','p', function(){
+                $('#prev').trigger("click");
+            });
+            $(document).bind('keydown','f', function(){
+                $('#first').trigger("click");
+            });
+            $(document).bind('keydown','l', function(){
+                $('#last').trigger("click");
+            });
+            
+            
+
+            
+            
+
             $('#ip').empty();
-            ip_list = ['128.175.112.58', '128.175.112.80', 'beauty.phys.hawaii.edu', 'charm.phys.hawaii.edu' ]
+            ip_list = ['128.175.112.58', '128.175.112.80', 'beauty.phys.hawaii.edu', '128.146.39.110' ]
             addmore = 1
             for (i = 0; i < ip_list.length; i++){
                 if (ip_list[i] == "{{ip_selected}}"){
@@ -205,13 +330,7 @@
             $('#ip').on("select2:closing", function(){
             // $('#ip').change(function() {
                 ip=$('#ip option:selected').text();
-                db=$('#db option:selected').text().replace(/\s/gi, '');
-
-                ip = ip.replace(/\./gi, '_');
-                ip_db= "query_"+ ip + "_" + db;
-                $.getJSON('/set_cookie/'+ ip + '/' + db, function(data) {
-                    ;
-                });
+                
                 $.getJSON('/api/getDBnames/'+ ip, function(data) {
                     dbnames = data['dbnames']
                     $('#db').empty(); //remove all child nodes
@@ -226,6 +345,12 @@
                     }               
                     // $('#db').trigger("chosen:updated");
                     $('#db').select2({tags: true});
+                    db=$('#db option:selected').text().replace(/\s/gi, '');
+                    ip = ip.replace(/\./gi, '_');
+                    ip_db= "query_"+ ip + "_" + db;
+                    $.getJSON('/set_cookie/'+ ip + '/' + db, function(data) {
+                        ;
+                    });
 
                 });
             });

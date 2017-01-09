@@ -18,6 +18,8 @@
                             <tr>
                                 <td>Index</td>
                                 <td id = 'index'></td>
+                                <td>Crc</td>
+                                <td id = 'crc'></td>
                             </tr>
                             <tr>
                                 <td>Time</td>
@@ -106,7 +108,7 @@
                     </table>
                 </div>
                 <div class="ibox-content">
-                    <table data-sort="false" class="footable" data-page-size="56" id='temp' style="width:100%">
+                    <table data-sort="false" class="footable" data-page-size="56" id='tmp' style="width:100%">
                         <h5>Temperature [C]</h5>
                         <tbody>
                             <tr>
@@ -126,6 +128,40 @@
                                 <td id='it-12'></td>
                                 <td id='it-13'></td>
                                 <td id='it-14'></td>
+
+                                <td>CPU</td>
+                                <td id='sbst1'></td>
+                                <td id='sbst2'></td>
+                               
+                                <td id='core1'></td>
+                                
+                                
+                            </tr>
+                            <tr>
+                                <td>It </td>
+                                <td>&nbsp 1</td>
+                                <td>&nbsp 2</td>
+                                <td>&nbsp 3</td>
+                                <td>&nbsp 4</td>
+                                <td>&nbsp 5</td>
+                                <td>&nbsp 6</td>
+                                <td>&nbsp 7</td>
+                                <td>&nbsp 8</td>
+                                <td>&nbsp 9</td>
+                                <td>10</td>
+                                <td>11</td>
+                                <td>12</td>
+                                <td>13</td>
+                                <td>14</td>
+                                <td>15</td>
+                                <td>CPU</td>
+                                <td>1</td>
+                                <td>2</td>
+                              
+                                <td>Core</td>                              
+                                
+                            </tr>
+                            <tr>
                                 <td>Et</td>
                                 <td id='et-0'></td>
                                 <td id='et-1'></td>
@@ -142,56 +178,32 @@
                                 <td id='et-12'></td>
                                 <td id='et-13'></td>
                                 <td id='et-14'></td>
-                                <td>CPU</td>
-                                <td id='sbst1'></td>
-                                <td id='sbst2'></td>
-                                <td id='sbst5'></td>
-                                <td id='sbst6'></td>
-                                <td>Core</td>
-                                <td id='core1'></td>
-                                <td id='core2'></td>
+                                <td>NTUdisk</td>
+                                <td id='disk0'></td>
+                                <td id='disk1'></td>
+                                
                             </tr>
                             <tr>
-                                <td>It </td>
-                                <td>1</td>
-                                <td>2</td>
-                                <td>3</td>
-                                <td>4</td>
-                                <td>5</td>
-                                <td>6</td>
-                                <td>7</td>
-                                <td>8</td>
-                                <td>9</td>
-                                <td>10</td>
-                                <td>11</td>
-                                <td>12</td>
-                                <td>13</td>
-                                <td>14</td>
-                                <td>15</td>
                                 <td>Et</td>
-                                <td>1</td>
-                                <td>2</td>
-                                <td>3</td>
-                                <td>4</td>
-                                <td>5</td>
-                                <td>6</td>
-                                <td>7</td>
-                                <td>8</td>
-                                <td>9</td>
+                                <td>&nbsp 1</td>
+                                <td>&nbsp 2</td>
+                                <td>&nbsp 3</td>
+                                <td>&nbsp 4</td>
+                                <td>&nbsp 5</td>
+                                <td>&nbsp 6</td>
+                                <td>&nbsp 7</td>
+                                <td>&nbsp 8</td>
+                                <td>&nbsp 9</td>
                                 <td>10</td>
                                 <td>11</td>
                                 <td>12</td>
                                 <td>13</td>
                                 <td>14</td>
                                 <td>15</td>
-                                <td>CPU</td>
+                                <td>NTUdisk</td>
+                                <td>0</td>
                                 <td>1</td>
-                                <td>2</td>
-                                <td>5</td>
-                                <td>6</td>
-                                <td>Core</td>
-                                <td>1</td>
-                                <td>2</td>
+                                
                             </tr>
                         </tbody>
                     </table>
@@ -281,12 +293,20 @@
                             <tr>
                                 <td>Index</td>
                                 <td id = 'index'></td>
+                                <td>Crc</td>
+                                <td id = 'crc'></td>
                             </tr>
                             <tr>
                                 <td>Time</td>
                                 <td id='time'></td>
                                 <td>Now</td>
                                 <td id='now'></td>
+                            </tr>
+                            <tr>
+                                <td>UnixTime</td>
+                                <td id='unixtime'></td>
+                                <td>UnixNow</td>
+                                <td id='unixnow'></td>
                             </tr>
                         </tbody>
                         <tbody>
@@ -333,14 +353,18 @@
                 <div class="ibox-content">
                     <table data-sort="false" class="footable" data-page-size="56" id='montimes' style="width:100%">
                         <tbody>
-                            <th>
+                            <tr>
                                 <td>Index</td>
                                 <td id = 'index'></td>
+                                <td>Crc</td>
+                                <td id = 'crc'></td>
+                            </tr>
+                            <tr>
                                 <td>Time:</td>
                                 <td id='time'></td>
                                 <td> Now:</td>
                                 <td id='now'></td>
-                            </th>
+                            </tr>
                         </tbody>
                     </table>
                 </div>
@@ -370,15 +394,7 @@
                                 <td id='linksurf'></td>
                                 <td id='linkturf'></td>
                                 <td id='linkped'></td>
-                                <td>Disk</td>
-                                <td id='disk-0'></td>
-                                <td id='disk-1'></td>
-                                <td id='disk-2'></td>
-                                <td id='disk-3'></td>
-                                <td id='disk-4'></td>
-                                <td id='disk-5'></td>
-                                <td id='disk-6'></td>
-                                <td id='disk-7'></td>
+                               
                             </tr>
                             <tr>
                                 <td ></td>
@@ -402,8 +418,22 @@
                                 <td>surf</td>
                                 <td>turf</td>
                                 <td>ped</td>
+                                
+                            </tr>
+                            <tr>
+                                <td>Disk</td>
+                                <td id='disk-0'></td>
+                                <td id='disk-1'></td>
+                                <td id='disk-2'></td>
+                                <td id='disk-3'></td>
+                                <td id='disk-4'></td>
+                                <td id='disk-5'></td>
+                                <td id='disk-6'></td>
+                                <td id='disk-7'></td>
+                            </tr>
+                            <tr>
                                 <td></td>
-                                <td>/temp</td>
+                                <td>/tmp</td>
                                 <td>var</td>
                                 <td>home</td>
                                 <td>/DS</td>
@@ -431,7 +461,7 @@
                                 <td id='disk-7'></td>
                             </tr>
                             <th>
-                                <td>/temp</td>
+                                <td>/tmp</td>
                                 <td>var</td>
                                 <td>home</td>
                                 <td>/DS</td>
@@ -462,6 +492,10 @@
                             <tr>
                                 <td>Index</td>
                                 <td id = 'index'></td>
+                                <td>Crc</td>
+                                <td id = 'crc'></td>
+                            </tr>
+                            <tr>
                                 <td>Time:</td>
                                 <td id='time'></td>
                                 <td> Now:</td>
@@ -479,128 +513,168 @@
             </div>
         </div>
 
-    <div class="col-lg-6">
-        <div class="ibox float-e-margins" id="adu5_pat">
-            <div class="ibox-title">
-               <h5>GPS Panel</h5>
-               <div class="ibox-tools">
-                   <a class="collapse-link">
-                      <i class="fa fa-chevron-up"></i>
-                    </a>
+        <div class="col-lg-6">
+            <div class="ibox float-e-margins" id="gps">
+                <div class="ibox-title">
+                   <h5>GPS Panel</h5>
+                   <div class="ibox-tools">
+                       <a class="collapse-link">
+                          <i class="fa fa-chevron-up"></i>
+                        </a>
+                    </div>
                 </div>
-            </div>
-            <div class="ibox-content" >
-                <table data-sort="false" class="footable" data-page-size="26" id='gps' style="width:100%">
-                    <tbody>
-                        <tr>
-                            <td>Index</td>
-                            <td id = 'index'></td>
-                        </tr>
-                        <tr>
-                            <td bgcolor="#FFFFFF" style="line-height:20px;" colspan=3>&nbsp;</td>
-                        </tr>
-                        <tr>
-                            <td>GPS:</td>
-                            <td>adu5A</td>
-                            <td>adu5B</td>
-                            <td>g12</td>
-                        </tr>
-                        <tr>
-                            <td>Time</td>
-                            <td id='fulltime_5A'></td>
-                            <td id='fulltime_5B'></td>
-                            <td id='fulltime_g12'></td>
-                        </tr>
-                        <tr>
-                            <td>LinuxTime</td>
-                            <td id='time_5A'></td>
-                            <td id='time_5B'></td>
-                            <td id='time_g12'></td>
-                        </tr>
-                        <tr>
-                            <td>Now</td>
-                            <td id='fullnow_5A'></td>
-                            <td id='fullnow_5B'></td>
-                            <td id='fullnow_g12'></td>                                
-                        </tr>
-                        <tr>
-                            <td>LinuxNow</td>
-                            <td id='now_5A'></td>
-                            <td id='now_5B'></td> 
-                            <td id='now_g12'></td>                                 
-                        </tr>
-                        <tr>
-                            <td bgcolor="#FFFFFF" style="line-height:20px;" colspan=3>&nbsp;</td>
-                        </tr>
-                        <tr>
-                            <td>Latitude</td>
-                            <td id='latitude_5A'></td>
-                            <td id='latitude_5B'></td>
-                            <td id='latitude_g12'></td>
-                        </tr>
-                        <tr>
-                            <td>Longitude</td>  
-                            <td id='longitude_5A'></td>
-                            <td id='longitude_5B'></td>
-                            <td id='longitude_g12'></td>                              
-                        </tr>
-                        <tr>
-                            <td>Altitude</td>
-                            <td id='altitude_5A'></td>
-                            <td id='altitude_5B'></td>
-                            <td id='altitude_g12'></td>
-                        </tr>
-                        <tr>
-                            <td bgcolor="#FFFFFF" style="line-height:20px;" colspan=3>&nbsp;</td>
-                        </tr>
-                        <tr>
-                            <td>Pitch</td>
-                            <td id='pitch_5A'></td>
-                            <td id='pitch_5B'></td>
-                        </tr>
-                        <tr>                                
-                            <td>Roll</td> 
-                            <td id='roll_5A'></td>
-                            <td id='roll_5B'></td>
-                        </tr>
-                        <tr>
-                            <td>Heading</td>      
-                            <td id='heading_5A'></td>
-                            <td id='heading_5B'></td>
-                        </tr>
-                        <tr>
-                            <td bgcolor="#FFFFFF" style="line-height:20px;" colspan=3>&nbsp;</td>
-                        </tr>
-                        <tr>                                
-                            <td>knots</td>
-                            <td id='vkt_5A'></td>
-                            <td id='vkt_5B'></td>
-                            <td id='vkt_g12'></td> 
-                        </tr>
+                <div class="ibox-content" >
+                    <table data-sort="false" class="footable" data-page-size="26" style="width:100%">
+                        <tbody>
+                            <th>
+                                <!-- <td>GPStype:</td> -->
+                                <td>adu5A</td>
+                                <td>adu5B</td>
+                                <td>g12</td>
+                            </th>
+                            <tr>
+                                <td>Index</td>
+                                <td id = 'adu5_pat_index'></td>
+                                <td></td>
+                                <td id = 'g12_pos_index'></td>
+                            </tr>
+                            
+                            
+                            <tr>
+                                <td>Time</td>
+                                <td id='time_adu5_pat_A'></td>
+                                <td id='time_adu5_pat_B'></td>
+                                <td id='time_g12_pos'></td>
+                            </tr>
+                            <tr>
+                                <td>UnixTime</td>
+                                <td id='unixtime_adu5_pat_A'></td>
+                                <td id='unixtime_adu5_pat_B'></td>
+                                <td id='unixtime_g12_pos'></td>
+                            </tr>
+                            <tr>
+                                <td>Now</td>
+                                <td id='now_adu5_pat_A'></td>
+                                <td id='now_adu5_pat_B'></td>
+                                <td id='now_g12_pos'></td>                                
+                            </tr>
+                            <tr>
+                                <td>UnixNow</td>
+                                <td id='unixnow_adu5_pat_A'></td>
+                                <td id='unixnow_adu5_pat_B'></td> 
+                                <td id='unixnow_g12_pos'></td>                                 
+                            </tr>
+                            <tr>
+                                <td>Latitude</td>
+                                <td id='latitude_adu5_pat_A'></td>
+                                <td id='latitude_adu5_pat_B'></td>
+                                <td id='latitude_g12_pos'></td>
+                            </tr>
+                            <tr>
+                                <td>Longitude</td>  
+                                <td id='longitude_adu5_pat_A'></td>
+                                <td id='longitude_adu5_pat_B'></td>
+                                <td id='longitude_g12_pos'></td>                              
+                            </tr>
+                            <tr>
+                                <td>Altitude</td>
+                                <td id='altitude_adu5_pat_A'></td>
+                                <td id='altitude_adu5_pat_B'></td>
+                                <td id='altitude_g12_pos'></td>
+                            </tr>
+                            
+                            <tr>
+                                <td>Pitch</td>
+                                <td id='pitch_adu5_pat_A'></td>
+                                <td id='pitch_adu5_pat_B'></td>
+                                <td></td>
+                            </tr>
+                            <tr>                                
+                                <td>Roll</td> 
+                                <td id='roll_adu5_pat_A'></td>
+                                <td id='roll_adu5_pat_B'></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>Heading</td>      
+                                <td id='heading_adu5_pat_A'></td>
+                                <td id='heading_adu5_pat_B'></td>
+                                <td></td>
+                            </tr>
 
-                        <tr>
-                            <td>kph</td> 
-                            <td id='vkph_5A'></td>
-                            <td id='vkph_5B'></td>
-                            <td id='vkph_g12'></td>                           
-                        </tr>
-                        <tr>
-                            <td bgcolor="#FFFFFF" style="line-height:20px;" colspan=3>&nbsp;</td>
-                        </tr>
-                        <tr>
-                            <td># of Sats</td>
-                            <td id='numsats_5A'></td>
-                            <td id='numsats_5B'></td> 
-                            <td id='numsats_g12'></td>                                 
-                        </tr>
-                    </tbody>
-                </table>
+                            <tr>
+                                <td>Flag</td>
+                                <td id='flag_adu5_pat_A'></td>
+                                <td id='flag_adu5_pat_B'></td>
+                                <td></td>
+                            </tr>
+                            <tr>                                
+                                <td>BRMS</td> 
+                                <td id='brms_adu5_pat_A'></td>
+                                <td id='brms_adu5_pat_B'></td>
+                                <td></td>
+                            </tr>
+
+                            <tr>                                
+                                <td>D2McM[km]</td> 
+                                <td id='d2mcm_adu5_pat_A'></td>
+                                <td id='d2mcm_adu5_pat_B'></td>
+                                <td id='d2mcm_g12_pos_B'></td>
+                            </tr>
+                            <tr>
+                                <td bgcolor="#FFFFFF" style="line-height:20px;" colspan=3>&nbsp;</td>
+                            </tr>
+                            <tr>
+                                <td>Index</td>
+                                <td id = 'adu5_vtg_index'></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>                                
+                                <td>knots</td>
+                                <td id='vkt_adu5_vtg_A'></td>
+                                <td id='vkt_adu5_vtg_B'></td>
+                                <td id='vkt_g12_pos'></td> 
+                            </tr>
+
+                            <tr>
+                                <td>kph</td> 
+                                <td id='vkph_adu5_vtg_A'></td>
+                                <td id='vkph_adu5_vtg_B'></td>
+                                <td id='vkph_g12_pos'></td>                           
+                            </tr>
+                            <tr>
+                                <td bgcolor="#FFFFFF" style="line-height:20px;" colspan=3>&nbsp;</td>
+                            </tr>
+                            <tr>
+                                <td>Index</td>
+                                <td id = 'adu5_sat_index'></td>
+                                <td></td>
+                                <td id = 'g12_sat_index'></td>
+                            </tr>
+                            <tr>
+                                <td># of Sats</td>
+                                <td id='numsats_adu5_sat_A'></td>
+                                <td id='numsats_adu5_sat_B'></td> 
+                                <td id='numsats_g12_sat'></td>                                 
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>
-</div>
-<div id="dialog" class='hide'>
-    <div id='chart1'></div>
+    <div id="dialog" class='hide'>
+        <ul class="nav navbar-top-links">
+            <span>Zoom Depth:</span>  <span id = 'zoomIndex'>1/1</span>
+            <li><button type="button" id='reset' class="btn btn-success btn-xs">Reset</button> </li>
+            <li><button type="button" id='undo' class="btn btn-success btn-xs">Undo</button> </li>
+            <li><button type="button" id='redo' class="btn btn-success btn-xs">Redo</button> </li>
+            <li><button type="button" id='1hour' class="btn btn-success btn-xs">1Hour</button> </li>
+            <li><button type="button" id='6hours' class="btn btn-success btn-xs">6Hours</button> </li>
+            <li><button type="button" id='24hours' class="btn btn-success btn-xs">24Hours</button> </li>
+        </ul>
+        <div id='chart1'></div>
         </br>
         <div class="col-sm-6">
             <div class="form-group">
@@ -611,7 +685,7 @@
         <div class="col-sm-3">
             <div class="form-group">
                 <label>Length(s)</label>
-                <input id="length" value="10000" placeholder="Enter the number of seconds" class="form-control">
+                <input id="length" value="21600" placeholder="Enter the number of seconds" class="form-control">
             </div>
         </div>
         <div class="col-sm-3">
@@ -624,74 +698,56 @@
 <script src="{{ url_for('static', filename='inspinia/js/plugins/footable/footable.all.min.js') }}"></script>
 <script src="{{ url_for('static', filename='inspinia/js/plugins/sparkline/jquery.sparkline.min.js') }}"></script>
 <script>
- var hk_nbufs=[];
- var hk_nows=[];
- var hk_times=[];
- var sshk_nbufs=[];
- var sshk_nows=[];
- var sshk_times=[];
- var mon_nbufs=[];
- var mon_nows=[];
- var mon_times=[];
- var cmd_nbufs=[];
- var cmd_nows=[];
- var cmd_times=[];
- var adu5_pat_nbufs=[];
- var adu5_pat_nows=[];
- var adu5_pat_times=[];
- var adu5_vtg_nbufs=[];
- var adu5_vtg_nows=[];
- var adu5_vtg_times=[];
- var adu5_sat_nbufs=[];
- var adu5_sat_nows=[];
- var adu5_sat_times=[];
- var g12_pos_nbufs=[];
- var g12_pos_nows=[];
- var g12_pos_times=[];
- var g12_sat_nbufs=[];
- var g12_sat_nows=[];
- var g12_sat_times=[];
- var i=0;
- var j=0;
- var k=0;
- var l=0;
- var m=0;
- var n=0;
- var o=0;
- var p=0;
- var q=0;
- var offset_hk = 0;
- var offset_sshk = 0;
- var offset_mon = 0;
- var offset_cmd = 0;
- var offset_adu5_pat = 0;
- var offset_adu5_vtg = 0;
- var offset_adu5_sat = 0;
- var offset_g12_pos = 0;
- var offset_g12_sat = 0;
+var hk_nbufs=[];
+var hk_nows=[];
+var hk_times=[];
+var sshk_nbufs=[];
+var sshk_nows=[];
+var sshk_times=[];
+var mon_nbufs=[];
+var mon_nows=[];
+var mon_times=[];
+var cmd_nbufs=[];
+var cmd_nows=[];
+var cmd_times=[];
+var adu5_pat_nbufs=[];
+var adu5_pat_nows=[];
+var adu5_pat_times=[];
+var adu5_vtg_nbufs=[];
+var adu5_vtg_nows=[];
+var adu5_vtg_times=[];
+var adu5_sat_nbufs=[];
+var adu5_sat_nows=[];
+var adu5_sat_times=[];
+var g12_pos_nbufs=[];
+var g12_pos_nows=[];
+var g12_pos_times=[];
+var g12_sat_nbufs=[];
+var g12_sat_nows=[];
+var g12_sat_times=[];
+var i=0;
+var j=0;
+var k=0;
+var l=0;
+var m=0;
+var n=0;
+var o=0;
+var p=0;
+var q=0;
+var offset_hk = 0;
+var offset_sshk = 0;
+var offset_mon = 0;
+var offset_cmd = 0;
+var offset_adu5_pat = 0;
+var offset_adu5_vtg = 0;
+var offset_adu5_sat = 0;
+var offset_g12_pos = 0;
+var offset_g12_sat = 0;
 
- var connected = false;
- var sleep_interval = 2000 //by default, re-access the database every 2seconds to see if there are any new data comes in.
+var connected = false;
+var sleep_interval = 2000 //by default, re-access the database every 2seconds to see if there are any new data comes in.
 
 var sync_on = false;
-function timeConverter(UNIX_timestamp) {
-    var a = new Date(UNIX_timestamp * 1000);
-    var months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-    var year = a.getUTCFullYear();
-    var month = months[a.getUTCMonth()];
-    var date = a.getUTCDate();
-    var hour = a.getUTCHours();
-    var min = a.getUTCMinutes();
-    var sec = a.getUTCSeconds();
-    if (parseInt(min) < 10){
-        min = '0' + min;
-    }
-    if (parseInt(sec) < 10){
-        sec = '0' + sec;
-        }
-    var time = month + ' ' + date + ' ' + year + ' ' + hour + ':' + min + ':' + sec;
-    return time;
-}
 
 var it_et_range_map = $.range_map({
     '0:20': 'blue',
@@ -708,7 +764,7 @@ var core_range_map = $.range_map({
     '30:60:': 'green',
     '60:80:': 'yellow'
 })
-var stemp_range_map = $.range_map({
+var stmp_range_map = $.range_map({
     '0:4000': 'blue',
     '30:60:': 'green',
     '60:80:': 'yellow'
@@ -749,6 +805,17 @@ var link_range_map = $.range_map({
     '0:15': 'green',
     '15:50:': 'yellow',
 })
+
+
+function Distance2McM (longitude, latitude) {
+    dlon = (longitude - 167.19)/180*3.1415;
+    dlat = (latitude + 77.85)/180*3.1415;
+    a = Math.pow((Math.sin(dlat/2)),2) + Math.cos(latitude/180*3.1415) * Math.cos(77.85/180*3.1415) * Math.pow((Math.sin(dlon/2)),2);
+    c = 2 * Math.atan2( Math.sqrt(a), Math.sqrt(1-a) );
+    return (6371 * c).toFixed(2); //(where R is the radius of the Earth)
+}
+
+
 
 function gpstype(gpstype) {
     if (gpstype == 0x10000) {
@@ -794,22 +861,7 @@ function update_sbst1_data($selector, new_data) {
     });
     }
 
-    function update_sbst5_data($selector, new_data) {
-        var array_string = $selector.attr('values');
-        array_string = new_data;
-    // $selector.attr('values', [1,1.5,4.5,6]).sparkline('html', {
-        $selector.attr('values', array_string).sparkline('html', {
-            type: 'bar',
-            barWidth: 8,
-            height: '90',
-        // zeroAxis: false,
-        colorMap: sbst_range_map,
-        chartRangeMin: -10,
-        chartRangeMax: 100
-    });
-    }
-
-    function update_sbst6_data($selector, new_data) {
+    function update_disk_data($selector, new_data) {
         var array_string = $selector.attr('values');
         array_string = new_data;
     // $selector.attr('values', [1,1.5,4.5,6]).sparkline('html', {
@@ -839,20 +891,20 @@ function update_sbst1_data($selector, new_data) {
     });
     }
 
-    function update_core2_data($selector, new_data) {
-        var array_string = $selector.attr('values');
-        array_string = new_data;
-    // $selector.attr('values', [1,1.5,4.5,6]).sparkline('html', {
-        $selector.attr('values', array_string).sparkline('html', {
-            type: 'bar',
-            barWidth: 8,
-            height: '90',
-        // zeroAxis: false,
-        colorMap: core_range_map,
-        chartRangeMin: -10,
-        chartRangeMax: 100
-    });
-    }
+    // function update_core2_data($selector, new_data) {
+    //     var array_string = $selector.attr('values');
+    //     array_string = new_data;
+    // // $selector.attr('values', [1,1.5,4.5,6]).sparkline('html', {
+    //     $selector.attr('values', array_string).sparkline('html', {
+    //         type: 'bar',
+    //         barWidth: 8,
+    //         height: '90',
+    //     // zeroAxis: false,
+    //     colorMap: core_range_map,
+    //     chartRangeMin: -10,
+    //     chartRangeMax: 100
+    // });
+    // }
 
     function update_it_data($selector, new_data) {
         var array_string = $selector.attr('values');
@@ -885,13 +937,14 @@ function update_sbst1_data($selector, new_data) {
     }
 
     function update_disk0_data($selector, new_data) {
-    //slash temp
+    //slash tmp
     var array_string = $selector.attr('values');
     array_string = new_data;
     // $selector.attr('values', [1,1.5,4.5,6]).sparkline('html', {
         $selector.attr('values', array_string).sparkline('html', {
             type: 'bar',
             barWidth: 8,
+            height: '90',
         // zeroAxis: false,
         colorMap: disk0_range_map,
         chartRangeMin: 0,
@@ -907,6 +960,7 @@ function update_sbst1_data($selector, new_data) {
         $selector.attr('values', array_string).sparkline('html', {
             type: 'bar',
             barWidth: 8,
+            height: '90',
         // zeroAxis: false,
         colorMap: disk1_range_map,
         chartRangeMin: 0,
@@ -922,6 +976,7 @@ function update_sbst1_data($selector, new_data) {
         $selector.attr('values', array_string).sparkline('html', {
             type: 'bar',
             barWidth: 8,
+            height: '90',
         // zeroAxis: false,
         colorMap: disk2_range_map,
         chartRangeMin: 0,
@@ -937,6 +992,7 @@ function update_sbst1_data($selector, new_data) {
         $selector.attr('values', array_string).sparkline('html', {
             type: 'bar',
             barWidth: 8,
+            height: '90',
         // zeroAxis: false,
         colorMap: disk3_range_map,
         chartRangeMin: 0,
@@ -944,7 +1000,7 @@ function update_sbst1_data($selector, new_data) {
     });
     }
 
-    function update_disk45_data($selector, new_data) {
+    function update_disk4_data($selector, new_data) {
     //He1 
     var array_string = $selector.attr('values');
     array_string = new_data;
@@ -952,8 +1008,9 @@ function update_sbst1_data($selector, new_data) {
         $selector.attr('values', array_string).sparkline('html', {
             type: 'bar',
             barWidth: 8,
+            height: '90',
         // zeroAxis: false,
-        colorMap: disk45_range_map,
+        colorMap: disk4_range_map,
         chartRangeMin: 0,
         chartRangeMax: 6000000
     });
@@ -967,6 +1024,7 @@ function update_sbst1_data($selector, new_data) {
         $selector.attr('values', array_string).sparkline('html', {
             type: 'bar',
             barWidth: 8,
+            height: '90',
         // zeroAxis: false,
         colorMap: disk5_range_map,
         chartRangeMin: 0,
@@ -982,6 +1040,7 @@ function update_sbst1_data($selector, new_data) {
         $selector.attr('values', array_string).sparkline('html', {
             type: 'bar',
             barWidth: 8,
+            height: '90',
         // zeroAxis: false,
         colorMap: disk6_range_map,
         chartRangeMin: 0,
@@ -997,6 +1056,7 @@ function update_sbst1_data($selector, new_data) {
         $selector.attr('values', array_string).sparkline('html', {
             type: 'bar',
             barWidth: 8,
+            height: '90',
         // zeroAxis: false,
         colorMap: disk7_range_map,
         chartRangeMin: 0,
@@ -1012,6 +1072,7 @@ function update_sbst1_data($selector, new_data) {
         $selector.attr('values', array_string).sparkline('html', {
             type: 'bar',
             barWidth: 8,
+            height: '90',
         // zeroAxis: false,
         colorMap: link_range_map,
         chartRangeMin: 0,
@@ -1020,8 +1081,10 @@ function update_sbst1_data($selector, new_data) {
     }
 
     function updatehtml_hk(hk) {
+        if (!hk) return;
         $.getJSON('/api/' + ip_db + '/hk/' + hk, function(data) {
             $('#hk_time #index').html(i + 1 + "/" + hk_nbufs.length);
+            $('#hk #crc').html(data.hk.crc);
             $('#hk_time #now').html(data.hk.now + " (" + timeConverter(data.hk.now) + ")");
             $('#hk_time #time').html(data.hk.time + " (" + timeConverter(data.hk.time) + ")");
             $('#hk #p1_5v').html(data.hk.p1_5v);
@@ -1090,23 +1153,25 @@ function update_sbst1_data($selector, new_data) {
             
             var sbst1_name;
             sbst1_name = '#sbst1';
-            update_sbst1_data($(sbst1_name), parseInt(data.hk.sbst1));
+            update_sbst1_data($(sbst1_name), parseInt(data.hk.sbst1) * 0.1);
             var sbst2_name;
             sbst2_name = '#sbst2';
-            update_sbst2_data($(sbst2_name), parseInt(data.hk.sbst2));
+            update_sbst2_data($(sbst2_name), parseInt(data.hk.sbst2 * 0.1));
 
-            var sbst5_name;
-            sbst5_name = '#sbst5';
-            update_sbst5_data($(sbst5_name), parseInt(data.hk.sbst5));
-            var sbst6_name;
-            sbst6_name = '#sbst6';
-            update_sbst6_data($(sbst6_name), parseInt(data.hk.sbst6));
+            for (var ii = 0; ii < 2; ii++) {
+                disk_name = '#disk' + ii;
+                if (ii == 0){
+                    update_disk_data($(disk_name), parseInt(data.hk.sbst5));
+                }else if(ii == 1){
+                    update_disk_data($(disk_name), parseInt(data.hk.sbst6));
+                }
+            }
             var core1_name;
             core1_name = '#core1';
-            update_core1_data($(core1_name), parseInt(data.hk.core1));
-            var core2_name;
-            core2_name = '#core2';
-            update_core2_data($(core2_name), parseInt(data.hk.core2));
+            update_core1_data($(core1_name), parseInt(data.hk.core1 * 0.1));
+            // var core2_name;
+            // core2_name = '#core2';
+            // update_core2_data($(core2_name), parseInt(data.hk.core2 * 0.1));
             var it_name;
             for (var ii = 0; ii < 15; ii++) {
                 it_name = '#it-' + ii;
@@ -1115,7 +1180,7 @@ function update_sbst1_data($selector, new_data) {
             var et_name;
             for (var ii = 0; ii < 15; ii++) {
                 et_name = '#et-' + ii;
-                update_et_data($(et_name), parseInt(data.hk.et[i]));
+                update_et_data($(et_name), parseInt(data.hk.et[ii]));
             }
         });
 
@@ -1125,8 +1190,11 @@ function updatehtml_sshk(sshk) {
     if (!sshk) return;
     $.getJSON('/api/' + ip_db + '/sshk/' + sshk, function(data) {
         $('#sshk #index').html(n + 1 + "/" + sshk_nbufs.length);
-        $('#sshk #now').html(data.sshk.now + " (" + timeConverter(data.sshk.now) + ")");
-        $('#sshk #time').html(data.sshk.time + " (" + timeConverter(data.sshk.time) + ")");
+        $('#sshk #crc').html(data.sshk.crc);
+        $('#sshk #now').html(timeConverter(data.sshk.now));
+        $('#sshk #time').html(timeConverter(data.sshk.time));
+        $('#sshk #unixnow').html(data.sshk.now);
+        $('#sshk #unixtime').html(data.sshk.time);
         $('#sshk #ssflag-4').html(data.sshk.ssflag[0]);
         $('#sshk #ssflag-5').html(data.sshk.ssflag[1]);
         $('#sshk #ssflag-6').html(data.sshk.ssflag[2]);
@@ -1146,6 +1214,7 @@ function updatehtml_mon(mon) {
     if (!mon) return;
     $.getJSON('/api/' + ip_db + '/mon/' + mon, function(data) {
         $('#montimes #index').html(j + 1 + "/" + mon_nbufs.length);
+        $('#montimes #crc').html(data.mon.crc);
         $('#montimes #now').html(data.mon.now + " (" + timeConverter(data.mon.now) + ")");
         $('#montimes #time').html(data.mon.time + " (" + timeConverter(data.mon.time) + ")");
 
@@ -1186,25 +1255,25 @@ function updatehtml_mon(mon) {
         update_disk0_data($(disk_name), parseInt(data.mon.disk[0]));
         var disk_name;
         disk_name = '#disk-1';
-        update_disk0_data($(disk_name), parseInt(data.mon.disk[1]));
+        update_disk1_data($(disk_name), parseInt(data.mon.disk[1]));
         var disk_name;
         disk_name = '#disk-2';
-        update_disk0_data($(disk_name), parseInt(data.mon.disk[2]));
+        update_disk2_data($(disk_name), parseInt(data.mon.disk[2]));
         var disk_name;
         disk_name = '#disk-3';
-        update_disk0_data($(disk_name), parseInt(data.mon.disk[3]));
+        update_disk3_data($(disk_name), parseInt(data.mon.disk[3]));
         var disk_name;
         disk_name = '#disk-4';
-        update_disk0_data($(disk_name), parseInt(data.mon.disk[4]));
+        update_disk4_data($(disk_name), parseInt(data.mon.disk[4]) * 128);
         var disk_name;
         disk_name = '#disk-5';
-        update_disk0_data($(disk_name), parseInt(data.mon.disk[5]));
+        update_disk5_data($(disk_name), parseInt(data.mon.disk[5]) * 128);
         var disk_name;
         disk_name = '#disk-6';
-        update_disk0_data($(disk_name), parseInt(data.mon.disk[6]));
+        update_disk6_data($(disk_name), parseInt(data.mon.disk[6]) *4);
         var disk_name;
         disk_name = '#disk-7';
-        update_disk0_data($(disk_name), parseInt(data.mon.disk[7]));
+        update_disk7_data($(disk_name), parseInt(data.mon.disk[7]) *4);
     });
 }
 
@@ -1215,6 +1284,7 @@ function updatehtml_cmd(cmd) {
         console.log(data.cmd);
         console.log(data.cmd.bytes);
         $('#cmd #index').html(q + 1 + "/" + cmd_nbufs.length);
+        $('#cmd #crc').html(data.cmd.crc);
         $('#cmd #now').html(data.cmd.now + " (" + timeConverter(data.cmd.now) + ")");
         $('#cmd #time').html(data.cmd.time + " (" + timeConverter(data.cmd.time) + ")");
         var length = data.cmd.bytes;
@@ -1249,78 +1319,136 @@ function updatehtml_cmd(cmd) {
 function updatehtml_adu5_pat(adu5_pat) {
     if (!adu5_pat) return;
     $.getJSON('/api/' + ip_db + '/adu5_pat/' + adu5_pat, function(data) {
-        $('#gps #index').html(k + 1 + "/" + adu5_pat_times.length);
-        $('#gps #now_5A').html(data.pat_a.now);
-        $('#gps #time_5A').html(data.pat_a.time);
-        $('#gps #fullnow_5A').html(timeConverter(data.pat_a.now));
-        $('#gps #fulltime_5A').html(timeConverter(data.pat_a.time));
-        $('#gps #heading_5A').html(data.pat_a.heading);
-        $('#gps #latitude_5A').html(data.pat_a.latitude);
-        $('#gps #longitude_5A').html(data.pat_a.longitude);
-        $('#gps #pitch_5A').html(data.pat_a.pitch);
-        $('#gps #roll_5A').html(data.pat_a.roll);
-        $('#gps #altitude_5A').html(data.pat_a.altitude);        
-       
-        $('#gps #now_5B').html(data.pat_b.now);
-        $('#gps #time_5B').html(data.pat_b.time);
-        $('#gps #fullnow_5B').html(timeConverter(data.pat_b.now));
-        $('#gps #fulltime_5B').html(timeConverter(data.pat_b.time));
-        $('#gps #heading_5B').html(data.pat_b.heading);
-        $('#gps #latitude_5B').html(data.pat_b.latitude);
-        $('#gps #longitude_5B').html(data.pat_b.longitude);
-        $('#gps #pitch_5B').html(data.pat_b.pitch);
-        $('#gps #roll_5B').html(data.pat_b.roll);
-        $('#gps #altitude_5B').html(data.pat_b.altitude);
-        $('#gps #numsats_5B').html(data.pat_b.numsats);
+        $('#gps #adu5_pat_index').html(k + 1 + "/" + adu5_pat_times.length);
+        if (data.pat_a == undefined){
+            $('#gps #adu5_pat_index').css('color', 'LightGrey');
+            $('#gps #unixnow_adu5_pat_A').css('color', 'LightGrey');
+            $('#gps #unixtime_adu5_pat_A').css('color', 'LightGrey');
+            $('#gps #now_adu5_pat_A').css('color', 'LightGrey');
+            $('#gps #time_adu5_pat_A').css('color', 'LightGrey');
+            $('#gps #heading_adu5_pat_A').css('color', 'LightGrey');
+            $('#gps #latitude_adu5_pat_A').css('color', 'LightGrey');
+            $('#gps #longitude_adu5_pat_A').css('color', 'LightGrey');
+            $('#gps #pitch_adu5_pat_A').css('color', 'LightGrey');
+            $('#gps #roll_adu5_pat_A').css('color', 'LightGrey');
+            $('#gps #altitude_adu5_pat_A').css('color', 'LightGrey');
+            $('#gps #flag_adu5_pat_A').css('color', 'LightGrey');
+            $('#gps #brms_adu5_pat_A').css('color', 'LightGrey');
+            $('#gps #d2mcm_adu5_pat_A').css('color', 'LightGrey');     
+        }else{
+            
+            $('#gps #unixnow_adu5_pat_A').html(data.pat_a.now).css('color', 'inherit');
+            $('#gps #unixtime_adu5_pat_A').html(data.pat_a.time).css('color', 'inherit');
+            $('#gps #now_adu5_pat_A').html(timeConverter(data.pat_a.now)).css('color', 'inherit');
+            $('#gps #time_adu5_pat_A').html(timeConverter(data.pat_a.time)).css('color', 'inherit');
+            $('#gps #heading_adu5_pat_A').html(data.pat_a.heading).css('color', 'inherit');
+            $('#gps #latitude_adu5_pat_A').html(data.pat_a.latitude).css('color', 'inherit');
+            $('#gps #longitude_adu5_pat_A').html(data.pat_a.longitude).css('color', 'inherit');
+            $('#gps #pitch_adu5_pat_A').html(data.pat_a.pitch).css('color', 'inherit');
+            $('#gps #roll_adu5_pat_A').html(data.pat_a.roll).css('color', 'inherit');
+            $('#gps #altitude_adu5_pat_A').html(data.pat_a.altitude).css('color', 'inherit');
+            $('#gps #flag_adu5_pat_A').html(data.pat_a.flag).css('color', 'inherit');
+            $('#gps #brms_adu5_pat_A').html(data.pat_a.brms).css('color', 'inherit');  
+            $('#gps #d2mcm_adu5_pat_A').html(Distance2McM(data.pat_a.longitude,data.pat_a.latitude)).css('color', 'inherit');     
+        }
+           
+        if (data.pat_b == undefined){
+            $('#gps #unixnow_adu5_pat_B').css('color', 'LightGrey');
+            $('#gps #unixtime_adu5_pat_B').css('color', 'LightGrey');
+            $('#gps #now_adu5_pat_B').css('color', 'LightGrey');
+            $('#gps #time_adu5_pat_B').css('color', 'LightGrey');
+            $('#gps #heading_adu5_pat_B').css('color', 'LightGrey');
+            $('#gps #latitude_adu5_pat_B').css('color', 'LightGrey');
+            $('#gps #longitude_adu5_pat_B').css('color', 'LightGrey');
+            $('#gps #pitch_adu5_pat_B').css('color', 'LightGrey');
+            $('#gps #roll_adu5_pat_B').css('color', 'LightGrey');
+            $('#gps #altitude_adu5_pat_B').css('color', 'LightGrey'); 
+            $('#gps #flag_adu5_pat_B').css('color', 'LightGrey');
+            $('#gps #brms_adu5_pat_B').css('color', 'LightGrey');
+            $('#gps #d2mcm_adu5_pat_B').css('color', 'LightGrey');   
+        }else{
+            $('#gps #unixnow_adu5_pat_B').html(data.pat_b.now).css('color', 'inherit');
+            $('#gps #unixtime_adu5_pat_B').html(data.pat_b.time).css('color', 'inherit');
+            $('#gps #now_adu5_pat_B').html(timeConverter(data.pat_b.now)).css('color', 'inherit');
+            $('#gps #time_adu5_pat_B').html(timeConverter(data.pat_b.time)).css('color', 'inherit');
+            $('#gps #heading_adu5_pat_B').html(data.pat_b.heading).css('color', 'inherit');
+            $('#gps #latitude_adu5_pat_B').html(data.pat_b.latitude).css('color', 'inherit');
+            $('#gps #longitude_adu5_pat_B').html(data.pat_b.longitude).css('color', 'inherit');
+            $('#gps #pitch_adu5_pat_B').html(data.pat_b.pitch).css('color', 'inherit');
+            $('#gps #roll_adu5_pat_B').html(data.pat_b.roll).css('color', 'inherit');
+            $('#gps #altitude_adu5_pat_B').html(data.pat_b.altitude).css('color', 'inherit'); 
+            $('#gps #flag_adu5_pat_B').html(data.pat_a.flag).css('color', 'inherit');
+            $('#gps #brms_adu5_pat_B').html(data.pat_a.brms).css('color', 'inherit');
+            $('#gps #d2mcm_adu5_pat_B').html(Distance2McM(data.pat_a.longitude,data.pat_a.latitude)).css('color', 'inherit');         
+        }
    });
 }
 
 function updatehtml_adu5_vtg(adu5_vtg) {
     if (!adu5_vtg) return;
     $.getJSON('/api/' + ip_db + '/adu5_vtg/' + adu5_vtg, function(data) {
-        $('#gps #vtg_gpstype').html(gpstype(data.vtg.gpstype));
-        if (gpstype(data.vtg.gpstype) == 'adu5A'){
-           $('#gps #vkph_5A').html(data.vtg.vkph);
-           $('#gps #vkt_5A').html(data.vtg.vkt);
-       }
-       else if (gpstype(data.vtg.gpstype) == 'adu5B'){
-           $('#gps #vkph_5B').html(data.vtg.vkph);
-           $('#gps #vkt_5B').html(data.vtg.vkt);
-       }
+        $('#gps #adu5_vtg_index').html(l + 1 + "/" + adu5_vtg_times.length);
+        if (data.vtg_a == undefined){
+            $('#gps #vkph_adu5_vtg_A').css('color', 'LightGrey');
+            $('#gps #vkt_adu5_vtg_A').css('color', 'LightGrey');
+        }else{
+            $('#gps #vkph_adu5_vtg_A').html(data.vtg_a.vkph).css('color', 'inherit');
+            $('#gps #vkt_adu5_vtg_A').html(data.vtg_a.vkt).css('color', 'inherit');
+        }
+        
+        if (data.vtg_b == undefined){
+            $('#gps #vkph_adu5_vtg_B').css('color', 'LightGrey');
+            $('#gps #vkt_adu5_vtg_B').css('color', 'LightGrey');
+        }else{
+            $('#gps #vkph_adu5_vtg_B').html(data.vtg_b.vkph).css('color', 'inherit');
+            $('#gps #vkt_adu5_vtg_B').html(data.vtg_b.vkt).css('color', 'inherit');
+        }
+            
+
    });
 }
 
 function updatehtml_adu5_sat(adu5_sat) {
     if (!adu5_sat) return;
     $.getJSON('/api/' + ip_db + '/adu5_sat/' + adu5_sat, function(data) {
-        $('#gps #sat_gpstype').html(gpstype(data.sat.gpstype));
-        if (gpstype(data.sat.gpstype) == 'adu5A'){
-           $('#gps #numsats_5A').html(data.sat.numsats[0]+', '+data.sat.numsats[1]+', '+data.sat.numsats[2]+', '+data.sat.numsats[3]);
-       }
-       else if (gpstype(data.sat.gpstype) == 'adu5B'){
-           $('#gps #numsats_5B').html(data.sat.numsats[0]+', '+data.sat.numsats[1]+', '+data.sat.numsats[2]+', '+data.sat.numsats[3]);
-       }
+        $('#gps #adu5_sat_index').html(p + 1 + "/" + adu5_sat_times.length);
+        if (data.sat_a == undefined){
+            $('#gps #numsats_adu5_sat_A').css('color', 'LightGrey');
+        }else{
+            $('#gps #numsats_adu5_sat_A').html(data.sat_a.numsats[0]+', '+data.sat_a.numsats[1]+', '+data.sat_a.numsats[2]+', '+data.sat_a.numsats[3]).css('color', 'inherit');
+        }
+
+        if (data.sat_b == undefined){
+            $('#gps #numsats_adu5_sat_B').css('color', 'LightGrey');
+        }else{
+            $('#gps #numsats_adu5_sat_B').html(data.sat_b.numsats[0]+', '+data.sat_b.numsats[1]+', '+data.sat_b.numsats[2]+', '+data.sat_b.numsats[3]).css('color', 'inherit');
+        }
+            
+            
    });
 }
 
 function updatehtml_g12_pos(g12_pos){
+    $('#gps #g12_pos_index').html(o + 1 + "/" + g12_pos_nbufs.length);
    if (!g12_pos) return;
    $.getJSON('/api/' + ip_db + '/g12_pos/' + g12_pos, function(data){
-       $('#gps #now_g12').html(data.pos.now);
-       $('#gps #time_g12').html(data.pos.time);
-       $('#gps #fullnow_g12').html(timeConverter(data.pos.now));
-       $('#gps #fulltime_g12').html(timeConverter(data.pos.time));
-       $('#gps #latitude_g12').html(data.pos.latitude);
-       $('#gps #longitude_g12').html(data.pos.longitude);
-       $('#gps #altitude_g12').html(data.pos.altitude);        
+       $('#gps #unixnow_g12_pos').html(data.pos.now);
+       $('#gps #unixtime_g12_pos').html(data.pos.time);
+       $('#gps #now_g12_pos').html(timeConverter(data.pos.now));
+       $('#gps #time_g12_pos').html(timeConverter(data.pos.time));
+       $('#gps #latitude_g12_pos').html(data.pos.latitude);
+       $('#gps #longitude_g12_pos').html(data.pos.longitude);
+       $('#gps #altitude_g12_pos').html(data.pos.altitude);    
+       $('#gps #d2mcm_g12_pos_B').html(Distance2McM(data.pos.longitude,data.pos.latitude));         
+    
    });
 }
 
 function updatehtml_g12_sat(g12_sat){
+    $('#gps #g12_sat_index').html(p + 1 + "/" + g12_sat_nbufs.length);
    if (!g12_sat) return;
    $.getJSON('/api/' + ip_db + '/g12_sat/' + g12_sat, function(data){
-       $('#gps #sat_gpstype').html(gpstype(data.sat.gpstype));        
-       $('#gps #numsats_g12').html(data.sat.numsats); 
+       $('#gps #numsats_g12_sat').html(data.sat.numsats); 
    });
 }
 
@@ -1331,22 +1459,30 @@ $(document).ready(function() {
         var column_name = $(this).attr('id');
         var table_name = $(this).closest('.ibox').attr('id');
         var name = table_name + '_' + column_name;
+        columns = column_name.split('_');
+        if (columns[1] == 'adu5' && (columns[0]!= 'numsats' || columns[0]!= 'd2mcm') ){
+            multi_plot = true;
+        }else{
+            multi_plot = false;
+        }
         // console.log($(this).attr('id'));
         // console.log($(this).closest('.ibox').attr('id'));
         if ($("#dialog_" + name).length) {
             $("#dialog_" + name).dialog('open');
-            $("#dialog_" + name).find('input[id="reference_time"]').val(hk_times[i]);
+            $("#dialog_" + name).find('input[id="reference_time"]').val(hk_nows[i]);
         } else {
             var $newDialog = $('#dialog').clone();
             $newDialog.attr('id', 'dialog_' + name);
             $newDialog.removeClass('hide');
             $newDialog.attr('title', name);
-            $newDialog.prepend('<div id="' + "plot_" + name + '"></div>');
-            $newDialog.find('input[id="reference_time"]').val(hk_times[i]);
+            $newDialog.prepend('<div id="' + "plot_" + name + '"  class="dialog_plot" ></div>');
+            $newDialog.find('input[id="reference_time"]').val(hk_nows[i]);
             $newDialog.dialog({
                 width: 600,
                 height: 500,
             });
+            $newDialog.data('zoomStack', [[hk_nows[i], 21600]]);
+            $newDialog.data('zoomStackIndex', 0);
             var line1 = [
             ['2008-09-30', 14]
             ];
@@ -1374,9 +1510,28 @@ $(document).ready(function() {
                         }
                     }
                 },
-                series: [{
-                    lineWidth: 2
-                }],
+                series: [
+                    {
+                        lineWidth: .5,
+                        markerOptions: {
+                            size: 2,
+                            color: 'blue' 
+                        }
+                    },
+                    {
+                        lineWidth: .5,
+                        markerOptions: {
+                            size: 2,
+                            color: 'red' 
+                        }
+                    }
+                ],
+                legend: {
+                    show: multi_plot,
+                    labels: ['adu5_A', 'adu5_B'],
+                    location: 'ne',
+                    rowSpacing: '0px'
+                },
                 cursor: {
                     zoom: true,
                     looseZoom: true,
@@ -1387,34 +1542,191 @@ $(document).ready(function() {
                 }
             });
 
- $newDialog.dialog({
-    resize: function(event, ui) {
-        $("#plot_" + name).height(Math.max(100, $newDialog.height() - 120));
-        plot1.replot({
-            resetAxes: true,
-        });
-    }
-});
-}
+            $newDialog.dialog({
+                resize: function(event, ui) {
+                    $("#plot_" + name).height(Math.max(100, $newDialog.height() - 120));
+                    plot1.replot({
+                        resetAxes: true,
+                    });
+                }
+            });
+        }
 
-$("#dialog_" + name).find('button[id="request"]').click(function() {
-    console.log('click');
-    var end_time = $newDialog.find('input[id="reference_time"]').val();
-    var length = $newDialog.find('input[id="length"]').val();
-    // console.log(end_time);
-    // console.log(end_time - length);
-    $.getJSON('/api/' + ip_db + '/history/' + table_name + '/' + column_name + '/' + (end_time - length) + '/' + end_time, function(data) {
-        // console.log(data.data);
-        plot1.replot({
-            data: [data.data]
+        function replotTimeline (table_name, column_name, end_time, length) {
+            $.getJSON('/api/' + ip_db + '/history/' + table_name + '/' + column_name + '/' + (end_time - length) + '/' + end_time, function(data) {
+                console.log(data);
+                var step = 1;
+                if (data.data && data.data.length > 50000){
+                    // step = data.data.length/5000;
+                    step = Math.floor(data.data.length/5000);
+                }
+                if (data.data_a && data.data_a.length > 50000){
+                    // step = data.data.length/5000;
+                    step = Math.floor(data.data_a.length/5000);
+                }
+                if (Object.keys(data).length == 2){
+                    // datalist = [data.data_a, data.data_b];
+                    new_data_a = [];
+                    for (var i =0; i< data.data_a.length; i += step){
+                        element = data.data_a[i];
+                        new_data_a.push([element[0] + timeZoneShift, element[1]]);
+                    }
+                    new_data_b = [];
+                    for (var i =0; i< data.data_b.length; i += step){
+                        element = data.data_b[i];
+                        new_data_b.push([element[0] + timeZoneShift, element[1]]);
+                    }
+                    datalist = [new_data_a, new_data_b];
+                }else{
+                    new_data = [];
+                    for (var i =0; i< data.data.length; i += step){
+                        element = data.data[i];
+                        new_data.push([element[0] + timeZoneShift, element[1]]);
+                    }
+                    console.log(data.data.length);
+                    datalist = [new_data];
+                }
+                console.log(datalist);
+                plot1.replot({
+                    data: datalist
+                });
+            });
+
+        }
+
+        $("#dialog_" + name).on('jqplotZoom', function(ev, gridpos, datapos, plot, cursor){
+            end_time = parseInt((plot.axes.xaxis.max - timeZoneShift)/1000);
+            length = end_time - parseInt((plot.axes.xaxis.min - timeZoneShift)/1000);
+            $("#dialog_" + name).find('input[id="reference_time"]').val(end_time);
+            $("#dialog_" + name).find('input[id="length"]').val(length);
+            var new_index = $(this).data('zoomStackIndex') + 1;
+            $(this).data('zoomStackIndex', new_index);
+            var new_zoomStack = $(this).data('zoomStack').slice(0, new_index);
+            new_zoomStack.push([end_time, length]);
+            $(this).data('zoomStack', new_zoomStack);
+            console.log(new_index + 1 + '/' + new_zoomStack.length);
+            $("#dialog_" + name + " #zoomIndex").text(new_index + 1 + '/' + new_zoomStack.length);
         });
+
+        $("#dialog_" + name + " #reset").click(function() {
+            $("#dialog_" + name).data('zoomStackIndex', 0);
+            $("#dialog_" + name).data('zoomStack', [[hk_nows[i], 21600]]);
+            $("#dialog_" + name).find('input[id="reference_time"]').val(hk_nows[i]);
+            $("#dialog_" + name).find('input[id="length"]').val(21600);
+            $("#dialog_" + name).find('button[id="request"]').trigger("click");
+            $("#dialog_" + name + " #zoomIndex").text('1/1');
+        });
+        
+
+        $("#dialog_" + name + " #undo").click(function() {
+            if ($("#dialog_" + name).data('zoomStack').length > 1){
+                var index = $("#dialog_" + name).data('zoomStackIndex') - 1;
+                if (index >= 0){
+                    $("#dialog_" + name).data('zoomStackIndex', index);
+                    var zoomStack = $("#dialog_" + name).data('zoomStack');
+                    var zoom = zoomStack[index];
+                    var end_time = zoom[0];
+                    var length = zoom[1]
+                    $("#dialog_" + name).find('input[id="reference_time"]').val(end_time);
+                    $("#dialog_" + name).find('input[id="length"]').val(length);
+                    $("#dialog_" + name).find('button[id="request"]').trigger("click");
+                    $("#dialog_" + name + " #zoomIndex").text(index + 1 + '/' + zoomStack.length);
+                }
+            }
+        });
+
+        $("#dialog_" + name + " #redo").click(function() {
+            var stack_length = $("#dialog_" + name).data('zoomStack').length;
+            if ( stack_length > 0){
+                var index = $("#dialog_" + name).data('zoomStackIndex') + 1;
+                if (index < stack_length){
+                    $("#dialog_" + name).data('zoomStackIndex', index);
+                    var zoomStack = $("#dialog_" + name).data('zoomStack');
+                    var zoom = zoomStack[index];
+                    var end_time = zoom[0];
+                    var length = zoom[1]
+                    $("#dialog_" + name).find('input[id="reference_time"]').val(end_time);
+                    $("#dialog_" + name).find('input[id="length"]').val(length);
+                    $("#dialog_" + name).find('button[id="request"]').trigger("click");
+                    $("#dialog_" + name + " #zoomIndex").text(index + 1 + '/' + zoomStack.length);
+                }
+            }
+        });
+
+        $("#dialog_" + name + " #1hour").click(function() {
+            console.log('1hour');
+            var stack_length = $("#dialog_" + name).data('zoomStack').length;
+            if ( stack_length > 0){
+                var index = $("#dialog_" + name).data('zoomStackIndex');
+
+                var new_index = index + 1;
+                $("#dialog_" + name).data('zoomStackIndex', new_index);
+                var new_zoomStack = $("#dialog_" + name).data('zoomStack').slice(0, new_index);
+                var end_time = new_zoomStack[index][0];
+                var length = 3600;
+                new_zoomStack.push([end_time, length])
+                $("#dialog_" + name).data('zoomStack', new_zoomStack);
+                $("#dialog_" + name).find('input[id="reference_time"]').val(end_time);
+                $("#dialog_" + name).find('input[id="length"]').val(length);
+                $("#dialog_" + name).find('button[id="request"]').trigger("click");
+                $("#dialog_" + name + " #zoomIndex").text(new_index + 1 + '/' + new_zoomStack.length);
+            }
+        });
+
+        $("#dialog_" + name + " #6hours").click(function() {
+            console.log('1hour');
+            var stack_length = $("#dialog_" + name).data('zoomStack').length;
+            if ( stack_length > 0){
+                var index = $("#dialog_" + name).data('zoomStackIndex');
+
+                var new_index = index + 1;
+                $("#dialog_" + name).data('zoomStackIndex', new_index);
+                var new_zoomStack = $("#dialog_" + name).data('zoomStack').slice(0, new_index);
+                var end_time = new_zoomStack[index][0];
+                var length = 21600;
+                new_zoomStack.push([end_time, length])
+                $("#dialog_" + name).data('zoomStack', new_zoomStack);
+                $("#dialog_" + name).find('input[id="reference_time"]').val(end_time);
+                $("#dialog_" + name).find('input[id="length"]').val(length);
+                $("#dialog_" + name).find('button[id="request"]').trigger("click");
+                $("#dialog_" + name + " #zoomIndex").text(new_index + 1 + '/' + new_zoomStack.length);
+            }
+        });
+
+        $("#dialog_" + name + " #24hours").click(function() {
+            console.log('1hour');
+            var stack_length = $("#dialog_" + name).data('zoomStack').length;
+            if ( stack_length > 0){
+                var index = $("#dialog_" + name).data('zoomStackIndex');
+
+                var new_index = index + 1;
+                $("#dialog_" + name).data('zoomStackIndex', new_index);
+                var new_zoomStack = $("#dialog_" + name).data('zoomStack').slice(0, new_index);
+                var end_time = new_zoomStack[index][0];
+                var length = 86400;
+                new_zoomStack.push([end_time, length])
+                $("#dialog_" + name).data('zoomStack', new_zoomStack);
+                $("#dialog_" + name).find('input[id="reference_time"]').val(end_time);
+                $("#dialog_" + name).find('input[id="length"]').val(length);
+                $("#dialog_" + name).find('button[id="request"]').trigger("click");
+                $("#dialog_" + name + " #zoomIndex").text(new_index + 1 + '/' + new_zoomStack.length);
+            }
+        });
+
+        $("#dialog_" + name).find('button[id="request"]').click(function() {
+            console.log('click');
+            var end_time = $newDialog.find('input[id="reference_time"]').val();
+            var length = $newDialog.find('input[id="length"]').val();
+            // console.log(end_time);
+            // console.log(end_time - length);
+            replotTimeline(table_name, column_name, end_time, length);
+            
+        });
+
+        $("#dialog_" + name).find('button[id="request"]').trigger("click");
     });
-});
 
-$("#dialog_" + name).find('button[id="request"]').trigger("click");
-});
-
- $('.footable').footable();
+    $('.footable').footable();
     function autoload() {
         $.getJSON('/api/' + ip_db + '/hk/nbufs/' + offset_hk, function(data) {
             new_length = data.hk_nbufs.length
@@ -1433,7 +1745,7 @@ $("#dialog_" + name).find('button[id="request"]').trigger("click");
         }).done(function() {
             setTimeout(function() {
                 if (new_length) {
-                    sleep_interval = 2000;
+                    sleep_interval = 100;
                 } else {
                     sleep_interval = Math.min(sleep_interval * 1.2, 60000);
                 }
@@ -1474,13 +1786,14 @@ $("#dialog_" + name).find('button[id="request"]').trigger("click");
             adu5_pat_nows = adu5_pat_nows.concat(data.adu5_pat_nows);
             adu5_pat_times = adu5_pat_times.concat(data.adu5_pat_times);
             
-            $('#gps #index').html(k + 1 + "/" + adu5_pat_nbufs.length);
+            $('#gps #adu5_pat_index').html(k + 1 + "/" + adu5_pat_nbufs.length);
         });
         $.getJSON('/api/' + ip_db + '/adu5_vtg/nbufs/' + offset_adu5_vtg, function(data) {
             offset_adu5_vtg += data.adu5_vtg_nbufs.length;
             adu5_vtg_nbufs = adu5_vtg_nbufs.concat(data.adu5_vtg_nbufs);
             adu5_vtg_nows = adu5_vtg_nows.concat(data.adu5_vtg_nows);
             adu5_vtg_times = adu5_vtg_times.concat(data.adu5_vtg_times);
+            $('#gps #adu5_vtg_index').html(l + 1 + "/" + adu5_vtg_times.length);
             
         });
         $.getJSON('/api/' + ip_db + '/adu5_sat/nbufs/' + offset_adu5_sat, function(data) {
@@ -1488,6 +1801,7 @@ $("#dialog_" + name).find('button[id="request"]').trigger("click");
             adu5_sat_nbufs = adu5_sat_nbufs.concat(data.adu5_sat_nbufs);
             adu5_sat_nows = adu5_sat_nows.concat(data.adu5_sat_nows);
             adu5_sat_times = adu5_sat_times.concat(data.adu5_sat_times);
+            $('#gps #adu5_sat_index').html(p + 1 + "/" + adu5_sat_times.length);
             
         });
         $.getJSON('/api/' + ip_db + '/g12_pos/nbufs/' + offset_g12_pos, function(data){
@@ -1495,6 +1809,7 @@ $("#dialog_" + name).find('button[id="request"]').trigger("click");
            g12_pos_nbufs=g12_pos_nbufs.concat(data.g12_pos_nbufs);
            g12_pos_nows=g12_pos_nows.concat(data.g12_pos_nows);
            g12_pos_times=g12_pos_times.concat(data.g12_pos_times);
+           $('#gps #g12_pos_index').html(o + 1 + "/" + g12_pos_nbufs.length);
            
        });
         $.getJSON('/api/' + ip_db + '/g12_sat/nbufs/' + offset_g12_sat, function(data){
@@ -1502,6 +1817,7 @@ $("#dialog_" + name).find('button[id="request"]').trigger("click");
            g12_sat_nbufs=g12_sat_nbufs.concat(data.g12_sat_nbufs);
            g12_sat_nows=g12_sat_nows.concat(data.g12_sat_nows);
            g12_sat_times=g12_sat_times.concat(data.g12_sat_times);
+           $('#gps #g12_sat_index').html(p + 1 + "/" + g12_sat_nbufs.length);
                   
        });
     }
@@ -1586,17 +1902,17 @@ $("#dialog_" + name).find('button[id="request"]').trigger("click");
             connected = false;
         }
     });
- //update all html with hk index i;
-function updatehtml_all (i) {
+    //update all html with hk index i;
+    function updatehtml_all (i) {
         updatehtml_hk(hk_nbufs[i]);
         j=mon_nows.indexOf(hk_nows[i]);
         if (j!=-1) updatehtml_mon(mon_nbufs[j]);
         k=adu5_pat_nows.indexOf(hk_nows[i]);
         if (k!=-1) updatehtml_adu5_pat(adu5_pat_times[k]);
         l=adu5_vtg_nows.indexOf(hk_nows[i]);
-        if (l!=-1) updatehtml_adu5_vtg(adu5_vtg_nbufs[l]);
+        if (l!=-1) updatehtml_adu5_vtg(adu5_vtg_times[l]);
         m=adu5_sat_nows.indexOf(hk_nows[i]);
-        if (m!=-1) updatehtml_adu5_sat(adu5_sat_nbufs[m]);
+        if (m!=-1) updatehtml_adu5_sat(adu5_sat_times[m]);
         n=sshk_nows.indexOf(hk_nows[i]);
         if (n!=-1) updatehtml_sshk(sshk_nbufs[n]);
         o=g12_pos_nows.indexOf(hk_nows[i]);
@@ -1607,79 +1923,79 @@ function updatehtml_all (i) {
         if (q!=-1) updatehtml_cmd(cmd_nbufs[q]);    
 }
 
- $('#next').click( function(){
-    if (sync_on){
-       if (i<hk_nbufs.length-1) {
-           i=i+1;
-           updatehtml_all(i);
-       };
-    }else{
-        //console.log(hk_nbufs);
-        //console.log(hk_nows);
-        //console.log(hk_times);
-        if (i<hk_nbufs.length-1)        {i=i+1; updatehtml_hk(hk_nbufs[i]);}
-        if (j<mon_nbufs.length-1)       {j=j+1; updatehtml_mon(mon_nbufs[j]);}
-        if (k<adu5_pat_times.length-1)  {k=k+1; updatehtml_adu5_pat(adu5_pat_times[k]);}
-        if (l<adu5_vtg_nbufs.length-1)  {l=l+1; updatehtml_adu5_vtg(adu5_vtg_nbufs[l]);}
-        if (m<adu5_sat_nbufs.length-1)  {m=m+1; updatehtml_adu5_sat(adu5_sat_nbufs[m]);}
-        if (n<sshk_nbufs.length-1)      {n=n+1; updatehtml_sshk(sshk_nbufs[n]);}
-        if (o<g12_pos_nbufs.length-1)   {o=o+1; updatehtml_g12_pos(g12_pos_nbufs[o]);}
-        if (p<g12_sat_nbufs.length-1)   {p=p+1; updatehtml_g12_sat(g12_sat_nbufs[p]);}
-        if (q<cmd_nbufs.length-1)       {q=q+1; updatehtml_cmd(cmd_nbufs[q]);}
-    }
-});
- $('#prev').click( function(){
-    if (sync_on){
-       if (i>0) {
-           i=i-1;
-           updatehtml_all(i);
-       };
-    }else{
-        if (i>0)  {i=i-1; updatehtml_hk(hk_nbufs[i]);}
-        if (j>0)  {j=j-1; updatehtml_mon(mon_nbufs[j]);}
-        if (k>0)  {k=k-1; updatehtml_adu5_pat(adu5_pat_times[k]);}
-        if (l>0)  {l=l-1; updatehtml_adu5_vtg(adu5_vtg_nbufs[l]);}
-        if (m>0)  {m=m-1; updatehtml_adu5_sat(adu5_sat_nbufs[m]);}
-        if (n>0)  {n=n-1; updatehtml_sshk(sshk_nbufs[n]);}
-        if (o>0)  {o=o-1; updatehtml_g12_pos(g12_pos_nbufs[o]);}
-        if (p>0)  {p=p-1; updatehtml_g12_sat(g12_sat_nbufs[p]);}
-        if (q>0)  {q=q-1; updatehtml_cmd(cmd_nbufs[q]);}
-    }
-});
- $('#first').click( function(){
-    if (sync_on){
-        i=0;
-        updatehtml_all(i);
-    }else{
-        {i=0; updatehtml_hk(hk_nbufs[i]);}
-        {j=0; updatehtml_mon(mon_nbufs[j]);}
-        {k=0; updatehtml_adu5_pat(adu5_pat_times[k]);}
-        {l=0; updatehtml_adu5_vtg(adu5_vtg_nbufs[l]);}
-        {m=0; updatehtml_adu5_sat(adu5_sat_nbufs[m]);}
-        {n=0; updatehtml_sshk(sshk_nbufs[n]);}
-        {o=0; updatehtml_g12_pos(g12_pos_nbufs[o]);}
-        {p=0; updatehtml_g12_sat(g12_sat_nbufs[p]);}
-        {q=0; updatehtml_cmd(cmd_nbufs[q]);}
-    }
-});
- $('#last').click( function(){
-    if (sync_on){
-        i=hk_nbufs.length-1;
-        updatehtml_all(i);
-    }else{
-        {i=hk_nbufs.length-1; updatehtml_hk(hk_nbufs[i]);}
-        {j=mon_nbufs.length-1; updatehtml_mon(mon_nbufs[j]);}
-        {k=adu5_pat_times.length-1; updatehtml_adu5_pat(adu5_pat_times[k]);}
-        {l=adu5_vtg_nbufs.length-1; updatehtml_adu5_vtg(adu5_vtg_nbufs[l]);}
-        {m=adu5_sat_nbufs.length-1; updatehtml_adu5_sat(adu5_sat_nbufs[m]);}
-        {n=sshk_nbufs.length-1; updatehtml_sshk(sshk_nbufs[n]);}
-        {o=g12_pos_nbufs.length-1; updatehtml_g12_pos(g12_pos_nbufs[o]);}
-        {p=g12_sat_nbufs.length-1; updatehtml_g12_sat(g12_sat_nbufs[p]);}
-        {q=cmd_nbufs.length-1; updatehtml_cmd(cmd_nbufs[q]);}
-    }
-});
- var sync_checkbox = $('#sync_checkbox')[0];
- var switchery_sync = new Switchery(sync_checkbox, { color: '#1AB394' });
+    $('#next').click( function(){
+        if (sync_on){
+           if (i<hk_nbufs.length-1) {
+               i=i+1;
+               updatehtml_all(i);
+           };
+        }else{
+            //console.log(hk_nbufs);
+            //console.log(hk_nows);
+            //console.log(hk_times);
+            if (i<hk_nbufs.length-1)        {i=i+1; updatehtml_hk(hk_nbufs[i]);}
+            if (j<mon_nbufs.length-1)       {j=j+1; updatehtml_mon(mon_nbufs[j]);}
+            if (k<adu5_pat_times.length-1)  {k=k+1; updatehtml_adu5_pat(adu5_pat_times[k]);}
+            if (l<adu5_vtg_times.length-1)  {l=l+1; updatehtml_adu5_vtg(adu5_vtg_times[l]);}
+            if (m<adu5_sat_times.length-1)  {m=m+1; updatehtml_adu5_sat(adu5_sat_times[m]);}
+            if (n<sshk_nbufs.length-1)      {n=n+1; updatehtml_sshk(sshk_nbufs[n]);}
+            if (o<g12_pos_nbufs.length-1)   {o=o+1; updatehtml_g12_pos(g12_pos_nbufs[o]);}
+            if (p<g12_sat_nbufs.length-1)   {p=p+1; updatehtml_g12_sat(g12_sat_nbufs[p]);}
+            if (q<cmd_nbufs.length-1)       {q=q+1; updatehtml_cmd(cmd_nbufs[q]);}
+        }
+    });
+    $('#prev').click( function(){
+        if (sync_on){
+           if (i>0) {
+               i=i-1;
+               updatehtml_all(i);
+           };
+        }else{
+            if (i>0)  {i=i-1; updatehtml_hk(hk_nbufs[i]);}
+            if (j>0)  {j=j-1; updatehtml_mon(mon_nbufs[j]);}
+            if (k>0)  {k=k-1; updatehtml_adu5_pat(adu5_pat_times[k]);}
+            if (l>0)  {l=l-1; updatehtml_adu5_vtg(adu5_vtg_times[l]);}
+            if (m>0)  {m=m-1; updatehtml_adu5_sat(adu5_sat_times[m]);}
+            if (n>0)  {n=n-1; updatehtml_sshk(sshk_nbufs[n]);}
+            if (o>0)  {o=o-1; updatehtml_g12_pos(g12_pos_nbufs[o]);}
+            if (p>0)  {p=p-1; updatehtml_g12_sat(g12_sat_nbufs[p]);}
+            if (q>0)  {q=q-1; updatehtml_cmd(cmd_nbufs[q]);}
+        }
+    });
+    $('#first').click( function(){
+        if (sync_on){
+            i=0;
+            updatehtml_all(i);
+        }else{
+            {i=0; updatehtml_hk(hk_nbufs[i]);}
+            {j=0; updatehtml_mon(mon_nbufs[j]);}
+            {k=0; updatehtml_adu5_pat(adu5_pat_times[k]);}
+            {l=0; updatehtml_adu5_vtg(adu5_vtg_times[l]);}
+            {m=0; updatehtml_adu5_sat(adu5_sat_times[m]);}
+            {n=0; updatehtml_sshk(sshk_nbufs[n]);}
+            {o=0; updatehtml_g12_pos(g12_pos_nbufs[o]);}
+            {p=0; updatehtml_g12_sat(g12_sat_nbufs[p]);}
+            {q=0; updatehtml_cmd(cmd_nbufs[q]);}
+        }
+    });
+    $('#last').click( function(){
+        if (sync_on){
+            i=hk_nbufs.length-1;
+            updatehtml_all(i);
+        }else{
+            {i=hk_nbufs.length-1; updatehtml_hk(hk_nbufs[i]);}
+            {j=mon_nbufs.length-1; updatehtml_mon(mon_nbufs[j]);}
+            {k=adu5_pat_times.length-1; updatehtml_adu5_pat(adu5_pat_times[k]);}
+            {l=adu5_vtg_times.length-1; updatehtml_adu5_vtg(adu5_vtg_times[l]);}
+            {m=adu5_sat_times.length-1; updatehtml_adu5_sat(adu5_sat_times[m]);}
+            {n=sshk_nbufs.length-1; updatehtml_sshk(sshk_nbufs[n]);}
+            {o=g12_pos_nbufs.length-1; updatehtml_g12_pos(g12_pos_nbufs[o]);}
+            {p=g12_sat_nbufs.length-1; updatehtml_g12_sat(g12_sat_nbufs[p]);}
+            {q=cmd_nbufs.length-1; updatehtml_cmd(cmd_nbufs[q]);}
+        }
+    });
+    var sync_checkbox = $('#sync_checkbox')[0];
+    var switchery_sync = new Switchery(sync_checkbox, { color: '#1AB394' });
     sync_checkbox.onchange = function() {
         if (sync_checkbox.checked) {
             sync_on = true;
@@ -1688,9 +2004,9 @@ function updatehtml_all (i) {
             sync_on = false;
         };
     };
- var auto_checkbox = $('#auto_checkbox')[0];
- var switchery_auto = new Switchery(auto_checkbox, { color: '#1AB394' });
-  console.log(auto_checkbox);
+    var auto_checkbox = $('#auto_checkbox')[0];
+    var switchery_auto = new Switchery(auto_checkbox, { color: '#1AB394' });
+    console.log(auto_checkbox);
 
     // switchery.disable();
     var myInterval;
@@ -1706,49 +2022,49 @@ function updatehtml_all (i) {
                     if (i<hk_nbufs.length-1)        {i=i+1; updatehtml_hk(hk_nbufs[i]);}
                     if (j<mon_nbufs.length-1)       {j=j+1; updatehtml_mon(mon_nbufs[j]);}
                     if (k<adu5_pat_times.length-1)  {k=k+1; updatehtml_adu5_pat(adu5_pat_times[k]);}
-                    if (l<adu5_vtg_nbufs.length-1)  {l=l+1; updatehtml_adu5_vtg(adu5_vtg_nbufs[l]);}
-                    if (m<adu5_sat_nbufs.length-1)  {m=m+1; updatehtml_adu5_sat(adu5_sat_nbufs[m]);}
+                    if (l<adu5_vtg_times.length-1)  {l=l+1; updatehtml_adu5_vtg(adu5_vtg_times[l]);}
+                    if (m<adu5_sat_times.length-1)  {m=m+1; updatehtml_adu5_sat(adu5_sat_times[m]);}
                     if (n<sshk_nbufs.length-1)      {n=n+1; updatehtml_sshk(sshk_nbufs[n]);}
                     if (o<g12_pos_nbufs.length-1)   {o=o+1; updatehtml_g12_pos(g12_pos_nbufs[o]);}
                     if (p<g12_sat_nbufs.length-1)   {p=p+1; updatehtml_g12_sat(g12_sat_nbufs[p]);}
                     if (q<cmd_nbufs.length-1)       {q=q+1; updatehtml_cmd(cmd_nbufs[q]);}
                 }
             }, 1000);
-    } else {
-        clearInterval(myInterval);
+        } else {
+            clearInterval(myInterval);
+        };
     };
-};
 
-$('#goto').click( function(){
-   var keywords=parseInt($('#keywords').val());
-   // console.log(keywords);
-   if (sync_on){
-        var index=hk_times.indexOf(keywords);
-        if (index!=-1 && keywords){
-           i=index;
-           updatehtml_all(i);
-        }else{
-            swal({  title: 'HK Data not found!', type: "warning", timer: 3000, showConfirmButton: true});
-        }
-   }else{
-        var message = '';
-        var index=hk_times.indexOf(keywords);       if(index!=-1 && keywords) { i=index; updatehtml_hk(hk_nbufs[i]); message += 'HK ';}
-        var index=mon_times.indexOf(keywords);      if(index!=-1 && keywords) { j=index; updatehtml_mon(mon_nbufs[j]); message += 'MON ';}
-        var index=adu5_pat_times.indexOf(keywords); if(index!=-1 && keywords) { k=index; updatehtml_adu5_pat(adu5_pat_times[k]); message += 'ADU5_PAT ';}
-        var index=adu5_vtg_times.indexOf(keywords); if(index!=-1 && keywords) { l=index; updatehtml_adu5_vtg(adu5_vtg_nbufs[l]); message += 'ADU5_VTG ';}
-        var index=adu5_sat_times.indexOf(keywords); if(index!=-1 && keywords) { m=index; updatehtml_adu5_sat(adu5_sat_nbufs[m]); message += 'ADU5_SAT ';}
-        var index=sshk_times.indexOf(keywords);     if(index!=-1 && keywords) { n=index; updatehtml_sshk(sshk_nbufs[n]); message += 'SSHK ';}
-        var index=g12_pos_times.indexOf(keywords);  if(index!=-1 && keywords) { o=index; updatehtml_g12_pos(g12_pos_nbufs[o]); message += 'G12_POS ';}
-        var index=g12_sat_times.indexOf(keywords);  if(index!=-1 && keywords) { p=index; updatehtml_g12_sat(g12_sat_nbufs[p]); message += 'G12_SAT ';}
-        var index=cmd_times.indexOf(keywords);      if(index!=-1 && keywords) { q=index; updatehtml_cmd(cmd_nbufs[q]); message += 'CMD ';}
-        if (message == ''){
-            swal({  title: 'No matched time found!', type: "warning", timer: 3000, showConfirmButton: true});
-        }else{
-            swal({  title: 'Matched '+message + 'time are found!', type: "success", timer: 3000, showConfirmButton: true});
-        }
+    $('#goto').click( function(){
+       var keywords=parseInt($('#keywords').val());
+       // console.log(keywords);
+       if (sync_on){
+            var index=hk_times.indexOf(keywords);
+            if (index!=-1 && keywords){
+               i=index;
+               updatehtml_all(i);
+            }else{
+                swal({  title: 'HK Data not found!', type: "warning", timer: 3000, showConfirmButton: true});
+            }
+       }else{
+            var message = '';
+            var index=hk_times.indexOf(keywords);       if(index!=-1 && keywords) { i=index; updatehtml_hk(hk_nbufs[i]); message += 'HK ';}
+            var index=mon_times.indexOf(keywords);      if(index!=-1 && keywords) { j=index; updatehtml_mon(mon_nbufs[j]); message += 'MON ';}
+            var index=adu5_pat_times.indexOf(keywords); if(index!=-1 && keywords) { k=index; updatehtml_adu5_pat(adu5_pat_times[k]); message += 'ADU5_PAT ';}
+            var index=adu5_vtg_times.indexOf(keywords); if(index!=-1 && keywords) { l=index; updatehtml_adu5_vtg(adu5_vtg_times[l]); message += 'ADU5_VTG ';}
+            var index=adu5_sat_times.indexOf(keywords); if(index!=-1 && keywords) { m=index; updatehtml_adu5_sat(adu5_sat_times[m]); message += 'ADU5_SAT ';}
+            var index=sshk_times.indexOf(keywords);     if(index!=-1 && keywords) { n=index; updatehtml_sshk(sshk_nbufs[n]); message += 'SSHK ';}
+            var index=g12_pos_times.indexOf(keywords);  if(index!=-1 && keywords) { o=index; updatehtml_g12_pos(g12_pos_nbufs[o]); message += 'G12_POS ';}
+            var index=g12_sat_times.indexOf(keywords);  if(index!=-1 && keywords) { p=index; updatehtml_g12_sat(g12_sat_nbufs[p]); message += 'G12_SAT ';}
+            var index=cmd_times.indexOf(keywords);      if(index!=-1 && keywords) { q=index; updatehtml_cmd(cmd_nbufs[q]); message += 'CMD ';}
+            if (message == ''){
+                swal({  title: 'No matched time found!', type: "warning", timer: 3000, showConfirmButton: true});
+            }else{
+                swal({  title: 'Matched '+message + 'time are found!', type: "success", timer: 3000, showConfirmButton: true});
+            }
 
-   }
-});
+       }
+    });
 });
  </script>
  {% endblock %}

@@ -5,40 +5,42 @@ from sqlalchemy import Table, Integer, Column, PrimaryKeyConstraint
 # Base.metadata.reflect(db.engine)
 # Base.metadata.bind=engine
 
-# class Hd(Base):
-#     __tablename__ = 'hd'
-#     __table_args__ = {'autoload':True}
-#     def to_json(self):
-#         json_comment = {'nbuf': self.nbuf,
-#                         'crc': self.crc,
-#                         'now': self.now,
-#                         'time': self.time,
-#                         'us': self.us,
-#                         'ns': self.ns,
-#                         'evid': self.evid,
-#                         'evnum': self.evnum,
-#                         'surfmask': self.surfmask,
-#                         'calib': self.calib,
-#                         'priority': self.priority,
-#                         'turfword': self.turfword,
-#                         'l2mask': self.l2mask,
-#                         'l2maskh': self.l2maskh,
-#                         'peakthetabin': self.peakthetabin,
-#                         'imagepeak': self.imagepeak,
-#                         'coherentsumpeak': self.coherentsumpeak,
-#                         'prioritizerstuff': self.prioritizerstuff,
-#                         'trigtype': self.trigtype,
-#                         'trignum': self.trignum,
-#                         'l3cnt': self.l3cnt,
-#                         'pps': self.pps,
-#                         'trigtime': self.trigtime,
-#                         'c3po': self.c3po,
-#                         'deadtime': self.deadtime,
-#                         'l3trigpat': self.l3trigpat,
-#                         'l3trigpath': self.l3trigpath
-#                         }
-#         return json_comment
 class Hd(Base):
+    __tablename__ = 'hd'
+    __table_args__ = {'autoload':True}
+    def to_json(self):
+        json_comment = {'nbuf': self.nbuf,
+                        'crc': self.crc,
+                        'now': self.now,
+                        'time': self.time,
+                        'us': self.us,
+                        'ns': self.ns,
+                        'evid': self.evid,
+                        'evnum': self.evnum,
+                        'surfmask': self.surfmask,
+                        'calib': self.calib,
+                        'priority': self.priority,
+                        'turfword': self.turfword,
+                        'l1mask': self.l1mask,
+                        'l1maskh': self.l1maskh,
+                        'peakthetabin': self.peakthetabin,
+                        'imagepeak': self.imagepeak,
+                        'coherentsumpeak': self.coherentsumpeak,
+                        'prioritizerstuff': self.prioritizerstuff,
+                        'trigtype': self.trigtype,
+                        'trignum': self.trignum,
+                        'l3cnt': self.l3cnt,
+                        'pps': self.pps,
+                        'trigtime': self.trigtime,
+                        'c3po': self.c3po,
+                        'deadtime': self.deadtime,
+                        'l3trigpat': self.l3trigpat,
+                        'l3trigpath': self.l3trigpath,
+                        'phimask': self.phimask,
+                        'phimaskh': self.phimaskh
+                        }
+        return json_comment
+class Rf(Base):
     __tablename__ = 'rf'
     __table_args__ = (Column('nbuf', Integer, primary_key=True), {'autoload':True})
     def to_json(self):
@@ -54,8 +56,8 @@ class Hd(Base):
                         'calib': self.calib,
                         'priority': self.priority,
                         'turfword': self.turfword,
-                        'l2mask': self.l1mask,
-                        'l2maskh': self.l1maskh,
+                        'l1mask': self.l1mask,
+                        'l1maskh': self.l1maskh,
                         'peakthetabin': self.peakthetabin,
                         'imagepeak': self.imagepeak,
                         'coherentsumpeak': self.coherentsumpeak,
@@ -68,7 +70,9 @@ class Hd(Base):
                         'c3po': self.c3po,
                         'deadtime': self.deadtime,
                         'l3trigpat': self.l3trigpat,
-                        'l3trigpath': self.l3trigpath
+                        'l3trigpath': self.l3trigpath,
+                        'phimask': self.phimask,
+                        'phimaskh': self.phimaskh
                         }
         return json_comment    
 class Hk(Base):
@@ -159,7 +163,8 @@ class Wv(Base):
                         # 'hbend': self.hbend,
                         # 'peds': self.peds,
                         # 'raw': self.raw,
-                        'cal': [int(cal*100) for cal in self.cal]
+                        # 'cal': [int(cal*100) for cal in self.cal]
+                        'cal': self.cal
                         }
         return json_comment
 
@@ -316,6 +321,24 @@ class Adu5_pat(Base):
                         'altitude': self.altitude
             }
         return json_comment
+    def to_czml(self):
+        czml_comment = {
+          'id': 'myObject',
+          'availability': '2014-01-15T00:00Z/2014-01-01T24:00Z',
+          'point': {
+            'color': {
+              'rgba': [255, 255, 0, 255]
+            },
+            'outlineWidth': 2.0,
+            'pixelSize': 3.0,
+            'show': True
+          },
+          "position" : {
+            "epoch" : "2012-08-04T10:00:00Z",
+            "cartographicDegrees" : [0,self.latitude,self.longitude,self.altitude]
+          }
+        }
+        return czml_comment
 class Adu5_vtg(Base):
     __tablename__ = 'adu5_vtg'
     __table_args__ = {'autoload':True}
