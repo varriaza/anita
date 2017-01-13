@@ -668,7 +668,7 @@ $(document).ready(function() {
 
     /////// TABLES
     $('#table').empty();
-    table_list = ['adu5_pat', 'adu5_vtg', 'adu5_sat']
+    table_list = ['None', 'adu5_pat', 'adu5_vtg', 'adu5_sat']
     addmore = 1
     for (i = 0; i < table_list.length; i++){
         if (table_list[i] == "{{table_selected}}"){
@@ -692,15 +692,17 @@ $(document).ready(function() {
         $.getJSON('/api/' + ip_db +  '/adu5_pat/tables', function(data) {
             table_data_names = data['adu5_pat_tables']
             $('#table_data').empty(); //remove all child nodes
-            for (i = 0; i < table_data_names.length; i++){
-                if (i < table_data_names.length - 1){
-                    newOption = $('<option>' + table_data_names[i] + '</option>');
-                }else{
-                    newOption = $('<option selected>' + table_data_names[i] + '</option>');
-                }
-                
-                $('#table_data').append(newOption);
-            }               
+            if (table != 'None'){
+                for (i = 0; i < table_data_names.length; i++){
+                    if (i < table_data_names.length - 1){
+                        newOption = $('<option>' + table_data_names[i] + '</option>');
+                    }else{
+                        newOption = $('<option selected>' + table_data_names[i] + '</option>');
+                    }
+                    
+                    $('#table_data').append(newOption);
+                }    
+            }           
             // $('#db').trigger("chosen:updated");
             //$('#table_data').select2({tags: true});
             //table_data=$('#table_data option:selected').text().replace(/\s/gi, '');
