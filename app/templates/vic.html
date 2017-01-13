@@ -312,7 +312,7 @@
             </div>
         </div>
         <div class="col-lg-6">
-            <div class="ibox float-e-margins" id="cmd">
+            <div class="ibox float-e-margins" id="G_tools">
                 <div class="ibox-title">
                     <h5>Graphing Tools</h5>
                     <div class="ibox-tools">
@@ -322,22 +322,11 @@
                     </div>
                 </div>
                 <div class="ibox-content">
-                    <div class="col-sm-6">
-                        <select class="form-control m-b" name="graph_1">
-                         <option id='option_1'>option 1</option>
-                         <option>option 2</option>
-                         <option>option 3</option>
-                         <option>option 4</option>
-                        </select>
-                    </div>
-                    <div class="col-sm-6">
-                        <select class="form-control m-b" name="graph_2">
-                        <option id='test_1'>option 1</option>
-                        <option id='test_2'>option 2</option>
-                        <option>option 3</option>
-                        <option>option 4</option>
-                        </select>
-                    </div>
+                    <select id="table" class='chosen-select' style="width:160px" data-placeholder="Choose a table..">
+                    </select>
+                    <select id="table_data" class='chosen-select' style="width:160px" data-placeholder="Choose a table data.." >
+                        <option selected> {{table_data_selected}} </option>
+                    </select>
                     <button class="btn btn-primary" id = 'graph_button' type="button">Create Graph!</button>
                 </div>
             </div>
@@ -665,8 +654,64 @@ function updatehtml_g12_sat(g12_sat){
    });
 }
 
+function updatehtml_adu5_pat_tables(adu5_pat){
+    console.log('IM IN!')
+    if (!adu5_pat) return;
+    $.getJSON('/api/' + ip_db + '/adu5_pat/' + adu5_pat, function(data){
+        console.log('IM IN 2!!')
+        $('#G_tools #t1').html(data.pat_a[0]);
+    });
+}
+
 $(document).ready(function() {
-    $('#navbar_hk').parent().addClass("active");
+    $('#navbar_vic').parent().addClass("active");
+
+    /////// TABLES
+    $('#table').empty();
+    table_list = ['adu5_pat', 'adu5_vtg', 'adu5_sat']
+    addmore = 1
+    for (i = 0; i < table_list.length; i++){
+        if (table_list[i] == "{{table_selected}}"){
+            newOption = $('<option selected>' + table_list[i] + '</option>');
+            addmore = 0
+        }else{
+            newOption = $('<option>' + table_list[i] + '</option>');
+        }
+        $('#table').append(newOption);
+    }
+    if(addmore){
+        newOption = $('<option selected>' + "{{table_selected}}" + '</option>');
+        $('#table').append(newOption);
+    }   
+
+    /////// TABLE_DATA
+    $('#table').on("select2:closing", function(){
+    // $('#table').change(function() {
+        table=$('#table option:selected').text();
+        //console.log()
+        $.getJSON('/api/' + ip_db +  '/adu5_pat/tables', function(data) {
+            table_data_names = data['adu5_pat_tables']
+            $('#table_data').empty(); //remove all child nodes
+            for (i = 0; i < table_data_names.length; i++){
+                if (i < table_data_names.length - 1){
+                    newOption = $('<option>' + table_data_names[i] + '</option>');
+                }else{
+                    newOption = $('<option selected>' + table_data_names[i] + '</option>');
+                }
+                
+                $('#table_data').append(newOption);
+            }               
+            // $('#db').trigger("chosen:updated");
+            //$('#table_data').select2({tags: true});
+            //table_data=$('#table_data option:selected').text().replace(/\s/gi, '');
+            //ip = ip.replace(/\./gi, '_');
+            //ip_db= "query_"+ ip + "_" + db;
+        });
+    });
+
+
+
+
     $.jqplot.config.enablePlugins = true;
     $("td[id]").click(function() {
         var column_name = $(this).attr('id');
@@ -1067,9 +1112,8 @@ $(document).ready(function() {
         offset_adu5_sat = 0;
         offset_g12_pos = 0;
         offset_g12_sat = 0;
+
         if ($(this).hasClass('connect')) {
-            
-            connect.ladda('start');
             $.ajax({
                 url: '/api/connect/' + ip + '/' + db
             }).done(function(response) {
@@ -1182,8 +1226,10 @@ $(document).ready(function() {
         }
     });
     $('#graph_button').click( function(){
-        console.log($('#graph_1'))
-        console.log($('#graph_2'))
+        console.log($('#graph_1').val())
+        console.log($('#graph_2').val())
+        $('#selected_1').text($('#graph_1').val());
+        $('#selected_2').text($('#graph_2').val());
     });
     var sync_checkbox = $('#sync_checkbox')[0];
     var switchery_sync = new Switchery(sync_checkbox, { color: '#1AB394' });
