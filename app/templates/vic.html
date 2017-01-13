@@ -998,7 +998,8 @@ $(document).ready(function() {
             $('#hk #index').html(i + 1 + "/" + hk_nbufs.length);
             $('#connect').removeClass('connect').removeClass('btn-primary').addClass('btn-warning');
             $('#connect').html('Disconnect');
-            $('.chosen-select').attr("disabled", true).trigger("chosen:updated");
+            $('#ip').attr("disabled", true).trigger("chosen:updated");
+            $('#db').attr("disabled", true).trigger("chosen:updated");
             // switchery.enable();
             connected = true;
             connect.ladda('stop');
