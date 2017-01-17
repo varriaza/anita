@@ -16,20 +16,6 @@ def get_adu5_pat_nbufs(ip_db, offset):
     except BaseException as error:
         print('Invalid request: {}', format(error))
         return jsonify({})
-#TEST
-@api.route('/<ip_db>/adu5_pat/tables')
-def get_adu5_pat_tables(ip_db):
-    try:
-        engine_ip_db = ip_db.replace('query','session')
-        engine = getattr(Adu5_pat,engine_ip_db)
-        #print engine.execute("select * from adu5_pat limit 10").fetchall()
-        adu5_pats = engine.execute("select column_name from information_schema.columns where table_name = 'adu5_pat'").fetchall()
-        return jsonify({'adu5_pat_tables': [item[0] for item in adu5_pats]})
-        # adu5_pats =getattr(Adu5_pat,ip_db).with_entities(Adu5_pat.nbuf, Adu5_pat.now, Adu5_pat.time).filter(Adu5_pat.now>offset).order_by(Adu5_pat.now).limit(200).all()
-        # return jsonify({'adu5_pat_nbufs': [item.nbuf for item in adu5_pats], 'adu5_pat_nows': [item.now for item in adu5_pats], 'adu5_pat_times': [item.time for item in adu5_pats]})
-    except BaseException as error:
-        print('Invalid request: {}', format(error))
-        return jsonify({})
 
 @api.route('/<ip_db>/adu5_vtg/nbufs/<offset>')
 def get_adu5_vtg_nbufs(ip_db, offset):

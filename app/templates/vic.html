@@ -654,21 +654,13 @@ function updatehtml_g12_sat(g12_sat){
    });
 }
 
-function updatehtml_adu5_pat_tables(adu5_pat){
-    console.log('IM IN!')
-    if (!adu5_pat) return;
-    $.getJSON('/api/' + ip_db + '/adu5_pat/' + adu5_pat, function(data){
-        console.log('IM IN 2!!')
-        $('#G_tools #t1').html(data.pat_a[0]);
-    });
-}
 
 $(document).ready(function() {
     $('#navbar_vic').parent().addClass("active");
 
     /////// TABLES
     $('#table').empty();
-    table_list = ['None', 'adu5_pat', 'adu5_vtg', 'adu5_sat']
+    table_list = ['None', 'adu5_pat', 'adu5_vtg', 'adu5_sat', 'hk']
     addmore = 1
     for (i = 0; i < table_list.length; i++){
         if (table_list[i] == "{{table_selected}}"){
@@ -686,11 +678,15 @@ $(document).ready(function() {
 
     /////// TABLE_DATA
     $('#table').on("select2:closing", function(){
+        $.getJSON('/api/' + ip_db +  '/table_names', function(data) {
+        table_names_test = data['tables']
+        console.log(table_names_test)
+        });
     // $('#table').change(function() {
         table=$('#table option:selected').text();
-        //console.log()
-        $.getJSON('/api/' + ip_db +  '/adu5_pat/tables', function(data) {
-            table_data_names = data['adu5_pat_tables']
+        console.log(table)
+        $.getJSON('/api/' + ip_db +  '/' + table + '/table_data/all', function(data) {
+            table_data_names = data['table_data']
             $('#table_data').empty(); //remove all child nodes
             if (table != 'None'){
                 for (i = 0; i < table_data_names.length; i++){
