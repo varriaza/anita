@@ -322,6 +322,14 @@
                     </div>
                 </div>
                 <div class="ibox-content">
+                    <button class="btn btn-primary" id = 'table_button' type="button">Load Table Information</button>
+                    <table>
+                        <tbody>
+                            <tr>
+                                <td bgcolor="#FFFFFF" style="line-height:20px;" colspan=3>&nbsp;</td>
+                            </tr>
+                        </tbody>
+                    </table>
                     <select id="table" class='chosen-select' style="width:160px" data-placeholder="Choose a table..">
                     </select>
                     <select id="table_data" class='chosen-select' style="width:160px" data-placeholder="Choose a table data.." >
@@ -660,31 +668,12 @@ $(document).ready(function() {
 
     /////// TABLES
     $('#table').empty();
-    table_list = ['None', 'adu5_pat', 'adu5_vtg', 'adu5_sat', 'hk']
+    table_list = ['']
     addmore = 1
-    for (i = 0; i < table_list.length; i++){
-        if (table_list[i] == "{{table_selected}}"){
-            newOption = $('<option selected>' + table_list[i] + '</option>');
-            addmore = 0
-        }else{
-            newOption = $('<option>' + table_list[i] + '</option>');
-        }
-        $('#table').append(newOption);
-    }
-    if(addmore){
-        newOption = $('<option selected>' + "{{table_selected}}" + '</option>');
-        $('#table').append(newOption);
-    }   
 
     /////// TABLE_DATA
     $('#table').on("select2:closing", function(){
-        $.getJSON('/api/' + ip_db +  '/table_names', function(data) {
-        table_names_test = data['tables']
-        console.log(table_names_test)
-        });
-    // $('#table').change(function() {
         table=$('#table option:selected').text();
-        console.log(table)
         $.getJSON('/api/' + ip_db +  '/' + table + '/table_data/all', function(data) {
             table_data_names = data['table_data']
             $('#table_data').empty(); //remove all child nodes
@@ -1227,9 +1216,28 @@ $(document).ready(function() {
     $('#graph_button').click( function(){
         console.log($('#graph_1').val())
         console.log($('#graph_2').val())
-        $('#selected_1').text($('#graph_1').val());
-        $('#selected_2').text($('#graph_2').val());
     });
+    $('#table_button').click( function(){
+        $.getJSON('/api/' + ip_db +  '/table_names', function(data) {
+            table_list = data['tables']
+        });
+        setTimeout(function(){
+            for (i = 0; i < table_list.length; i++){
+                if (table_list[i] == "{{table_selected}}"){
+                    newOption = $('<option selected>' + table_list[i] + '</option>');
+                    addmore = 0
+                }else{
+                    newOption = $('<option>' + table_list[i] + '</option>');
+                }
+                $('#table').append(newOption);
+            }
+            if(addmore){
+                newOption = $('<option selected>' + "{{table_selected}}" + '</option>');
+                $('#table').append(newOption);
+            }
+        },1000);   
+    });
+
     var sync_checkbox = $('#sync_checkbox')[0];
     var switchery_sync = new Switchery(sync_checkbox, { color: '#1AB394' });
     sync_checkbox.onchange = function() {

@@ -25,9 +25,8 @@ def get_tables(ip_db):
     try:
         engine_ip_db = ip_db.replace('query','session')
         engine = getattr(Adu5_pat,engine_ip_db)
-        test = engine.execute("select table_name from information_schema.tables").fetchall()
-        print test
-        return jsonify({'tables': [item[0] for item in test]})
+        table_names = engine.execute("select table_name from information_schema.tables where table_schema='public'").fetchall()
+        return jsonify({'tables': [item[0] for item in table_names]})
     except BaseException as error:
         print('Invalid request: {}', format(error))
         return jsonify({})
