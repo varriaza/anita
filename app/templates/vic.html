@@ -335,6 +335,18 @@
                     <select id="table_data" class='chosen-select' style="width:160px" data-placeholder="Choose a table data.." >
                         <option selected> {{table_data_selected}} </option>
                     </select>
+                    <table>
+                        <tbody>
+                            <tr>
+                                <td bgcolor="#FFFFFF" style="line-height:20px;" colspan=3>&nbsp;</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <select id="table2" class='chosen-select' style="width:160px" data-placeholder="Choose a table..">
+                    </select>
+                    <select id="table_data2" class='chosen-select' style="width:160px" data-placeholder="Choose a table data.." >
+                        <option selected> {{table_data_selected2}} </option>
+                    </select>
                     <button class="btn btn-primary" id = 'graph_button' type="button">Create Graph!</button>
                 </div>
             </div>
@@ -668,6 +680,7 @@ $(document).ready(function() {
 
     /////// TABLES
     $('#table').empty();
+    $('#table2').empty();
     table_list = ['']
     addmore = 1
 
@@ -688,13 +701,28 @@ $(document).ready(function() {
                     $('#table_data').append(newOption);
                 }    
             }           
-            // $('#db').trigger("chosen:updated");
-            //$('#table_data').select2({tags: true});
-            //table_data=$('#table_data option:selected').text().replace(/\s/gi, '');
-            //ip = ip.replace(/\./gi, '_');
-            //ip_db= "query_"+ ip + "_" + db;
         });
     });
+
+    $('#table2').on("select2:closing", function(){
+        table=$('#table2 option:selected').text();
+        $.getJSON('/api/' + ip_db +  '/' + table + '/table_data/all', function(data) {
+            table_data_names = data['table_data']
+            $('#table_data2').empty(); //remove all child nodes
+            if (table != 'None'){
+                for (i = 0; i < table_data_names.length; i++){
+                    if (i < table_data_names.length - 1){
+                        newOption = $('<option>' + table_data_names[i] + '</option>');
+                    }else{
+                        newOption = $('<option selected>' + table_data_names[i] + '</option>');
+                    }
+                    
+                    $('#table_data2').append(newOption);
+                }    
+            }           
+        });
+    });
+
 
 
 
@@ -1214,8 +1242,10 @@ $(document).ready(function() {
         }
     });
     $('#graph_button').click( function(){
-        console.log($('#graph_1').val())
-        console.log($('#graph_2').val())
+        console.log($('#table option:selected').text())
+        console.log($('#table_data option:selected').text())
+        console.log($('#table option:selected').text())
+        console.log($('#table_data2 option:selected').text())
     });
     $('#table_button').click( function(){
         $.getJSON('/api/' + ip_db +  '/table_names', function(data) {
@@ -1235,7 +1265,22 @@ $(document).ready(function() {
                 newOption = $('<option selected>' + "{{table_selected}}" + '</option>');
                 $('#table').append(newOption);
             }
-        },1000);   
+        },1000);
+        setTimeout(function(){
+            for (i = 0; i < table_list.length; i++){
+                if (table_list[i] == "{{table_selected}}"){
+                    newOption = $('<option selected>' + table_list[i] + '</option>');
+                    addmore = 0
+                }else{
+                    newOption = $('<option>' + table_list[i] + '</option>');
+                }
+                $('#table2').append(newOption);
+            }
+            if(addmore){
+                newOption = $('<option selected>' + "{{table_selected}}" + '</option>');
+                $('#table2').append(newOption);
+            }
+        },1000);    
     });
 
     var sync_checkbox = $('#sync_checkbox')[0];
