@@ -362,13 +362,14 @@
             <li><button type="button" id='1hour' class="btn btn-success btn-xs">1Hour</button> </li>
             <li><button type="button" id='6hours' class="btn btn-success btn-xs">6Hours</button> </li>
             <li><button type="button" id='24hours' class="btn btn-success btn-xs">24Hours</button> </li>
+            <li><button type="button" id='1month' class="btn btn-success btn-xs">1Month</button> </li>
         </ul>
         <div id='chart1'></div>
         </br>
         <div class="col-sm-6">
             <div class="form-group">
                 <label>Reference UTC</label>
-                <input id="reference_time" placeholder="Enter your end time" class="form-control">
+                <input id="reference_time" value ="1483073293" placeholder="Enter your end time" class="form-control">
             </div>
         </div>
         <div class="col-sm-3">
@@ -691,11 +692,11 @@ $(document).ready(function() {
             table_data_names = data['table_data']
             $('#table_data').empty(); //remove all child nodes
             if (table != 'None'){
-                for (i = 0; i < table_data_names.length; i++){
-                    if (i < table_data_names.length - 1){
-                        newOption = $('<option>' + table_data_names[i] + '</option>');
+                for (var table_count = 0; table_count < table_data_names.length; table_count++){
+                    if (table_count < table_data_names.length - 1){
+                        newOption = $('<option>' + table_data_names[table_count] + '</option>');
                     }else{
-                        newOption = $('<option selected>' + table_data_names[i] + '</option>');
+                        newOption = $('<option selected>' + table_data_names[table_count] + '</option>');
                     }
                     
                     $('#table_data').append(newOption);
@@ -710,11 +711,11 @@ $(document).ready(function() {
             table_data_names = data['table_data']
             $('#table_data2').empty(); //remove all child nodes
             if (table != 'None'){
-                for (i = 0; i < table_data_names.length; i++){
-                    if (i < table_data_names.length - 1){
-                        newOption = $('<option>' + table_data_names[i] + '</option>');
+                for (var table_count = 0; table_count < table_data_names.length; table_count++){
+                    if (table_count < table_data_names.length - 1){
+                        newOption = $('<option>' + table_data_names[table_count] + '</option>');
                     }else{
-                        newOption = $('<option selected>' + table_data_names[i] + '</option>');
+                        newOption = $('<option selected>' + table_data_names[table_count] + '</option>');
                     }
                     
                     $('#table_data2').append(newOption);
@@ -738,9 +739,11 @@ $(document).ready(function() {
         // console.log($(this).attr('id'));
         // console.log($(this).closest('.ibox').attr('id'));
         if ($("#dialog_" + name).length) {
+            console.log('if for td[id]');
             $("#dialog_" + name).dialog('open');
             $("#dialog_" + name).find('input[id="reference_time"]').val(hk_nows[i]);
         } else {
+            console.log('else for td[id]');
             var $newDialog = $('#dialog').clone();
             $newDialog.attr('id', 'dialog_' + name);
             $newDialog.removeClass('hide');
@@ -823,7 +826,7 @@ $(document).ready(function() {
         }
 
         function replotTimeline (table_name, column_name, end_time, length) {
-            console.log("replot");
+            console.log("replotTimeline for peng's");
             $.getJSON('/api/' + ip_db + '/history/' + table_name + '/' + column_name + '/' + (end_time - length) + '/' + end_time, function(data) {
                 console.log(data);
                 var step = 1;
@@ -985,9 +988,11 @@ $(document).ready(function() {
         });
 
         $("#dialog_" + name).find('button[id="request"]').click(function() {
-            console.log('REPLOT_dialog?');
+            console.log("REPLOT_dialog peng's");
             var end_time = $newDialog.find('input[id="reference_time"]').val();
             var length = $newDialog.find('input[id="length"]').val();
+            console.log("Peng's END_TIME is: " + end_time);
+            console.log("Peng's TOP LENGTH is: " + length);
             replotTimeline(table_name, column_name, end_time, length);
             
         });
@@ -1238,76 +1243,41 @@ $(document).ready(function() {
         }
     });
     $('#graph_button').click( function(){
-        //console.log($('#table option:selected').text())
-        //console.log($('#table_data option:selected').text())
+        // console.log($('#table option:selected').text())
+        // console.log($('#table_data option:selected').text())
         //console.log($('#table2 option:selected').text())
         //console.log($('#table_data2 option:selected').text())
 
         var table_name = $('#table option:selected').text()
         var column_name = $('#table_data option:selected').text()
         var name = table_name + '_' + column_name;
-        columns = column_name.split('_');
-        //if (columns[1] == 'adu5' && (columns[0]!= 'numsats' || columns[0]!= 'd2mcm') ){
-            //multi_plot = true;
-        //}else{
+        table_name0 = table_name.split('_')[0];
+        console.log(table_name);
+        console.log(column_name);
+        if (table_name0 == 'adu5'){
+            console.log('It is pat');
+        }
+        if (table_name0 == 'adu5' && (column_name!= 'numsats' || column_name!= 'd2mcm') ){
+            multi_plot = true;
+        }else{
             multi_plot = false;
-        //}
+        }
+        console.log(multi_plot);
+        // console.log($(this).closest('.ibox').attr('id'));
         if ($("#dialog_" + name).length) {
-            console.log('******Place if******')
+            console.log("load if");
             $("#dialog_" + name).dialog('open');
             $("#dialog_" + name).find('input[id="reference_time"]').val(hk_nows[i]);
         } else {
-            console.log('******Place else******')
+            console.log('load else');
             var $newDialog = $('#dialog').clone();
             $newDialog.attr('id', 'dialog_' + name);
             $newDialog.removeClass('hide');
             $newDialog.attr('title', name);
             $newDialog.prepend('<div id="' + "plot_" + name + '"  class="dialog_plot" ></div>');
             $newDialog.find('input[id="reference_time"]').val(hk_nows[i]);
-            //
-            var end_time = $newDialog.find('input[id="reference_time"]').val();
-            var length = $newDialog.find('input[id="length"]').val();
-                $.getJSON('/api/' + ip_db + '/history/' + table_name + '/' + column_name + '/' + (end_time - length) + '/' + end_time, function(data) {
-                console.log(data);
-                var step = 1;
-                if (data.data && data.data.length > 50000){
-                    // step = data.data.length/5000;
-                    step = Math.floor(data.data.length/5000);
-                }
-                if (data.data_a && data.data_a.length > 50000){
-                    // step = data.data.length/5000;
-                    step = Math.floor(data.data_a.length/5000);
-                }
-                if (Object.keys(data).length == 2){
-                    // datalist = [data.data_a, data.data_b];
-                    new_data_a = [];
-                    for (var i =0; i< data.data_a.length; i += step){
-                        element = data.data_a[i];
-                        new_data_a.push([element[0] + timeZoneShift, element[1]]);
-                    }
-                    new_data_b = [];
-                    for (var i =0; i< data.data_b.length; i += step){
-                        element = data.data_b[i];
-                        new_data_b.push([element[0] + timeZoneShift, element[1]]);
-                    }
-                    datalist = [new_data_a, new_data_b];
-                }else{
-                    new_data = [];
-                    for (var i =0; i< data.data.length; i += step){
-                        element = data.data[i];
-                        new_data.push([element[0] + timeZoneShift, element[1]]);
-                    }
-                    console.log(data.data.length);
-                    datalist = [new_data];
-                }
-                console.log(datalist);
-                plot1.replot({
-                    data: datalist
-                });
-            });
-            //
             $newDialog.dialog({
-                width: 600,
+                width: 700,
                 height: 500,
             });
             $newDialog.data('zoomStack', [[hk_nows[i], 21600]]);
@@ -1370,6 +1340,7 @@ $(document).ready(function() {
                     constrainOutsideZoom: false
                 }
             });
+
             $newDialog.dialog({
                 resize: function(event, ui) {
                     $("#plot_" + name).height(Math.max(100, $newDialog.height() - 120));
@@ -1379,18 +1350,212 @@ $(document).ready(function() {
                 }
             });
         }
+
+        function replotTimeline (table_name, column_name, end_time, length) {
+            console.log("replot victor's");
+            $.getJSON('/api/' + ip_db + '/history/' + table_name + '/' + column_name + '/' + (end_time - length) + '/' + end_time, function(data) {
+                console.log(data);
+                var step = 1;
+                if (data.data && data.data.length > 50000){
+                    // step = data.data.length/5000;
+                    step = Math.floor(data.data.length/5000);
+                }
+                if (data.data_a && data.data_a.length > 50000){
+                    // step = data.data.length/5000;
+                    step = Math.floor(data.data_a.length/5000);
+                }
+                if (Object.keys(data).length == 2){
+                    // datalist = [data.data_a, data.data_b];
+                    new_data_a = [];
+                    for (var i =0; i< data.data_a.length; i += step){
+                        element = data.data_a[i];
+                        new_data_a.push([element[0] + timeZoneShift, element[1]]);
+                    }
+                    new_data_b = [];
+                    for (var i =0; i< data.data_b.length; i += step){
+                        element = data.data_b[i];
+                        new_data_b.push([element[0] + timeZoneShift, element[1]]);
+                    }
+                    datalist = [new_data_a, new_data_b];
+                }else{
+                    new_data = [];
+                    for (var i =0; i< data.data.length; i += step){
+                        element = data.data[i];
+                        new_data.push([element[0] + timeZoneShift, element[1]]);
+                    }
+                    console.log(data.data.length);
+                    datalist = [new_data];
+                }
+                console.log(datalist);
+                plot1.replot({
+                    data: datalist
+                });
+            });
+
+        }
+
+        $("#dialog_" + name).on('jqplotZoom', function(ev, gridpos, datapos, plot, cursor){
+            end_time = parseInt((plot.axes.xaxis.max - timeZoneShift)/1000);
+            length = end_time - parseInt((plot.axes.xaxis.min - timeZoneShift)/1000);
+            $("#dialog_" + name).find('input[id="reference_time"]').val(end_time);
+            $("#dialog_" + name).find('input[id="length"]').val(length);
+            var new_index = $(this).data('zoomStackIndex') + 1;
+            $(this).data('zoomStackIndex', new_index);
+            var new_zoomStack = $(this).data('zoomStack').slice(0, new_index);
+            new_zoomStack.push([end_time, length]);
+            $(this).data('zoomStack', new_zoomStack);
+            console.log(new_index + 1 + '/' + new_zoomStack.length);
+            $("#dialog_" + name + " #zoomIndex").text(new_index + 1 + '/' + new_zoomStack.length);
+        });
+
+        $("#dialog_" + name + " #reset").click(function() {
+            $("#dialog_" + name).data('zoomStackIndex', 0);
+            $("#dialog_" + name).data('zoomStack', [[hk_nows[i], 21600]]);
+            $("#dialog_" + name).find('input[id="reference_time"]').val(hk_nows[i]);
+            $("#dialog_" + name).find('input[id="length"]').val(21600);
+            $("#dialog_" + name).find('button[id="request"]').trigger("click");
+            $("#dialog_" + name + " #zoomIndex").text('1/1');
+        });
+        
+
+        $("#dialog_" + name + " #undo").click(function() {
+            if ($("#dialog_" + name).data('zoomStack').length > 1){
+                var index = $("#dialog_" + name).data('zoomStackIndex') - 1;
+                if (index >= 0){
+                    $("#dialog_" + name).data('zoomStackIndex', index);
+                    var zoomStack = $("#dialog_" + name).data('zoomStack');
+                    var zoom = zoomStack[index];
+                    var end_time = zoom[0];
+                    var length = zoom[1]
+                    $("#dialog_" + name).find('input[id="reference_time"]').val(end_time);
+                    $("#dialog_" + name).find('input[id="length"]').val(length);
+                    $("#dialog_" + name).find('button[id="request"]').trigger("click");
+                    $("#dialog_" + name + " #zoomIndex").text(index + 1 + '/' + zoomStack.length);
+                }
+            }
+        });
+
+        $("#dialog_" + name + " #redo").click(function() {
+            var stack_length = $("#dialog_" + name).data('zoomStack').length;
+            if ( stack_length > 0){
+                var index = $("#dialog_" + name).data('zoomStackIndex') + 1;
+                if (index < stack_length){
+                    $("#dialog_" + name).data('zoomStackIndex', index);
+                    var zoomStack = $("#dialog_" + name).data('zoomStack');
+                    var zoom = zoomStack[index];
+                    var end_time = zoom[0];
+                    var length = zoom[1]
+                    $("#dialog_" + name).find('input[id="reference_time"]').val(end_time);
+                    $("#dialog_" + name).find('input[id="length"]').val(length);
+                    $("#dialog_" + name).find('button[id="request"]').trigger("click");
+                    $("#dialog_" + name + " #zoomIndex").text(index + 1 + '/' + zoomStack.length);
+                }
+            }
+        });
+
+        $("#dialog_" + name + " #1hour").click(function() {
+            console.log('1hour');
+            var stack_length = $("#dialog_" + name).data('zoomStack').length;
+            if ( stack_length > 0){
+                var index = $("#dialog_" + name).data('zoomStackIndex');
+
+                var new_index = index + 1;
+                $("#dialog_" + name).data('zoomStackIndex', new_index);
+                var new_zoomStack = $("#dialog_" + name).data('zoomStack').slice(0, new_index);
+                var end_time = new_zoomStack[index][0];
+                var length = 3600;
+                new_zoomStack.push([end_time, length])
+                $("#dialog_" + name).data('zoomStack', new_zoomStack);
+                $("#dialog_" + name).find('input[id="reference_time"]').val(end_time);
+                $("#dialog_" + name).find('input[id="length"]').val(length);
+                $("#dialog_" + name).find('button[id="request"]').trigger("click");
+                $("#dialog_" + name + " #zoomIndex").text(new_index + 1 + '/' + new_zoomStack.length);
+            }
+        });
+
+        $("#dialog_" + name + " #6hours").click(function() {
+            console.log('6hour');
+            var stack_length = $("#dialog_" + name).data('zoomStack').length;
+            if ( stack_length > 0){
+                var index = $("#dialog_" + name).data('zoomStackIndex');
+
+                var new_index = index + 1;
+                $("#dialog_" + name).data('zoomStackIndex', new_index);
+                var new_zoomStack = $("#dialog_" + name).data('zoomStack').slice(0, new_index);
+                var end_time = new_zoomStack[index][0];
+                var length = 21600;
+                new_zoomStack.push([end_time, length])
+                $("#dialog_" + name).data('zoomStack', new_zoomStack);
+                $("#dialog_" + name).find('input[id="reference_time"]').val(end_time);
+                $("#dialog_" + name).find('input[id="length"]').val(length);
+                $("#dialog_" + name).find('button[id="request"]').trigger("click");
+                $("#dialog_" + name + " #zoomIndex").text(new_index + 1 + '/' + new_zoomStack.length);
+            }
+        });
+
+        $("#dialog_" + name + " #24hours").click(function() {
+            console.log('24hour');
+            var stack_length = $("#dialog_" + name).data('zoomStack').length;
+            if ( stack_length > 0){
+                var index = $("#dialog_" + name).data('zoomStackIndex');
+
+                var new_index = index + 1;
+                $("#dialog_" + name).data('zoomStackIndex', new_index);
+                var new_zoomStack = $("#dialog_" + name).data('zoomStack').slice(0, new_index);
+                var end_time = new_zoomStack[index][0];
+                var length = 86400;
+                new_zoomStack.push([end_time, length])
+                $("#dialog_" + name).data('zoomStack', new_zoomStack);
+                $("#dialog_" + name).find('input[id="reference_time"]').val(end_time);
+                $("#dialog_" + name).find('input[id="length"]').val(length);
+                $("#dialog_" + name).find('button[id="request"]').trigger("click");
+                $("#dialog_" + name + " #zoomIndex").text(new_index + 1 + '/' + new_zoomStack.length);
+            }
+        });
+
+        $("#dialog_" + name + " #1month").click(function() {
+            var stack_length = $("#dialog_" + name).data('zoomStack').length;
+            if ( stack_length > 0){
+                var index = $("#dialog_" + name).data('zoomStackIndex');
+
+                var new_index = index + 1;
+                $("#dialog_" + name).data('zoomStackIndex', new_index);
+                var new_zoomStack = $("#dialog_" + name).data('zoomStack').slice(0, new_index);
+                var end_time = new_zoomStack[index][0];
+                var length = 2592000;
+                new_zoomStack.push([end_time, length])
+                $("#dialog_" + name).data('zoomStack', new_zoomStack);
+                $("#dialog_" + name).find('input[id="reference_time"]').val(end_time);
+                $("#dialog_" + name).find('input[id="length"]').val(length);
+                $("#dialog_" + name).find('button[id="request"]').trigger("click");
+                $("#dialog_" + name + " #zoomIndex").text(new_index + 1 + '/' + new_zoomStack.length);
+            }
+        });
+
+        $("#dialog_" + name).find('button[id="request"]').click(function() {
+            console.log("REPLOT_dialog victor's");
+            var end_time = $newDialog.find('input[id="reference_time"]').val();
+            var length = $newDialog.find('input[id="length"]').val();
+            console.log("Victor's END_TIME is: " + end_time);
+            console.log("Victor's LENGTH is: " + length);
+            replotTimeline(table_name, column_name, end_time, length);
+            
+        });
+
+        $("#dialog_" + name).find('button[id="request"]').trigger("click");
     });
+
     $('#table_button').click( function(){
         $.getJSON('/api/' + ip_db +  '/table_names', function(data) {
             table_list = data['tables']
         });
         setTimeout(function(){
-            for (i = 0; i < table_list.length; i++){
-                if (table_list[i] == "{{table_selected}}"){
-                    newOption = $('<option selected>' + table_list[i] + '</option>');
+            for (var table_count = 0; table_count < table_list.length; table_count++){
+                if (table_list[table_count] == "{{table_selected}}"){
+                    newOption = $('<option selected>' + table_list[table_count] + '</option>');
                     addmore = 0
                 }else{
-                    newOption = $('<option>' + table_list[i] + '</option>');
+                    newOption = $('<option>' + table_list[table_count] + '</option>');
                 }
                 $('#table').append(newOption);
             }
@@ -1400,12 +1565,12 @@ $(document).ready(function() {
             }
         },1000);
         setTimeout(function(){
-            for (i = 0; i < table_list.length; i++){
-                if (table_list[i] == "{{table_selected}}"){
-                    newOption = $('<option selected>' + table_list[i] + '</option>');
+            for (var table_count = 0; table_count < table_list.length; table_count++){
+                if (table_list[table_count] == "{{table_selected}}"){
+                    newOption = $('<option selected>' + table_list[table_count] + '</option>');
                     addmore = 0
                 }else{
-                    newOption = $('<option>' + table_list[i] + '</option>');
+                    newOption = $('<option>' + table_list[table_count] + '</option>');
                 }
                 $('#table2').append(newOption);
             }
