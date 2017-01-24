@@ -726,7 +726,6 @@ $(document).ready(function() {
 
     $.jqplot.config.enablePlugins = true;
     $("td[id]").click(function() {
-        console.log("td_id");
         var column_name = $(this).attr('id');
         var table_name = $(this).closest('.ibox').attr('id');
         var name = table_name + '_' + column_name;
@@ -739,11 +738,9 @@ $(document).ready(function() {
         // console.log($(this).attr('id'));
         // console.log($(this).closest('.ibox').attr('id'));
         if ($("#dialog_" + name).length) {
-            console.log('if for td[id]');
             $("#dialog_" + name).dialog('open');
             $("#dialog_" + name).find('input[id="reference_time"]').val(hk_nows[i]);
         } else {
-            console.log('else for td[id]');
             var $newDialog = $('#dialog').clone();
             $newDialog.attr('id', 'dialog_' + name);
             $newDialog.removeClass('hide');
@@ -826,7 +823,6 @@ $(document).ready(function() {
         }
 
         function replotTimeline (table_name, column_name, end_time, length) {
-            console.log("replotTimeline for peng's");
             $.getJSON('/api/' + ip_db + '/history/' + table_name + '/' + column_name + '/' + (end_time - length) + '/' + end_time, function(data) {
                 console.log(data);
                 var step = 1;
@@ -991,8 +987,6 @@ $(document).ready(function() {
             console.log("REPLOT_dialog peng's");
             var end_time = $newDialog.find('input[id="reference_time"]').val();
             var length = $newDialog.find('input[id="length"]').val();
-            console.log("Peng's END_TIME is: " + end_time);
-            console.log("Peng's TOP LENGTH is: " + length);
             replotTimeline(table_name, column_name, end_time, length);
             
         });
@@ -1248,21 +1242,27 @@ $(document).ready(function() {
         //console.log($('#table2 option:selected').text())
         //console.log($('#table_data2 option:selected').text())
 
-        var table_name = $('#table option:selected').text()
-        var column_name = $('#table_data option:selected').text()
+        var table_name = $('#table option:selected').text();
+        var column_name = $('#table_data option:selected').text();
+        var table_name2 = $('#table2 option:selected').text();
+        var column_name2 = $('#table_data2 option:selected').text();
         var name = table_name + '_' + column_name;
         table_name0 = table_name.split('_')[0];
-        console.log(table_name);
-        console.log(column_name);
-        if (table_name0 == 'adu5'){
-            console.log('It is pat');
+
+        if ((table_name2 != '' || table_name2 != 'none') && (column_name2 != '' || column_name2 != 'none')){
+            console.log("there is something in dropdown 2");
+            second_plot = true;
+        }else{
+            console.log("there is nothing in dropdown 2");
+            second_plot = false;
         }
+
         if (table_name0 == 'adu5' && (column_name!= 'numsats' || column_name!= 'd2mcm') ){
             multi_plot = true;
         }else{
             multi_plot = false;
         }
-        console.log(multi_plot);
+
         // console.log($(this).closest('.ibox').attr('id'));
         if ($("#dialog_" + name).length) {
             console.log("load if");
@@ -1323,11 +1323,31 @@ $(document).ready(function() {
                             size: 2,
                             color: 'red' 
                         }
+                    },
+                    {
+                        lineWidth: .5,
+                        markerOptions: {
+                            size: 2,
+                            color: 'green' 
+                        }
+                    },
+                    {
+                        lineWidth: .5,
+                        markerOptions: {
+                            size: 2,
+                            color: 'black' 
+                        }
                     }
                 ],
                 legend: {
                     show: multi_plot,
                     labels: ['adu5_A', 'adu5_B'],
+                    location: 'ne',
+                    rowSpacing: '0px'
+                },
+                legend: {
+                    show: second_plot,
+                    labels: [column_name, column_name2],
                     location: 'ne',
                     rowSpacing: '0px'
                 },
@@ -1351,9 +1371,12 @@ $(document).ready(function() {
             });
         }
 
-        function replotTimeline (table_name, column_name, end_time, length) {
+        function replotTimeline (table_name, column_name, table_name2, column_name2, end_time, length) {
             console.log("replot victor's");
+            console.log("table_name2 :" + table_name2);
+            console.log("column_name2 :" + column_name2);
             $.getJSON('/api/' + ip_db + '/history/' + table_name + '/' + column_name + '/' + (end_time - length) + '/' + end_time, function(data) {
+                datalist = [];
                 console.log(data);
                 var step = 1;
                 if (data.data && data.data.length > 50000){
@@ -1376,15 +1399,55 @@ $(document).ready(function() {
                         element = data.data_b[i];
                         new_data_b.push([element[0] + timeZoneShift, element[1]]);
                     }
-                    datalist = [new_data_a, new_data_b];
+                    console.log("before if statement");
+                    console.log(second_plot);
+                    if(second_plot){
+                        console.log("inside second_plot if");
+                        new_data_c=[];
+                        $.getJSON('/api/' + ip_db + '/history/' + table_name2 + '/' + column_name2 + '/' + (end_time - length) + '/' + end_time, function(data) {
+                            console.log(data);
+                            for (var i =0; i< data.data_a.length; i += step){
+                                element = data.data_a[i];
+                                new_data_c.push([element[0] + timeZoneShift, element[1]]);
+                            }
+                            datalist = [new_data_a, new_data_b, new_data_c];
+                            console.log(datalist);
+                            plot1.replot({
+                                data: datalist
+                            });
+                        });
+                    }
+                    else{
+                        datalist = [new_data_a, new_data_b];
+                    }
                 }else{
                     new_data = [];
                     for (var i =0; i< data.data.length; i += step){
                         element = data.data[i];
                         new_data.push([element[0] + timeZoneShift, element[1]]);
                     }
-                    console.log(data.data.length);
-                    datalist = [new_data];
+                    console.log("before if statement");
+                    console.log(second_plot);
+                    if(second_plot){
+                        console.log("inside second_plot if");
+                        new_data_b=[];
+                        $.getJSON('/api/' + ip_db + '/history/' + table_name2 + '/' + column_name2 + '/' + (end_time - length) + '/' + end_time, function(data) {
+                            console.log(data);
+                            for (var i =0; i< data.data.length; i += step){
+                                element = data.data[i];
+                                new_data_b.push([element[0] + timeZoneShift, element[1]]);
+                            }
+                            datalist = [new_data, new_data_b];
+                            console.log(datalist);
+                            plot1.replot({
+                                data: datalist
+                            });
+                        });
+                    }
+                    else{
+                        console.log(data.data.length);
+                        datalist = [new_data];
+                    }
                 }
                 console.log(datalist);
                 plot1.replot({
@@ -1536,10 +1599,9 @@ $(document).ready(function() {
             console.log("REPLOT_dialog victor's");
             var end_time = $newDialog.find('input[id="reference_time"]').val();
             var length = $newDialog.find('input[id="length"]').val();
-            console.log("Victor's END_TIME is: " + end_time);
-            console.log("Victor's LENGTH is: " + length);
-            replotTimeline(table_name, column_name, end_time, length);
-            
+            console.log("**** table 2:" + table_name2);
+            console.log("**** column 2:" + column_name2);
+            replotTimeline(table_name, column_name, table_name2, column_name2, end_time, length);
         });
 
         $("#dialog_" + name).find('button[id="request"]').trigger("click");
