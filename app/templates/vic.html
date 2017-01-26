@@ -31,284 +31,6 @@
                         </tbody>
                     </table>
                 </div>
-                <div class="ibox-content">
-                    <table data-sort="false" class="footable" data-page-size="20" id='aux' style="width:100%">
-                        <h5>Auxilary Information</h5>
-                        <tbody>
-                            <tr>
-                                <td bgcolor="#FFFFFF" style="line-height:10px;" colspan=3>&nbsp;</td>
-                            </tr>
-                            <tr>
-                                <td>Pressure [torr]</td>
-                                <td id='pressl'></td>
-                                <td>Pressure [PSI]</td>
-                                <td id='pressh'></td>
-                            </tr>
-                            <tr>
-                                <td bgcolor="#FFFFFF" style="line-height:10px;" colspan=3>&nbsp;</td>
-                            </tr>
-                            <tr>
-                                <td></td>
-                                <td>Elevation</td>
-                                <td>Azimuth</td>
-                                <td>Flag</td>
-                            </tr>
-                            <tr>
-                                <td bgcolor="#FFFFFF" style="line-height:10px;" colspan=3>&nbsp;</td>
-                            </tr>
-                            <tr>
-                                <td>Accel 1 [x,y,z]</td>
-                                <td id='accx-0'></td>
-                                <td id='accy-0'></td>
-                                <td id='accz-0'></td>
-                            </tr>
-                            <tr>
-                                <td>Accel 2 [x,y,z]</td>
-                                <td id='accx-1'></td>
-                                <td id='accy-1'></td>
-                                <td id='accz-1'></td>
-                            </tr>
-                            <tr>
-                                <td>Mag [x,y,z]</td>
-                                <td id='magx'></td>
-                                <td id='magy'></td>
-                                <td id='magz'></td>
-                            </tr>
-                            <tr>
-                                <td>SunSensor 1</td>
-                                <td id='ssel-0'></td>
-                                <td id='ssaz-0'></td>
-                                <td id='ssflag-0'></td>
-                            </tr>
-                            <tr>
-                                <td>SunSensor 2</td>
-                                <td id='ssel-1'></td>
-                                <td id='ssaz-1'></td>
-                                <td id='ssflag-1'></td>
-                            </tr>
-                            <tr>
-                                <td>SunSensor 3</td>
-                                <td id='ssel-2'></td>
-                                <td id='ssaz-2'></td>
-                                <td id='ssflag-2'></td>
-                            </tr>
-                            <tr>
-                                <td>SunSensor 4</td>
-                                <td id='ssel-3'></td>
-                                <td id='ssaz-3'></td>
-                                <td id='ssflag-3'></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-                <div class="ibox-content">
-                    <table data-sort="false" class="footable" data-page-size="20" id='sshk' style="width:100%">
-                    <h5>Extra Sun Sensor</h5>
-                        <tbody>
-                            <th>
-                                <td></td>
-                                <td ></td>
-                                <td></td>
-                                <td ></td>
-                            </th>
-                            <tr>
-                                <td>Index</td>
-                                <td id = 'index'></td>
-                                <td>Crc</td>
-                                <td id = 'crc'></td>
-                            </tr>
-                            <tr>
-                                <td>Time</td>
-                                <td id='time'></td>
-                                <td>Now</td>
-                                <td id='now'></td>
-                            </tr>
-                            <tr>
-                                <td>UnixTime</td>
-                                <td id='unixtime'></td>
-                                <td>UnixNow</td>
-                                <td id='unixnow'></td>
-                            </tr>
-                        </tbody>
-                        <tbody>
-                            <tr>
-                                <td>SunSensor 5</td>
-                                <td id='ssel-4'></td>
-                                <td id='ssaz-4'></td>
-                                <td id='ssflag-4'></td>
-                            </tr>
-                            <tr>
-                                <td>SunSensor 6</td>
-                                <td id='ssel-5'></td>
-                                <td id='ssaz-5'></td>
-                                <td id='ssflag-5'></td>
-                            </tr>    
-                            <tr>
-                                <td>SunSensor 7</td>
-                                <td id='ssel-6'></td>
-                                <td id='ssaz-6'></td>
-                                <td id='ssflag-6'></td>
-                            </tr>
-                            <tr>
-                                <td>SunSensor 8</td>
-                                <td id='ssel-7'></td>
-                                <td id='ssaz-7'></td>
-                                <td id='ssflag-7'></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-                
-            </div>
-        </div>
-        <div class="col-lg-6">
-            <div class="ibox float-e-margins" id="gps">
-                <div class="ibox-title">
-                   <h5>GPS Panel</h5>
-                   <div class="ibox-tools">
-                       <a class="collapse-link">
-                          <i class="fa fa-chevron-up"></i>
-                        </a>
-                    </div>
-                </div>
-                <div class="ibox-content" >
-                    <table data-sort="false" class="footable" data-page-size="26" style="width:100%">
-                        <tbody>
-                            <th>
-                                <!-- <td>GPStype:</td> -->
-                                <td>adu5A</td>
-                                <td>adu5B</td>
-                                <td>g12</td>
-                            </th>
-                            <tr>
-                                <td>Index</td>
-                                <td id = 'adu5_pat_index'></td>
-                                <td></td>
-                                <td id = 'g12_pos_index'></td>
-                            </tr>
-                            
-                            
-                            <tr>
-                                <td>Time</td>
-                                <td id='time_adu5_pat_A'></td>
-                                <td id='time_adu5_pat_B'></td>
-                                <td id='time_g12_pos'></td>
-                            </tr>
-                            <tr>
-                                <td>UnixTime</td>
-                                <td id='unixtime_adu5_pat_A'></td>
-                                <td id='unixtime_adu5_pat_B'></td>
-                                <td id='unixtime_g12_pos'></td>
-                            </tr>
-                            <tr>
-                                <td>Now</td>
-                                <td id='now_adu5_pat_A'></td>
-                                <td id='now_adu5_pat_B'></td>
-                                <td id='now_g12_pos'></td>                                
-                            </tr>
-                            <tr>
-                                <td>UnixNow</td>
-                                <td id='unixnow_adu5_pat_A'></td>
-                                <td id='unixnow_adu5_pat_B'></td> 
-                                <td id='unixnow_g12_pos'></td>                                 
-                            </tr>
-                            <tr>
-                                <td>Latitude</td>
-                                <td id='latitude_adu5_pat_A'></td>
-                                <td id='latitude_adu5_pat_B'></td>
-                                <td id='latitude_g12_pos'></td>
-                            </tr>
-                            <tr>
-                                <td>Longitude</td>  
-                                <td id='longitude_adu5_pat_A'></td>
-                                <td id='longitude_adu5_pat_B'></td>
-                                <td id='longitude_g12_pos'></td>                              
-                            </tr>
-                            <tr>
-                                <td>Altitude</td>
-                                <td id='altitude_adu5_pat_A'></td>
-                                <td id='altitude_adu5_pat_B'></td>
-                                <td id='altitude_g12_pos'></td>
-                            </tr>
-                            
-                            <tr>
-                                <td>Pitch</td>
-                                <td id='pitch_adu5_pat_A'></td>
-                                <td id='pitch_adu5_pat_B'></td>
-                                <td></td>
-                            </tr>
-                            <tr>                                
-                                <td>Roll</td> 
-                                <td id='roll_adu5_pat_A'></td>
-                                <td id='roll_adu5_pat_B'></td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td>Heading</td>      
-                                <td id='heading_adu5_pat_A'></td>
-                                <td id='heading_adu5_pat_B'></td>
-                                <td></td>
-                            </tr>
-
-                            <tr>
-                                <td>Flag</td>
-                                <td id='flag_adu5_pat_A'></td>
-                                <td id='flag_adu5_pat_B'></td>
-                                <td></td>
-                            </tr>
-                            <tr>                                
-                                <td>BRMS</td> 
-                                <td id='brms_adu5_pat_A'></td>
-                                <td id='brms_adu5_pat_B'></td>
-                                <td></td>
-                            </tr>
-
-                            <tr>                                
-                                <td>D2McM[km]</td> 
-                                <td id='d2mcm_adu5_pat_A'></td>
-                                <td id='d2mcm_adu5_pat_B'></td>
-                                <td id='d2mcm_g12_pos_B'></td>
-                            </tr>
-                            <tr>
-                                <td bgcolor="#FFFFFF" style="line-height:20px;" colspan=3>&nbsp;</td>
-                            </tr>
-                            <tr>
-                                <td>Index</td>
-                                <td id = 'adu5_vtg_index'></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                            <tr>                                
-                                <td>knots</td>
-                                <td id='vkt_adu5_vtg_A'></td>
-                                <td id='vkt_adu5_vtg_B'></td>
-                                <td id='vkt_g12_pos'></td> 
-                            </tr>
-
-                            <tr>
-                                <td>kph</td> 
-                                <td id='vkph_adu5_vtg_A'></td>
-                                <td id='vkph_adu5_vtg_B'></td>
-                                <td id='vkph_g12_pos'></td>                           
-                            </tr>
-                            <tr>
-                                <td bgcolor="#FFFFFF" style="line-height:20px;" colspan=3>&nbsp;</td>
-                            </tr>
-                            <tr>
-                                <td>Index</td>
-                                <td id = 'adu5_sat_index'></td>
-                                <td></td>
-                                <td id = 'g12_sat_index'></td>
-                            </tr>
-                            <tr>
-                                <td># of Sats</td>
-                                <td id='numsats_adu5_sat_A'></td>
-                                <td id='numsats_adu5_sat_B'></td> 
-                                <td id='numsats_g12_sat'></td>                                 
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
             </div>
         </div>
         <div class="col-lg-6">
@@ -439,30 +161,6 @@ var sleep_interval = 2000 //by default, re-access the database every 2seconds to
 
 var sync_on = false;
 
-function Distance2McM (longitude, latitude) {
-    dlon = (longitude - 167.19)/180*3.1415;
-    dlat = (latitude + 77.85)/180*3.1415;
-    a = Math.pow((Math.sin(dlat/2)),2) + Math.cos(latitude/180*3.1415) * Math.cos(77.85/180*3.1415) * Math.pow((Math.sin(dlon/2)),2);
-    c = 2 * Math.atan2( Math.sqrt(a), Math.sqrt(1-a) );
-    return (6371 * c).toFixed(2); //(where R is the radius of the Earth)
-}
-
-
-function gpstype(gpstype) {
-    if (gpstype == 0x10000) {
-        return 'g12';
-    } else if (gpstype == 0x20000) {
-        return 'adu5A';
-    } else if (gpstype == 0x40000) {
-        return 'adu5B';
-    } else if (gpstype == 0x80000) {
-        return 'cmd';
-    } else {
-        return 'unknown';
-    };
-}
-
-
     function updatehtml_hk(hk) {
         if (!hk) return;
         $.getJSON('/api/' + ip_db + '/hk/' + hk, function(data) {
@@ -470,209 +168,8 @@ function gpstype(gpstype) {
             $('#hk #crc').html(data.hk.crc);
             $('#hk_time #now').html(data.hk.now + " (" + timeConverter(data.hk.now) + ")");
             $('#hk_time #time').html(data.hk.time + " (" + timeConverter(data.hk.time) + ")");
-            
-            $('#hk #pressl').html(data.hk.pressl);
-            $('#hk #pressh').html(data.hk.pressh);
-            $('#hk #ssx-0').html(data.hk.ssx[0]);
-            $('#hk #ssx-1').html(data.hk.ssx[1]);
-            $('#hk #ssx-2').html(data.hk.ssx[2]);
-            $('#hk #ssx-3').html(data.hk.ssx[3]);
-            $('#hk #ssy-0').html(data.hk.ssy[0]);
-            $('#hk #ssy-1').html(data.hk.ssy[1]);
-            $('#hk #ssy-2').html(data.hk.ssy[2]);
-            $('#hk #ssy-3').html(data.hk.ssy[3]);
-            $('#hk #ssi-0').html(data.hk.ssi[0]);
-            $('#hk #ssi-1').html(data.hk.ssi[1]);
-            $('#hk #ssi-2').html(data.hk.ssi[2]);
-            $('#hk #ssi-3').html(data.hk.ssi[3]);
-            $('#hk #ssflag-0').html(data.hk.ssflag[0]);
-            $('#hk #ssflag-1').html(data.hk.ssflag[1]);
-            $('#hk #ssflag-2').html(data.hk.ssflag[2]);
-            $('#hk #ssflag-3').html(data.hk.ssflag[3]);
-            $('#hk #ssel-0').html(data.hk.ssel[0]);
-            $('#hk #ssel-1').html(data.hk.ssel[1]);
-            $('#hk #ssel-2').html(data.hk.ssel[2]);
-            $('#hk #ssel-3').html(data.hk.ssel[3]);
-            $('#hk #ssaz-0').html(data.hk.ssaz[0]);
-            $('#hk #ssaz-1').html(data.hk.ssaz[1]);
-            $('#hk #ssaz-2').html(data.hk.ssaz[2]);
-            $('#hk #ssaz-3').html(data.hk.ssaz[3]);
-            $('#hk #sst-0').html(data.hk.sst[0]);
-            $('#hk #sst-1').html(data.hk.sst[1]);
-            $('#hk #sst-2').html(data.hk.sst[2]);
-            $('#hk #sst-3').html(data.hk.sst[3]);
-            $('#hk #accx-0').html(data.hk.accx[0]);
-            $('#hk #accy-0').html(data.hk.accy[0]);
-            $('#hk #accz-0').html(data.hk.accz[0]);
-            $('#hk #accx-1').html(data.hk.accx[1]);
-            $('#hk #accy-1').html(data.hk.accy[1]);
-            $('#hk #accz-1').html(data.hk.accz[1]);
-            $('#hk #magx').html(data.hk.magx);
-            $('#hk #magy').html(data.hk.magy);
-            $('#hk #magz').html(data.hk.magz);
         });
 
-}
-
-function updatehtml_sshk(sshk) {
-    if (!sshk) return;
-    $.getJSON('/api/' + ip_db + '/sshk/' + sshk, function(data) {
-        $('#sshk #index').html(n + 1 + "/" + sshk_nbufs.length);
-        $('#sshk #crc').html(data.sshk.crc);
-        $('#sshk #now').html(timeConverter(data.sshk.now));
-        $('#sshk #time').html(timeConverter(data.sshk.time));
-        $('#sshk #unixnow').html(data.sshk.now);
-        $('#sshk #unixtime').html(data.sshk.time);
-        $('#sshk #ssflag-4').html(data.sshk.ssflag[0]);
-        $('#sshk #ssflag-5').html(data.sshk.ssflag[1]);
-        $('#sshk #ssflag-6').html(data.sshk.ssflag[2]);
-        $('#sshk #ssflag-7').html(data.sshk.ssflag[3]);
-        $('#sshk #ssel-4').html(data.sshk.ssel[0]);
-        $('#sshk #ssel-5').html(data.sshk.ssel[1]);
-        $('#sshk #ssel-6').html(data.sshk.ssel[2]);
-        $('#sshk #ssel-7').html(data.sshk.ssel[3]);
-        $('#sshk #ssaz-4').html(data.sshk.ssaz[0]);
-        $('#sshk #ssaz-5').html(data.sshk.ssaz[1]);
-        $('#sshk #ssaz-6').html(data.sshk.ssaz[2]);
-        $('#sshk #ssaz-7').html(data.sshk.ssaz[3]);
-    });
-}
-
-
-function updatehtml_adu5_pat(adu5_pat) {
-    if (!adu5_pat) return;
-    $.getJSON('/api/' + ip_db + '/adu5_pat/' + adu5_pat, function(data) {
-        $('#gps #adu5_pat_index').html(k + 1 + "/" + adu5_pat_times.length);
-        if (data.pat_a == undefined){
-            $('#gps #adu5_pat_index').css('color', 'LightGrey');
-            $('#gps #unixnow_adu5_pat_A').css('color', 'LightGrey');
-            $('#gps #unixtime_adu5_pat_A').css('color', 'LightGrey');
-            $('#gps #now_adu5_pat_A').css('color', 'LightGrey');
-            $('#gps #time_adu5_pat_A').css('color', 'LightGrey');
-            $('#gps #heading_adu5_pat_A').css('color', 'LightGrey');
-            $('#gps #latitude_adu5_pat_A').css('color', 'LightGrey');
-            $('#gps #longitude_adu5_pat_A').css('color', 'LightGrey');
-            $('#gps #pitch_adu5_pat_A').css('color', 'LightGrey');
-            $('#gps #roll_adu5_pat_A').css('color', 'LightGrey');
-            $('#gps #altitude_adu5_pat_A').css('color', 'LightGrey');
-            $('#gps #flag_adu5_pat_A').css('color', 'LightGrey');
-            $('#gps #brms_adu5_pat_A').css('color', 'LightGrey');
-            $('#gps #d2mcm_adu5_pat_A').css('color', 'LightGrey');     
-        }else{
-            
-            $('#gps #unixnow_adu5_pat_A').html(data.pat_a.now).css('color', 'inherit');
-            $('#gps #unixtime_adu5_pat_A').html(data.pat_a.time).css('color', 'inherit');
-            $('#gps #now_adu5_pat_A').html(timeConverter(data.pat_a.now)).css('color', 'inherit');
-            $('#gps #time_adu5_pat_A').html(timeConverter(data.pat_a.time)).css('color', 'inherit');
-            $('#gps #heading_adu5_pat_A').html(data.pat_a.heading).css('color', 'inherit');
-            $('#gps #latitude_adu5_pat_A').html(data.pat_a.latitude).css('color', 'inherit');
-            $('#gps #longitude_adu5_pat_A').html(data.pat_a.longitude).css('color', 'inherit');
-            $('#gps #pitch_adu5_pat_A').html(data.pat_a.pitch).css('color', 'inherit');
-            $('#gps #roll_adu5_pat_A').html(data.pat_a.roll).css('color', 'inherit');
-            $('#gps #altitude_adu5_pat_A').html(data.pat_a.altitude).css('color', 'inherit');
-            $('#gps #flag_adu5_pat_A').html(data.pat_a.flag).css('color', 'inherit');
-            $('#gps #brms_adu5_pat_A').html(data.pat_a.brms).css('color', 'inherit');  
-            $('#gps #d2mcm_adu5_pat_A').html(Distance2McM(data.pat_a.longitude,data.pat_a.latitude)).css('color', 'inherit');     
-        }
-           
-        if (data.pat_b == undefined){
-            $('#gps #unixnow_adu5_pat_B').css('color', 'LightGrey');
-            $('#gps #unixtime_adu5_pat_B').css('color', 'LightGrey');
-            $('#gps #now_adu5_pat_B').css('color', 'LightGrey');
-            $('#gps #time_adu5_pat_B').css('color', 'LightGrey');
-            $('#gps #heading_adu5_pat_B').css('color', 'LightGrey');
-            $('#gps #latitude_adu5_pat_B').css('color', 'LightGrey');
-            $('#gps #longitude_adu5_pat_B').css('color', 'LightGrey');
-            $('#gps #pitch_adu5_pat_B').css('color', 'LightGrey');
-            $('#gps #roll_adu5_pat_B').css('color', 'LightGrey');
-            $('#gps #altitude_adu5_pat_B').css('color', 'LightGrey'); 
-            $('#gps #flag_adu5_pat_B').css('color', 'LightGrey');
-            $('#gps #brms_adu5_pat_B').css('color', 'LightGrey');
-            $('#gps #d2mcm_adu5_pat_B').css('color', 'LightGrey');   
-        }else{
-            $('#gps #unixnow_adu5_pat_B').html(data.pat_b.now).css('color', 'inherit');
-            $('#gps #unixtime_adu5_pat_B').html(data.pat_b.time).css('color', 'inherit');
-            $('#gps #now_adu5_pat_B').html(timeConverter(data.pat_b.now)).css('color', 'inherit');
-            $('#gps #time_adu5_pat_B').html(timeConverter(data.pat_b.time)).css('color', 'inherit');
-            $('#gps #heading_adu5_pat_B').html(data.pat_b.heading).css('color', 'inherit');
-            $('#gps #latitude_adu5_pat_B').html(data.pat_b.latitude).css('color', 'inherit');
-            $('#gps #longitude_adu5_pat_B').html(data.pat_b.longitude).css('color', 'inherit');
-            $('#gps #pitch_adu5_pat_B').html(data.pat_b.pitch).css('color', 'inherit');
-            $('#gps #roll_adu5_pat_B').html(data.pat_b.roll).css('color', 'inherit');
-            $('#gps #altitude_adu5_pat_B').html(data.pat_b.altitude).css('color', 'inherit'); 
-            $('#gps #flag_adu5_pat_B').html(data.pat_a.flag).css('color', 'inherit');
-            $('#gps #brms_adu5_pat_B').html(data.pat_a.brms).css('color', 'inherit');
-            $('#gps #d2mcm_adu5_pat_B').html(Distance2McM(data.pat_a.longitude,data.pat_a.latitude)).css('color', 'inherit');         
-        }
-   });
-}
-
-function updatehtml_adu5_vtg(adu5_vtg) {
-    if (!adu5_vtg) return;
-    $.getJSON('/api/' + ip_db + '/adu5_vtg/' + adu5_vtg, function(data) {
-        $('#gps #adu5_vtg_index').html(l + 1 + "/" + adu5_vtg_times.length);
-        if (data.vtg_a == undefined){
-            $('#gps #vkph_adu5_vtg_A').css('color', 'LightGrey');
-            $('#gps #vkt_adu5_vtg_A').css('color', 'LightGrey');
-        }else{
-            $('#gps #vkph_adu5_vtg_A').html(data.vtg_a.vkph).css('color', 'inherit');
-            $('#gps #vkt_adu5_vtg_A').html(data.vtg_a.vkt).css('color', 'inherit');
-        }
-        
-        if (data.vtg_b == undefined){
-            $('#gps #vkph_adu5_vtg_B').css('color', 'LightGrey');
-            $('#gps #vkt_adu5_vtg_B').css('color', 'LightGrey');
-        }else{
-            $('#gps #vkph_adu5_vtg_B').html(data.vtg_b.vkph).css('color', 'inherit');
-            $('#gps #vkt_adu5_vtg_B').html(data.vtg_b.vkt).css('color', 'inherit');
-        }
-            
-
-   });
-}
-
-function updatehtml_adu5_sat(adu5_sat) {
-    if (!adu5_sat) return;
-    $.getJSON('/api/' + ip_db + '/adu5_sat/' + adu5_sat, function(data) {
-        $('#gps #adu5_sat_index').html(p + 1 + "/" + adu5_sat_times.length);
-        if (data.sat_a == undefined){
-            $('#gps #numsats_adu5_sat_A').css('color', 'LightGrey');
-        }else{
-            $('#gps #numsats_adu5_sat_A').html(data.sat_a.numsats[0]+', '+data.sat_a.numsats[1]+', '+data.sat_a.numsats[2]+', '+data.sat_a.numsats[3]).css('color', 'inherit');
-        }
-
-        if (data.sat_b == undefined){
-            $('#gps #numsats_adu5_sat_B').css('color', 'LightGrey');
-        }else{
-            $('#gps #numsats_adu5_sat_B').html(data.sat_b.numsats[0]+', '+data.sat_b.numsats[1]+', '+data.sat_b.numsats[2]+', '+data.sat_b.numsats[3]).css('color', 'inherit');
-        }
-            
-            
-   });
-}
-
-function updatehtml_g12_pos(g12_pos){
-    $('#gps #g12_pos_index').html(o + 1 + "/" + g12_pos_nbufs.length);
-   if (!g12_pos) return;
-   $.getJSON('/api/' + ip_db + '/g12_pos/' + g12_pos, function(data){
-       $('#gps #unixnow_g12_pos').html(data.pos.now);
-       $('#gps #unixtime_g12_pos').html(data.pos.time);
-       $('#gps #now_g12_pos').html(timeConverter(data.pos.now));
-       $('#gps #time_g12_pos').html(timeConverter(data.pos.time));
-       $('#gps #latitude_g12_pos').html(data.pos.latitude);
-       $('#gps #longitude_g12_pos').html(data.pos.longitude);
-       $('#gps #altitude_g12_pos').html(data.pos.altitude);    
-       $('#gps #d2mcm_g12_pos_B').html(Distance2McM(data.pos.longitude,data.pos.latitude));         
-    
-   });
-}
-
-function updatehtml_g12_sat(g12_sat){
-    $('#gps #g12_sat_index').html(p + 1 + "/" + g12_sat_nbufs.length);
-   if (!g12_sat) return;
-   $.getJSON('/api/' + ip_db + '/g12_sat/' + g12_sat, function(data){
-       $('#gps #numsats_g12_sat').html(data.sat.numsats); 
-   });
 }
 
 
@@ -696,7 +193,7 @@ $(document).ready(function() {
                     if (table_count < table_data_names.length - 1){
                         newOption = $('<option>' + table_data_names[table_count] + '</option>');
                     }else{
-                        newOption = $('<option selected>' + table_data_names[table_count] + '</option>');
+                        newOption = $('<option>' + table_data_names[table_count] + '</option>');
                     }
                     
                     $('#table_data').append(newOption);
@@ -715,7 +212,7 @@ $(document).ready(function() {
                     if (table_count < table_data_names.length - 1){
                         newOption = $('<option>' + table_data_names[table_count] + '</option>');
                     }else{
-                        newOption = $('<option selected>' + table_data_names[table_count] + '</option>');
+                        newOption = $('<option>' + table_data_names[table_count] + '</option>');
                     }
                     
                     $('#table_data2').append(newOption);
@@ -725,274 +222,6 @@ $(document).ready(function() {
     });
 
     $.jqplot.config.enablePlugins = true;
-    $("td[id]").click(function() {
-        var column_name = $(this).attr('id');
-        var table_name = $(this).closest('.ibox').attr('id');
-        var name = table_name + '_' + column_name;
-        columns = column_name.split('_');
-        if (columns[1] == 'adu5' && (columns[0]!= 'numsats' || columns[0]!= 'd2mcm') ){
-            multi_plot = true;
-        }else{
-            multi_plot = false;
-        }
-        // console.log($(this).attr('id'));
-        // console.log($(this).closest('.ibox').attr('id'));
-        if ($("#dialog_" + name).length) {
-            $("#dialog_" + name).dialog('open');
-            $("#dialog_" + name).find('input[id="reference_time"]').val(hk_nows[i]);
-        } else {
-            var $newDialog = $('#dialog').clone();
-            $newDialog.attr('id', 'dialog_' + name);
-            $newDialog.removeClass('hide');
-            $newDialog.attr('title', name);
-            $newDialog.prepend('<div id="' + "plot_" + name + '"  class="dialog_plot" ></div>');
-            $newDialog.find('input[id="reference_time"]').val(hk_nows[i]);
-            $newDialog.dialog({
-                width: 600,
-                height: 500,
-            });
-            $newDialog.data('zoomStack', [[hk_nows[i], 21600]]);
-            $newDialog.data('zoomStackIndex', 0);
-            var line1 = [
-            ['2008-09-30', 14]
-            ];
-            var plot1 = $.jqplot('plot_' + name, [line1], {
-                title: 'double click to reset the zoom',
-                axes: {
-                    xaxis: {
-                        renderer: $.jqplot.DateAxisRenderer,
-                        rendererOptions: {
-                            tickRenderer: $.jqplot.CanvasAxisTickRenderer
-                        },
-                        tickOptions: {
-                            // formatString: '%M:%S%#N ',
-                            fontSize: '10pt',
-                            fontFamily: 'Tahoma',
-                        }
-                    },
-                    yaxis: {
-                        rendererOptions: {
-                            tickRenderer: $.jqplot.CanvasAxisTickRenderer
-                        },
-                        tickOptions: {
-                            fontSize: '10pt',
-                            fontFamily: 'Tahoma',
-                        }
-                    }
-                },
-                series: [
-                    {
-                        lineWidth: .5,
-                        markerOptions: {
-                            size: 2,
-                            color: 'blue' 
-                        }
-                    },
-                    {
-                        lineWidth: .5,
-                        markerOptions: {
-                            size: 2,
-                            color: 'red' 
-                        }
-                    }
-                ],
-                legend: {
-                    show: multi_plot,
-                    labels: ['adu5_A', 'adu5_B'],
-                    location: 'ne',
-                    rowSpacing: '0px'
-                },
-                cursor: {
-                    zoom: true,
-                    looseZoom: true,
-                    // showTooltip:true, 
-                    followMouse: true,
-                    showTooltipOutsideZoom: true,
-                    constrainOutsideZoom: false
-                }
-            });
-
-            $newDialog.dialog({
-                resize: function(event, ui) {
-                    $("#plot_" + name).height(Math.max(100, $newDialog.height() - 120));
-                    plot1.replot({
-                        resetAxes: true,
-                    });
-                }
-            });
-        }
-
-        function replotTimeline (table_name, column_name, end_time, length) {
-            $.getJSON('/api/' + ip_db + '/history/' + table_name + '/' + column_name + '/' + (end_time - length) + '/' + end_time, function(data) {
-                console.log(data);
-                var step = 1;
-                if (data.data && data.data.length > 50000){
-                    // step = data.data.length/5000;
-                    step = Math.floor(data.data.length/5000);
-                }
-                if (data.data_a && data.data_a.length > 50000){
-                    // step = data.data.length/5000;
-                    step = Math.floor(data.data_a.length/5000);
-                }
-                if (Object.keys(data).length == 2){
-                    // datalist = [data.data_a, data.data_b];
-                    new_data_a = [];
-                    for (var i =0; i< data.data_a.length; i += step){
-                        element = data.data_a[i];
-                        new_data_a.push([element[0] + timeZoneShift, element[1]]);
-                    }
-                    new_data_b = [];
-                    for (var i =0; i< data.data_b.length; i += step){
-                        element = data.data_b[i];
-                        new_data_b.push([element[0] + timeZoneShift, element[1]]);
-                    }
-                    datalist = [new_data_a, new_data_b];
-                }else{
-                    new_data = [];
-                    for (var i =0; i< data.data.length; i += step){
-                        element = data.data[i];
-                        new_data.push([element[0] + timeZoneShift, element[1]]);
-                    }
-                    console.log(data.data.length);
-                    datalist = [new_data];
-                }
-                console.log(datalist);
-                plot1.replot({
-                    data: datalist
-                });
-            });
-
-        }
-
-        $("#dialog_" + name).on('jqplotZoom', function(ev, gridpos, datapos, plot, cursor){
-            end_time = parseInt((plot.axes.xaxis.max - timeZoneShift)/1000);
-            length = end_time - parseInt((plot.axes.xaxis.min - timeZoneShift)/1000);
-            $("#dialog_" + name).find('input[id="reference_time"]').val(end_time);
-            $("#dialog_" + name).find('input[id="length"]').val(length);
-            var new_index = $(this).data('zoomStackIndex') + 1;
-            $(this).data('zoomStackIndex', new_index);
-            var new_zoomStack = $(this).data('zoomStack').slice(0, new_index);
-            new_zoomStack.push([end_time, length]);
-            $(this).data('zoomStack', new_zoomStack);
-            console.log(new_index + 1 + '/' + new_zoomStack.length);
-            $("#dialog_" + name + " #zoomIndex").text(new_index + 1 + '/' + new_zoomStack.length);
-        });
-
-        $("#dialog_" + name + " #reset").click(function() {
-            $("#dialog_" + name).data('zoomStackIndex', 0);
-            $("#dialog_" + name).data('zoomStack', [[hk_nows[i], 21600]]);
-            $("#dialog_" + name).find('input[id="reference_time"]').val(hk_nows[i]);
-            $("#dialog_" + name).find('input[id="length"]').val(21600);
-            $("#dialog_" + name).find('button[id="request"]').trigger("click");
-            $("#dialog_" + name + " #zoomIndex").text('1/1');
-        });
-        
-
-        $("#dialog_" + name + " #undo").click(function() {
-            if ($("#dialog_" + name).data('zoomStack').length > 1){
-                var index = $("#dialog_" + name).data('zoomStackIndex') - 1;
-                if (index >= 0){
-                    $("#dialog_" + name).data('zoomStackIndex', index);
-                    var zoomStack = $("#dialog_" + name).data('zoomStack');
-                    var zoom = zoomStack[index];
-                    var end_time = zoom[0];
-                    var length = zoom[1]
-                    $("#dialog_" + name).find('input[id="reference_time"]').val(end_time);
-                    $("#dialog_" + name).find('input[id="length"]').val(length);
-                    $("#dialog_" + name).find('button[id="request"]').trigger("click");
-                    $("#dialog_" + name + " #zoomIndex").text(index + 1 + '/' + zoomStack.length);
-                }
-            }
-        });
-
-        $("#dialog_" + name + " #redo").click(function() {
-            var stack_length = $("#dialog_" + name).data('zoomStack').length;
-            if ( stack_length > 0){
-                var index = $("#dialog_" + name).data('zoomStackIndex') + 1;
-                if (index < stack_length){
-                    $("#dialog_" + name).data('zoomStackIndex', index);
-                    var zoomStack = $("#dialog_" + name).data('zoomStack');
-                    var zoom = zoomStack[index];
-                    var end_time = zoom[0];
-                    var length = zoom[1]
-                    $("#dialog_" + name).find('input[id="reference_time"]').val(end_time);
-                    $("#dialog_" + name).find('input[id="length"]').val(length);
-                    $("#dialog_" + name).find('button[id="request"]').trigger("click");
-                    $("#dialog_" + name + " #zoomIndex").text(index + 1 + '/' + zoomStack.length);
-                }
-            }
-        });
-
-        $("#dialog_" + name + " #1hour").click(function() {
-            console.log('1hour');
-            var stack_length = $("#dialog_" + name).data('zoomStack').length;
-            if ( stack_length > 0){
-                var index = $("#dialog_" + name).data('zoomStackIndex');
-
-                var new_index = index + 1;
-                $("#dialog_" + name).data('zoomStackIndex', new_index);
-                var new_zoomStack = $("#dialog_" + name).data('zoomStack').slice(0, new_index);
-                var end_time = new_zoomStack[index][0];
-                var length = 3600;
-                new_zoomStack.push([end_time, length])
-                $("#dialog_" + name).data('zoomStack', new_zoomStack);
-                $("#dialog_" + name).find('input[id="reference_time"]').val(end_time);
-                $("#dialog_" + name).find('input[id="length"]').val(length);
-                $("#dialog_" + name).find('button[id="request"]').trigger("click");
-                $("#dialog_" + name + " #zoomIndex").text(new_index + 1 + '/' + new_zoomStack.length);
-            }
-        });
-
-        $("#dialog_" + name + " #6hours").click(function() {
-            console.log('1hour');
-            var stack_length = $("#dialog_" + name).data('zoomStack').length;
-            if ( stack_length > 0){
-                var index = $("#dialog_" + name).data('zoomStackIndex');
-
-                var new_index = index + 1;
-                $("#dialog_" + name).data('zoomStackIndex', new_index);
-                var new_zoomStack = $("#dialog_" + name).data('zoomStack').slice(0, new_index);
-                var end_time = new_zoomStack[index][0];
-                var length = 21600;
-                new_zoomStack.push([end_time, length])
-                $("#dialog_" + name).data('zoomStack', new_zoomStack);
-                $("#dialog_" + name).find('input[id="reference_time"]').val(end_time);
-                $("#dialog_" + name).find('input[id="length"]').val(length);
-                $("#dialog_" + name).find('button[id="request"]').trigger("click");
-                $("#dialog_" + name + " #zoomIndex").text(new_index + 1 + '/' + new_zoomStack.length);
-            }
-        });
-
-        $("#dialog_" + name + " #24hours").click(function() {
-            console.log('1hour');
-            var stack_length = $("#dialog_" + name).data('zoomStack').length;
-            if ( stack_length > 0){
-                var index = $("#dialog_" + name).data('zoomStackIndex');
-
-                var new_index = index + 1;
-                $("#dialog_" + name).data('zoomStackIndex', new_index);
-                var new_zoomStack = $("#dialog_" + name).data('zoomStack').slice(0, new_index);
-                var end_time = new_zoomStack[index][0];
-                var length = 86400;
-                new_zoomStack.push([end_time, length])
-                $("#dialog_" + name).data('zoomStack', new_zoomStack);
-                $("#dialog_" + name).find('input[id="reference_time"]').val(end_time);
-                $("#dialog_" + name).find('input[id="length"]').val(length);
-                $("#dialog_" + name).find('button[id="request"]').trigger("click");
-                $("#dialog_" + name + " #zoomIndex").text(new_index + 1 + '/' + new_zoomStack.length);
-            }
-        });
-
-        $("#dialog_" + name).find('button[id="request"]').click(function() {
-            console.log("REPLOT_dialog peng's");
-            var end_time = $newDialog.find('input[id="reference_time"]').val();
-            var length = $newDialog.find('input[id="length"]').val();
-            replotTimeline(table_name, column_name, end_time, length);
-            
-        });
-
-        $("#dialog_" + name).find('button[id="request"]').trigger("click");
-    });
 
     $('.footable').footable();
     function autoload() {
@@ -1090,21 +319,6 @@ $(document).ready(function() {
         cmd_nbufs = [];
         cmd_nows = [];
         cmd_times = [];
-        adu5_pat_nbufs = [];
-        adu5_pat_nows = [];
-        adu5_pat_times = [];
-        adu5_vtg_nbufs = [];
-        adu5_vtg_nows = [];
-        adu5_vtg_times = [];
-        adu5_sat_nbufs = [];
-        adu5_sat_nows = [];
-        adu5_sat_times = [];
-        g12_pos_nbufs=[];
-        g12_pos_nows=[];
-        g12_pos_times=[];
-        g12_sat_nbufs=[];
-        g12_sat_nows=[];
-        g12_sat_times=[];
         i = 0;
         j = 0;
         k = 0;
@@ -1118,11 +332,6 @@ $(document).ready(function() {
         offset_sshk = 0;
         offset_mon = 0;
         offset_cmd = 0;
-        offset_adu5_pat = 0;
-        offset_adu5_vtg = 0;
-        offset_adu5_sat = 0;
-        offset_g12_pos = 0;
-        offset_g12_sat = 0;
 
         if ($(this).hasClass('connect')) {
             $.ajax({
@@ -1158,18 +367,6 @@ $(document).ready(function() {
     //update all html with hk index i;
     function updatehtml_all (i) {
         updatehtml_hk(hk_nbufs[i]);
-        k=adu5_pat_nows.indexOf(hk_nows[i]);
-        if (k!=-1) updatehtml_adu5_pat(adu5_pat_times[k]);
-        l=adu5_vtg_nows.indexOf(hk_nows[i]);
-        if (l!=-1) updatehtml_adu5_vtg(adu5_vtg_times[l]);
-        m=adu5_sat_nows.indexOf(hk_nows[i]);
-        if (m!=-1) updatehtml_adu5_sat(adu5_sat_times[m]);
-        n=sshk_nows.indexOf(hk_nows[i]);
-        if (n!=-1) updatehtml_sshk(sshk_nbufs[n]);
-        o=g12_pos_nows.indexOf(hk_nows[i]);
-        if (o!=-1) updatehtml_g12_pos(g12_pos_nbufs[o]);
-        p=g12_sat_nows.indexOf(hk_nows[i]);
-        if (p!=-1) updatehtml_g12_sat(g12_sat_nbufs[p]);
    
 }
 
@@ -1184,12 +381,6 @@ $(document).ready(function() {
             //console.log(hk_nows);
             //console.log(hk_times);
             if (i<hk_nbufs.length-1)        {i=i+1; updatehtml_hk(hk_nbufs[i]);}
-            if (k<adu5_pat_times.length-1)  {k=k+1; updatehtml_adu5_pat(adu5_pat_times[k]);}
-            if (l<adu5_vtg_times.length-1)  {l=l+1; updatehtml_adu5_vtg(adu5_vtg_times[l]);}
-            if (m<adu5_sat_times.length-1)  {m=m+1; updatehtml_adu5_sat(adu5_sat_times[m]);}
-            if (n<sshk_nbufs.length-1)      {n=n+1; updatehtml_sshk(sshk_nbufs[n]);}
-            if (o<g12_pos_nbufs.length-1)   {o=o+1; updatehtml_g12_pos(g12_pos_nbufs[o]);}
-            if (p<g12_sat_nbufs.length-1)   {p=p+1; updatehtml_g12_sat(g12_sat_nbufs[p]);}
         }
     });
     $('#prev').click( function(){
@@ -1200,12 +391,6 @@ $(document).ready(function() {
            };
         }else{
             if (i>0)  {i=i-1; updatehtml_hk(hk_nbufs[i]);}
-            if (k>0)  {k=k-1; updatehtml_adu5_pat(adu5_pat_times[k]);}
-            if (l>0)  {l=l-1; updatehtml_adu5_vtg(adu5_vtg_times[l]);}
-            if (m>0)  {m=m-1; updatehtml_adu5_sat(adu5_sat_times[m]);}
-            if (n>0)  {n=n-1; updatehtml_sshk(sshk_nbufs[n]);}
-            if (o>0)  {o=o-1; updatehtml_g12_pos(g12_pos_nbufs[o]);}
-            if (p>0)  {p=p-1; updatehtml_g12_sat(g12_sat_nbufs[p]);}
         }
     });
     $('#first').click( function(){
@@ -1214,12 +399,6 @@ $(document).ready(function() {
             updatehtml_all(i);
         }else{
             {i=0; updatehtml_hk(hk_nbufs[i]);}
-            {k=0; updatehtml_adu5_pat(adu5_pat_times[k]);}
-            {l=0; updatehtml_adu5_vtg(adu5_vtg_times[l]);}
-            {m=0; updatehtml_adu5_sat(adu5_sat_times[m]);}
-            {n=0; updatehtml_sshk(sshk_nbufs[n]);}
-            {o=0; updatehtml_g12_pos(g12_pos_nbufs[o]);}
-            {p=0; updatehtml_g12_sat(g12_sat_nbufs[p]);}
         }
     });
     $('#last').click( function(){
@@ -1228,12 +407,6 @@ $(document).ready(function() {
             updatehtml_all(i);
         }else{
             {i=hk_nbufs.length-1; updatehtml_hk(hk_nbufs[i]);}
-            {k=adu5_pat_times.length-1; updatehtml_adu5_pat(adu5_pat_times[k]);}
-            {l=adu5_vtg_times.length-1; updatehtml_adu5_vtg(adu5_vtg_times[l]);}
-            {m=adu5_sat_times.length-1; updatehtml_adu5_sat(adu5_sat_times[m]);}
-            {n=sshk_nbufs.length-1; updatehtml_sshk(sshk_nbufs[n]);}
-            {o=g12_pos_nbufs.length-1; updatehtml_g12_pos(g12_pos_nbufs[o]);}
-            {p=g12_sat_nbufs.length-1; updatehtml_g12_sat(g12_sat_nbufs[p]);}
         }
     });
     $('#graph_button').click( function(){
@@ -1247,14 +420,20 @@ $(document).ready(function() {
         var table_name2 = $('#table2 option:selected').text();
         var column_name2 = $('#table_data2 option:selected').text();
         var name = table_name + '_' + column_name;
+        if (table_name2 == 'None' || column_name2 == 'None'){
+            var name0 = table_name + '_' + column_name;
+        }else{
+            var name0 = table_name + '_' + column_name+ ' and ' + table_name2 + '_' + column_name2;
+        }
+        
         table_name0 = table_name.split('_')[0];
 
-        if ((table_name2 != '' || table_name2 != 'none') && (column_name2 != '' || column_name2 != 'none')){
-            console.log("there is something in dropdown 2");
-            second_plot = true;
-        }else{
+        if (table_name2 == 'None' || column_name2 == 'None'){
             console.log("there is nothing in dropdown 2");
             second_plot = false;
+        }else{
+            console.log("there is something in dropdown 2");
+            second_plot = true;
         }
 
         if (table_name0 == 'adu5' && (column_name!= 'numsats' || column_name!= 'd2mcm') ){
@@ -1273,7 +452,7 @@ $(document).ready(function() {
             var $newDialog = $('#dialog').clone();
             $newDialog.attr('id', 'dialog_' + name);
             $newDialog.removeClass('hide');
-            $newDialog.attr('title', name);
+            $newDialog.attr('title', name0);
             $newDialog.prepend('<div id="' + "plot_" + name + '"  class="dialog_plot" ></div>');
             $newDialog.find('input[id="reference_time"]').val(hk_nows[i]);
             $newDialog.dialog({
@@ -1335,7 +514,7 @@ $(document).ready(function() {
                         lineWidth: .5,
                         markerOptions: {
                             size: 2,
-                            color: 'black' 
+                            color: 'purple' 
                         }
                     }
                 ],
@@ -1406,53 +585,110 @@ $(document).ready(function() {
                         new_data_c=[];
                         $.getJSON('/api/' + ip_db + '/history/' + table_name2 + '/' + column_name2 + '/' + (end_time - length) + '/' + end_time, function(data) {
                             console.log(data);
-                            for (var i =0; i< data.data_a.length; i += step){
-                                element = data.data_a[i];
-                                new_data_c.push([element[0] + timeZoneShift, element[1]]);
+                            var step2 = 1;
+                            if (data.data && data.data.length > 50000){
+                                // step = data.data.length/5000;
+                                step2 = Math.floor(data.data.length/5000);
                             }
-                            datalist = [new_data_a, new_data_b, new_data_c];
-                            console.log(datalist);
-                            plot1.replot({
-                                data: datalist
-                            });
+                            if (data.data_a && data.data_a.length > 50000){
+                                // step = data.data.length/5000;
+                                step2 = Math.floor(data.data_a.length/5000);
+                            }
+                            if (Object.keys(data).length == 2){
+                                // datalist = [data.data_a, data.data_b];
+                                new_data_c = [];
+                                for (var i =0; i< data.data_a.length; i += step){
+                                    element = data.data_a[i];
+                                    new_data_c.push([element[0] + timeZoneShift, element[1]]);
+                                }
+                                new_data_d = [];
+                                for (var i =0; i< data.data_b.length; i += step2){
+                                    element = data.data_b[i];
+                                    new_data_d.push([element[0] + timeZoneShift, element[1]]);
+                                }
+                                datalist = [new_data_a, new_data_b, new_data_c, new_data_d];
+                                console.log(datalist);
+                                console.log("All four new_data")
+                                plot1.replot({
+                                    data: datalist
+                                });
+                            }else{
+                                for (var i =0; i< data.data.length; i += step2){
+                                    element = data.data[i];
+                                    new_data_c.push([element[0] + timeZoneShift, element[1]]);
+                                }
+                                datalist = [new_data_a, new_data_b, new_data_c];
+                                console.log(datalist);
+                                console.log("First two new_data are a&b, second is c")
+                                plot1.replot({
+                                    data: datalist
+                                });
+                            }
                         });
                     }
                     else{
                         datalist = [new_data_a, new_data_b];
                     }
                 }else{
-                    new_data = [];
+                    new_data_a = [];
                     for (var i =0; i< data.data.length; i += step){
                         element = data.data[i];
-                        new_data.push([element[0] + timeZoneShift, element[1]]);
+                        new_data_a.push([element[0] + timeZoneShift, element[1]]);
                     }
-                    console.log("before if statement");
-                    console.log(second_plot);
                     if(second_plot){
-                        console.log("inside second_plot if");
-                        new_data_b=[];
                         $.getJSON('/api/' + ip_db + '/history/' + table_name2 + '/' + column_name2 + '/' + (end_time - length) + '/' + end_time, function(data) {
-                            console.log(data);
-                            for (var i =0; i< data.data.length; i += step){
-                                element = data.data[i];
-                                new_data_b.push([element[0] + timeZoneShift, element[1]]);
+                            var step2 = 1;
+                            if (data.data && data.data.length > 50000){
+                                // step = data.data.length/5000;
+                                step2 = Math.floor(data.data.length/5000);
                             }
-                            datalist = [new_data, new_data_b];
-                            console.log(datalist);
-                            plot1.replot({
-                                data: datalist
-                            });
+                            if (data.data_a && data.data_a.length > 50000){
+                                // step = data.data.length/5000;
+                                step2 = Math.floor(data.data_a.length/5000);
+                            }
+                            if (Object.keys(data).length == 2){
+                                // datalist = [data.data_a, data.data_b];
+                                new_data_b = [];
+                                for (var i =0; i< data.data_a.length; i += step){
+                                    element = data.data_a[i];
+                                    new_data_b.push([element[0] + timeZoneShift, element[1]]);
+                                }
+                                new_data_c = [];
+                                for (var i =0; i< data.data_b.length; i += step){
+                                    element = data.data_b[i];
+                                    new_data_c.push([element[0] + timeZoneShift, element[1]]);
+                                }
+                                datalist = [new_data_a, new_data_b, new_data_c];
+                                console.log(datalist);
+                                console.log("First new_data is a while second is b&c")
+                                plot1.replot({
+                                    data: datalist
+                                });
+                            }else{
+                                new_data_b = [];
+                                for (var i =0; i< data.data.length; i += step2){
+                                    element = data.data[i];
+                                    new_data_b.push([element[0] + timeZoneShift, element[1]]);
+                                }
+                                datalist = [new_data_a, new_data_b];
+                                console.log(datalist);
+                                console.log("new_data a and b")
+                                plot1.replot({
+                                    data: datalist
+                                });
+                            }
+                        });
+                    }else{
+                        console.log(data.data.length);
+                        console.log("only new_data_a");
+                        datalist = [new_data_a];
+                        console.log(datalist);
+                        plot1.replot({
+                            data: datalist
                         });
                     }
-                    else{
-                        console.log(data.data.length);
-                        datalist = [new_data];
-                    }
                 }
-                console.log(datalist);
-                plot1.replot({
-                    data: datalist
-                });
+
             });
 
         }
@@ -1479,7 +715,6 @@ $(document).ready(function() {
             $("#dialog_" + name).find('button[id="request"]').trigger("click");
             $("#dialog_" + name + " #zoomIndex").text('1/1');
         });
-        
 
         $("#dialog_" + name + " #undo").click(function() {
             if ($("#dialog_" + name).data('zoomStack').length > 1){
@@ -1608,6 +843,12 @@ $(document).ready(function() {
     });
 
     $('#table_button').click( function(){
+        if (sync_on){
+            i=hk_nbufs.length-1;
+            updatehtml_all(i);
+        }else{
+            {i=hk_nbufs.length-1; updatehtml_hk(hk_nbufs[i]);}
+        }
         $.getJSON('/api/' + ip_db +  '/table_names', function(data) {
             table_list = data['tables']
         });
@@ -1622,9 +863,11 @@ $(document).ready(function() {
                 $('#table').append(newOption);
             }
             if(addmore){
-                newOption = $('<option selected>' + "{{table_selected}}" + '</option>');
+                newOption = $('<option>' + "{{table_selected}}" + '</option>');
                 $('#table').append(newOption);
             }
+            NoneOption = $('<option selected>' + "None" + '</option>');
+            $('#table').append(NoneOption);
         },1000);
         setTimeout(function(){
             for (var table_count = 0; table_count < table_list.length; table_count++){
@@ -1637,9 +880,11 @@ $(document).ready(function() {
                 $('#table2').append(newOption);
             }
             if(addmore){
-                newOption = $('<option selected>' + "{{table_selected}}" + '</option>');
+                newOption = $('<option>' + "{{table_selected}}" + '</option>');
                 $('#table2').append(newOption);
             }
+            NoneOption = $('<option selected>' + "None" + '</option>');
+            $('#table2').append(NoneOption);
         },1000);    
     });
 
@@ -1669,12 +914,6 @@ $(document).ready(function() {
                    };
                 }else{
                     if (i<hk_nbufs.length-1)        {i=i+1; updatehtml_hk(hk_nbufs[i]);}
-                    if (k<adu5_pat_times.length-1)  {k=k+1; updatehtml_adu5_pat(adu5_pat_times[k]);}
-                    if (l<adu5_vtg_times.length-1)  {l=l+1; updatehtml_adu5_vtg(adu5_vtg_times[l]);}
-                    if (m<adu5_sat_times.length-1)  {m=m+1; updatehtml_adu5_sat(adu5_sat_times[m]);}
-                    if (n<sshk_nbufs.length-1)      {n=n+1; updatehtml_sshk(sshk_nbufs[n]);}
-                    if (o<g12_pos_nbufs.length-1)   {o=o+1; updatehtml_g12_pos(g12_pos_nbufs[o]);}
-                    if (p<g12_sat_nbufs.length-1)   {p=p+1; updatehtml_g12_sat(g12_sat_nbufs[p]);}
                 }
             }, 1000);
         } else {
@@ -1696,12 +935,6 @@ $(document).ready(function() {
        }else{
             var message = '';
             var index=hk_times.indexOf(keywords);       if(index!=-1 && keywords) { i=index; updatehtml_hk(hk_nbufs[i]); message += 'HK ';}
-            var index=adu5_pat_times.indexOf(keywords); if(index!=-1 && keywords) { k=index; updatehtml_adu5_pat(adu5_pat_times[k]); message += 'ADU5_PAT ';}
-            var index=adu5_vtg_times.indexOf(keywords); if(index!=-1 && keywords) { l=index; updatehtml_adu5_vtg(adu5_vtg_times[l]); message += 'ADU5_VTG ';}
-            var index=adu5_sat_times.indexOf(keywords); if(index!=-1 && keywords) { m=index; updatehtml_adu5_sat(adu5_sat_times[m]); message += 'ADU5_SAT ';}
-            var index=sshk_times.indexOf(keywords);     if(index!=-1 && keywords) { n=index; updatehtml_sshk(sshk_nbufs[n]); message += 'SSHK ';}
-            var index=g12_pos_times.indexOf(keywords);  if(index!=-1 && keywords) { o=index; updatehtml_g12_pos(g12_pos_nbufs[o]); message += 'G12_POS ';}
-            var index=g12_sat_times.indexOf(keywords);  if(index!=-1 && keywords) { p=index; updatehtml_g12_sat(g12_sat_nbufs[p]); message += 'G12_SAT ';}
             if (message == ''){
                 swal({  title: 'No matched time found!', type: "warning", timer: 3000, showConfirmButton: true});
             }else{
