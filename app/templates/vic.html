@@ -57,6 +57,8 @@
                     <select id="table_data" class='chosen-select' style="width:160px" data-placeholder="Choose a table data.." >
                         <option selected> {{table_data_selected}} </option>
                     </select>
+                    <select disabled id="table_num" class='chosen-select' style="width:160px" data-placeholder="Choose a number..">
+                    </select>
                     <table>
                         <tbody>
                             <tr>
@@ -69,7 +71,17 @@
                     <select id="table_data2" class='chosen-select' style="width:160px" data-placeholder="Choose a table data.." >
                         <option selected> {{table_data_selected2}} </option>
                     </select>
+                    <select disabled id="table_num2" class='chosen-select' style="width:160px" data-placeholder="Choose a number..">
+                    </select>
+                    <table>
+                        <tbody>
+                            <tr>
+                                <td bgcolor="#FFFFFF" style="line-height:20px;" colspan=3>&nbsp;</td>
+                            </tr>
+                        </tbody>
+                    </table>
                     <button class="btn btn-primary" id = 'graph_button' type="button">Create Graph!</button>
+                    <button class="btn btn-primary" id = 'scatter_button' type="button">Create Scatter Graph!</button>
                 </div>
             </div>
         </div>
@@ -333,6 +345,7 @@ $(document).ready(function() {
         offset_mon = 0;
         offset_cmd = 0;
 
+
         if ($(this).hasClass('connect')) {
             $.ajax({
                 url: '/api/connect/' + ip + '/' + db
@@ -409,6 +422,13 @@ $(document).ready(function() {
             {i=hk_nbufs.length-1; updatehtml_hk(hk_nbufs[i]);}
         }
     });
+    $('#scatter_button').click(function(){
+        var table_name = $('#table option:selected').text();
+        var column_name = $('#table_data option:selected').text();
+        var table_name2 = $('#table2 option:selected').text();
+        var column_name2 = $('#table_data2 option:selected').text();
+        var name = table_name + '_' + column_name;
+    });
     $('#graph_button').click( function(){
         // console.log($('#table option:selected').text())
         // console.log($('#table_data option:selected').text())
@@ -417,13 +437,15 @@ $(document).ready(function() {
 
         var table_name = $('#table option:selected').text();
         var column_name = $('#table_data option:selected').text();
+        var table_number = $('#table_num option:selected').text();
         var table_name2 = $('#table2 option:selected').text();
         var column_name2 = $('#table_data2 option:selected').text();
-        var name = table_name + '_' + column_name;
+        var table_number2 = $('#table_num2 option:selected').text();
+        var name = table_name + '_' + column_name + table_number;
         if (table_name2 == 'None' || column_name2 == 'None'){
-            var name0 = table_name + '_' + column_name;
+            var name0 = table_name + '_' + column_name + table_number;
         }else{
-            var name0 = table_name + '_' + column_name+ ' and ' + table_name2 + '_' + column_name2;
+            var name0 = table_name + '_' + column_name + table_number + ' and ' + table_name2 + '_' + column_name2 + table_number2;
         }
         
         table_name0 = table_name.split('_')[0];
@@ -554,7 +576,18 @@ $(document).ready(function() {
             console.log("replot victor's");
             console.log("table_name2 :" + table_name2);
             console.log("column_name2 :" + column_name2);
-            $.getJSON('/api/' + ip_db + '/history/' + table_name + '/' + column_name + '/' + (end_time - length) + '/' + end_time, function(data) {
+            var table_number = $('#table_num option:selected').text();
+            var table_number2 = $('#table_num2 option:selected').text();
+            var addition = "";
+            var addition2 = "";
+            if (table_number != ''){
+                addition = "-" + table_number;
+            }
+            if (table_number2 != ""){
+                addition2 = "-" + table_number2;
+            }
+
+            $.getJSON('/api/' + ip_db + '/history/' + table_name + '/' + column_name + addition + '/' + (end_time - length) + '/' + end_time, function(data) {
                 datalist = [];
                 console.log(data);
                 var step = 1;
@@ -583,7 +616,7 @@ $(document).ready(function() {
                     if(second_plot){
                         console.log("inside second_plot if");
                         new_data_c=[];
-                        $.getJSON('/api/' + ip_db + '/history/' + table_name2 + '/' + column_name2 + '/' + (end_time - length) + '/' + end_time, function(data) {
+                        $.getJSON('/api/' + ip_db + '/history/' + table_name2 + '/' + column_name2 + addition2 + '/' + (end_time - length) + '/' + end_time, function(data) {
                             console.log(data);
                             var step2 = 1;
                             if (data.data && data.data.length > 50000){
@@ -636,7 +669,7 @@ $(document).ready(function() {
                         new_data_a.push([element[0] + timeZoneShift, element[1]]);
                     }
                     if(second_plot){
-                        $.getJSON('/api/' + ip_db + '/history/' + table_name2 + '/' + column_name2 + '/' + (end_time - length) + '/' + end_time, function(data) {
+                        $.getJSON('/api/' + ip_db + '/history/' + table_name2 + '/' + column_name2 + addition2 + '/' + (end_time - length) + '/' + end_time, function(data) {
                             var step2 = 1;
                             if (data.data && data.data.length > 50000){
                                 // step = data.data.length/5000;
@@ -840,6 +873,66 @@ $(document).ready(function() {
         });
 
         $("#dialog_" + name).find('button[id="request"]').trigger("click");
+    });
+
+    $('#table_data').on("select2:closing", function(){
+        $('#table_num').empty();
+        var table_data_name = $('#table_data option:selected').text();
+        if (table_data_name == "accx" || table_data_name == "accy" || table_data_name == "accz"){
+            $("#table_num").prop("disabled",false);
+            for (var number = 0; number < 2; number++){
+                var newOption = $('<option>' + number + '</option>');
+                $('#table_num').append(newOption);
+            }
+        }
+        else if (table_data_name == "it" || table_data_name == "et"){
+            $("#table_num").prop("disabled",false);
+            for (var number = 1; number < 16; number++){
+                var newOption = $('<option>' + number + '</option>');
+                $('#table_num').append(newOption);
+            }
+        }
+        else if (table_data_name == "ssel" || table_data_name == "ssaz"){
+            $("#table_num").prop("disabled",false);
+            for (var number = 0; number < 4; number++){
+                var newOption = $('<option>' + number + '</option>');
+                $('#table_num').append(newOption);
+            }
+        }
+        else{
+            $("#table_num").prop("disabled",true);
+        }
+
+    });
+
+    $('#table_data2').on("select2:closing", function(){
+        $('#table_num2').empty();
+        var table_data_name = $('#table_data2 option:selected').text();
+        if (table_data_name == "accx" || table_data_name == "accy" || table_data_name == "accz"){
+            $("#table_num2").prop("disabled",false);
+            for (var number = 0; number < 2; number++){
+                var newOption = $('<option>' + number + '</option>');
+                $('#table_num2').append(newOption);
+            }
+        }
+        else if (table_data_name == "it" || table_data_name == "et"){
+            $("#table_num2").prop("disabled",false);
+            for (var number = 1; number < 16; number++){
+                var newOption = $('<option>' + number + '</option>');
+                $('#table_num2').append(newOption);
+            }
+        }
+        else if (table_data_name == "ssel" || table_data_name == "ssaz"){
+            $("#table_num2").prop("disabled",false);
+            for (var number = 0; number < 4; number++){
+                var newOption = $('<option>' + number + '</option>');
+                $('#table_num2').append(newOption);
+            }
+        }
+        else{
+            $("#table_num2").prop("disabled",true);
+        }
+
     });
 
     $('#table_button').click( function(){
