@@ -425,18 +425,6 @@ $(document).ready(function() {
     $('#scatter_button').click(function(){
         var table_name = $('#table option:selected').text();
         var column_name = $('#table_data option:selected').text();
-        var table_name2 = $('#table2 option:selected').text();
-        var column_name2 = $('#table_data2 option:selected').text();
-        var name = table_name + '_' + column_name;
-    });
-    $('#graph_button').click( function(){
-        // console.log($('#table option:selected').text())
-        // console.log($('#table_data option:selected').text())
-        //console.log($('#table2 option:selected').text())
-        //console.log($('#table_data2 option:selected').text())
-
-        var table_name = $('#table option:selected').text();
-        var column_name = $('#table_data option:selected').text();
         var table_number = $('#table_num option:selected').text();
         var table_name2 = $('#table2 option:selected').text();
         var column_name2 = $('#table_data2 option:selected').text();
@@ -661,6 +649,501 @@ $(document).ready(function() {
                     }
                     else{
                         datalist = [new_data_a, new_data_b];
+                    }
+                }else{
+                    new_data_a = [];
+                    for (var i =0; i< data.data.length; i += step){
+                        element = data.data[i];
+                        new_data_a.push([element[0] + timeZoneShift, element[1]]);
+                    }
+                    if(second_plot){
+                        $.getJSON('/api/' + ip_db + '/history/' + table_name2 + '/' + column_name2 + addition2 + '/' + (end_time - length) + '/' + end_time, function(data) {
+                            var step2 = 1;
+                            if (data.data && data.data.length > 50000){
+                                // step = data.data.length/5000;
+                                step2 = Math.floor(data.data.length/5000);
+                            }
+                            if (data.data_a && data.data_a.length > 50000){
+                                // step = data.data.length/5000;
+                                step2 = Math.floor(data.data_a.length/5000);
+                            }
+                            if (Object.keys(data).length == 2){
+                                // datalist = [data.data_a, data.data_b];
+                                new_data_b = [];
+                                for (var i =0; i< data.data_a.length; i += step){
+                                    element = data.data_a[i];
+                                    new_data_b.push([element[0] + timeZoneShift, element[1]]);
+                                }
+                                new_data_c = [];
+                                for (var i =0; i< data.data_b.length; i += step){
+                                    element = data.data_b[i];
+                                    new_data_c.push([element[0] + timeZoneShift, element[1]]);
+                                }
+                                datalist = [new_data_a, new_data_b, new_data_c];
+                                console.log(datalist);
+                                console.log("First new_data is a while second is b&c")
+                                plot1.replot({
+                                    data: datalist
+                                });
+                            }else{
+                                new_data_b = [];
+                                for (var i =0; i< data.data.length; i += step2){
+                                    element = data.data[i];
+                                    new_data_b.push([element[0] + timeZoneShift, element[1]]);
+                                }
+                                datalist = [new_data_a, new_data_b];
+                                console.log(datalist);
+                                console.log("new_data a and b")
+                                plot1.replot({
+                                    data: datalist
+                                });
+                            }
+                        });
+                    }else{
+                        console.log(data.data.length);
+                        console.log("only new_data_a");
+                        datalist = [new_data_a];
+                        console.log(datalist);
+                        plot1.replot({
+                            data: datalist
+                        });
+                    }
+                }
+
+            });
+
+        }
+
+        $("#dialog_" + name).on('jqplotZoom', function(ev, gridpos, datapos, plot, cursor){
+            end_time = parseInt((plot.axes.xaxis.max - timeZoneShift)/1000);
+            length = end_time - parseInt((plot.axes.xaxis.min - timeZoneShift)/1000);
+            $("#dialog_" + name).find('input[id="reference_time"]').val(end_time);
+            $("#dialog_" + name).find('input[id="length"]').val(length);
+            var new_index = $(this).data('zoomStackIndex') + 1;
+            $(this).data('zoomStackIndex', new_index);
+            var new_zoomStack = $(this).data('zoomStack').slice(0, new_index);
+            new_zoomStack.push([end_time, length]);
+            $(this).data('zoomStack', new_zoomStack);
+            console.log(new_index + 1 + '/' + new_zoomStack.length);
+            $("#dialog_" + name + " #zoomIndex").text(new_index + 1 + '/' + new_zoomStack.length);
+        });
+
+        $("#dialog_" + name + " #reset").click(function() {
+            $("#dialog_" + name).data('zoomStackIndex', 0);
+            $("#dialog_" + name).data('zoomStack', [[hk_nows[i], 21600]]);
+            $("#dialog_" + name).find('input[id="reference_time"]').val(hk_nows[i]);
+            $("#dialog_" + name).find('input[id="length"]').val(21600);
+            $("#dialog_" + name).find('button[id="request"]').trigger("click");
+            $("#dialog_" + name + " #zoomIndex").text('1/1');
+        });
+
+        $("#dialog_" + name + " #undo").click(function() {
+            if ($("#dialog_" + name).data('zoomStack').length > 1){
+                var index = $("#dialog_" + name).data('zoomStackIndex') - 1;
+                if (index >= 0){
+                    $("#dialog_" + name).data('zoomStackIndex', index);
+                    var zoomStack = $("#dialog_" + name).data('zoomStack');
+                    var zoom = zoomStack[index];
+                    var end_time = zoom[0];
+                    var length = zoom[1]
+                    $("#dialog_" + name).find('input[id="reference_time"]').val(end_time);
+                    $("#dialog_" + name).find('input[id="length"]').val(length);
+                    $("#dialog_" + name).find('button[id="request"]').trigger("click");
+                    $("#dialog_" + name + " #zoomIndex").text(index + 1 + '/' + zoomStack.length);
+                }
+            }
+        });
+
+        $("#dialog_" + name + " #redo").click(function() {
+            var stack_length = $("#dialog_" + name).data('zoomStack').length;
+            if ( stack_length > 0){
+                var index = $("#dialog_" + name).data('zoomStackIndex') + 1;
+                if (index < stack_length){
+                    $("#dialog_" + name).data('zoomStackIndex', index);
+                    var zoomStack = $("#dialog_" + name).data('zoomStack');
+                    var zoom = zoomStack[index];
+                    var end_time = zoom[0];
+                    var length = zoom[1]
+                    $("#dialog_" + name).find('input[id="reference_time"]').val(end_time);
+                    $("#dialog_" + name).find('input[id="length"]').val(length);
+                    $("#dialog_" + name).find('button[id="request"]').trigger("click");
+                    $("#dialog_" + name + " #zoomIndex").text(index + 1 + '/' + zoomStack.length);
+                }
+            }
+        });
+
+        $("#dialog_" + name + " #1hour").click(function() {
+            console.log('1hour');
+            var stack_length = $("#dialog_" + name).data('zoomStack').length;
+            if ( stack_length > 0){
+                var index = $("#dialog_" + name).data('zoomStackIndex');
+
+                var new_index = index + 1;
+                $("#dialog_" + name).data('zoomStackIndex', new_index);
+                var new_zoomStack = $("#dialog_" + name).data('zoomStack').slice(0, new_index);
+                var end_time = new_zoomStack[index][0];
+                var length = 3600;
+                new_zoomStack.push([end_time, length])
+                $("#dialog_" + name).data('zoomStack', new_zoomStack);
+                $("#dialog_" + name).find('input[id="reference_time"]').val(end_time);
+                $("#dialog_" + name).find('input[id="length"]').val(length);
+                $("#dialog_" + name).find('button[id="request"]').trigger("click");
+                $("#dialog_" + name + " #zoomIndex").text(new_index + 1 + '/' + new_zoomStack.length);
+            }
+        });
+
+        $("#dialog_" + name + " #6hours").click(function() {
+            console.log('6hour');
+            var stack_length = $("#dialog_" + name).data('zoomStack').length;
+            if ( stack_length > 0){
+                var index = $("#dialog_" + name).data('zoomStackIndex');
+
+                var new_index = index + 1;
+                $("#dialog_" + name).data('zoomStackIndex', new_index);
+                var new_zoomStack = $("#dialog_" + name).data('zoomStack').slice(0, new_index);
+                var end_time = new_zoomStack[index][0];
+                var length = 21600;
+                new_zoomStack.push([end_time, length])
+                $("#dialog_" + name).data('zoomStack', new_zoomStack);
+                $("#dialog_" + name).find('input[id="reference_time"]').val(end_time);
+                $("#dialog_" + name).find('input[id="length"]').val(length);
+                $("#dialog_" + name).find('button[id="request"]').trigger("click");
+                $("#dialog_" + name + " #zoomIndex").text(new_index + 1 + '/' + new_zoomStack.length);
+            }
+        });
+
+        $("#dialog_" + name + " #24hours").click(function() {
+            console.log('24hour');
+            var stack_length = $("#dialog_" + name).data('zoomStack').length;
+            if ( stack_length > 0){
+                var index = $("#dialog_" + name).data('zoomStackIndex');
+
+                var new_index = index + 1;
+                $("#dialog_" + name).data('zoomStackIndex', new_index);
+                var new_zoomStack = $("#dialog_" + name).data('zoomStack').slice(0, new_index);
+                var end_time = new_zoomStack[index][0];
+                var length = 86400;
+                new_zoomStack.push([end_time, length])
+                $("#dialog_" + name).data('zoomStack', new_zoomStack);
+                $("#dialog_" + name).find('input[id="reference_time"]').val(end_time);
+                $("#dialog_" + name).find('input[id="length"]').val(length);
+                $("#dialog_" + name).find('button[id="request"]').trigger("click");
+                $("#dialog_" + name + " #zoomIndex").text(new_index + 1 + '/' + new_zoomStack.length);
+            }
+        });
+
+        $("#dialog_" + name + " #1month").click(function() {
+            var stack_length = $("#dialog_" + name).data('zoomStack').length;
+            if ( stack_length > 0){
+                var index = $("#dialog_" + name).data('zoomStackIndex');
+
+                var new_index = index + 1;
+                $("#dialog_" + name).data('zoomStackIndex', new_index);
+                var new_zoomStack = $("#dialog_" + name).data('zoomStack').slice(0, new_index);
+                var end_time = new_zoomStack[index][0];
+                var length = 2592000;
+                new_zoomStack.push([end_time, length])
+                $("#dialog_" + name).data('zoomStack', new_zoomStack);
+                $("#dialog_" + name).find('input[id="reference_time"]').val(end_time);
+                $("#dialog_" + name).find('input[id="length"]').val(length);
+                $("#dialog_" + name).find('button[id="request"]').trigger("click");
+                $("#dialog_" + name + " #zoomIndex").text(new_index + 1 + '/' + new_zoomStack.length);
+            }
+        });
+
+        $("#dialog_" + name).find('button[id="request"]').click(function() {
+            console.log("REPLOT_dialog victor's");
+            var end_time = $newDialog.find('input[id="reference_time"]').val();
+            var length = $newDialog.find('input[id="length"]').val();
+            console.log("**** table 2:" + table_name2);
+            console.log("**** column 2:" + column_name2);
+            replotTimeline(table_name, column_name, table_name2, column_name2, end_time, length);
+        });
+
+        $("#dialog_" + name).find('button[id="request"]').trigger("click");
+    });
+
+    $('#graph_button').click( function(){
+        // console.log($('#table option:selected').text())
+        // console.log($('#table_data option:selected').text())
+        //console.log($('#table2 option:selected').text())
+        //console.log($('#table_data2 option:selected').text())
+
+        var table_name = $('#table option:selected').text();
+        var column_name = $('#table_data option:selected').text();
+        var table_number = $('#table_num option:selected').text();
+        var table_name2 = $('#table2 option:selected').text();
+        var column_name2 = $('#table_data2 option:selected').text();
+        var table_number2 = $('#table_num2 option:selected').text();
+        var name = table_name + '_' + column_name + table_number + "_and_" + table_name2 + '_' + column_name2 + table_number2;
+        if (table_name2 == 'None' || column_name2 == 'None'){
+            var name0 = table_name + '_' + column_name + table_number;
+        }else{
+            var name0 = table_name + '_' + column_name + table_number + ' and ' + table_name2 + '_' + column_name2 + table_number2;
+        }
+        
+
+
+        if (table_name2 == 'None' || column_name2 == 'None'){
+            console.log("there is nothing in dropdown 2");
+            second_plot = false;
+        }else{
+            console.log("there is something in dropdown 2");
+            second_plot = true;
+        }
+
+        table_name0 = table_name.split('_')[0];
+
+        var multi_plot_1;
+        var multi_plot_2;
+        if (table_name0 == 'adu5' && (column_name!= 'numsats' || column_name!= 'd2mcm') ){
+            multi_plot_1 = true;
+        }else{
+            multi_plot_1 = false;
+        }
+
+        table_name00 = table_name2.split('_')[0];
+
+        if (table_name00 == 'adu5' && (column_name!= 'numsats' || column_name!= 'd2mcm') ){
+            multi_plot_2 = true;
+        }else{
+            multi_plot_2 = false;
+        }
+
+        console.log("multi 1 is: " + multi_plot_1);
+        console.log("multi 2 is: " + multi_plot_2);
+        console.log("tab name0 is: " + table_name0);
+        console.log("tab name00 is: " + table_name00);
+        var legend1 = true;
+        var legend2 = false;
+        var legend_list = [];
+        if (table_name2 != 'None'){
+            legend2 = true;
+            legend1 = false;
+            if (multi_plot_1 == true && multi_plot_2 == true){
+                legend_list[0] = column_name + ' adu5A';
+                legend_list[1] = column_name + ' adu5B';
+                legend_list[2] = column_name2 + ' adu5A';
+                legend_list[3] = column_name2 + ' adu5B';
+            } else if (multi_plot_1 == true && multi_plot_2 == false){
+                legend_list[0] = column_name + ' adu5A';
+                legend_list[1] = column_name + ' adu5B';
+                legend_list[2] = column_name2 + ' ' + table_number2;
+            } else if (multi_plot_1 == false && multi_plot_2 == true){
+                legend_list[0] = column_name + ' ' + table_number;
+                legend_list[1] = column_name2 + ' adu5A';
+                legend_list[2] = column_name2 + ' adu5B';
+            } else {
+                legend_list[0] = column_name + ' ' + table_number;
+                legend_list[1] = column_name2 + ' ' + table_number2;
+            } 
+        } else {
+            if (multi_plot_1 == true){
+                legend_list[0] = column_name + ' adu5A';
+                legend_list[1] = column_name + ' adu5B';
+            }else{
+                legend_list[0] = column_name + ' ' + table_number;
+            }
+        }
+
+        console.log(legend_list);
+        console.log(name);
+
+        // console.log($(this).closest('.ibox').attr('id'));
+        if ($("#dialog_" + name).length) {
+            console.log("load if");
+            $("#dialog_" + name).dialog('open');
+            $("#dialog_" + name).find('input[id="reference_time"]').val(hk_nows[i]);
+        } else {
+            console.log('load else');
+            var $newDialog = $('#dialog').clone();
+            $newDialog.attr('id', 'dialog_' + name);
+            $newDialog.removeClass('hide');
+            $newDialog.attr('title', name0);
+            $newDialog.prepend('<div id="' + "plot_" + name + '"  class="dialog_plot" ></div>');
+            $newDialog.find('input[id="reference_time"]').val(hk_nows[i]);
+            $newDialog.dialog({
+                width: 700,
+                height: 500,
+            });
+            $newDialog.data('zoomStack', [[hk_nows[i], 21600]]);
+            $newDialog.data('zoomStackIndex', 0);
+            var line1 = [
+            ['2008-09-30', 14]
+            ];
+            var plot1 = $.jqplot('plot_' + name, [line1], {
+                title: 'double click to reset the zoom',
+                axes: {
+                    xaxis: {
+                        renderer: $.jqplot.DateAxisRenderer,
+                        rendererOptions: {
+                            tickRenderer: $.jqplot.CanvasAxisTickRenderer
+                        },
+                        tickOptions: {
+                            // formatString: '%M:%S%#N ',
+                            fontSize: '10pt',
+                            fontFamily: 'Tahoma',
+                        }
+                    },
+                    yaxis: {
+                        rendererOptions: {
+                            tickRenderer: $.jqplot.CanvasAxisTickRenderer
+                        },
+                        tickOptions: {
+                            fontSize: '10pt',
+                            fontFamily: 'Tahoma',
+                        }
+                    }
+                },
+                series: [
+                    {
+                        lineWidth: .5,
+                        markerOptions: {
+                            size: 2,
+                            color: 'blue' 
+                        }
+                    },
+                    {
+                        lineWidth: .5,
+                        markerOptions: {
+                            size: 2,
+                            color: 'orange' 
+                        }
+                    },
+                    {
+                        lineWidth: .5,
+                        markerOptions: {
+                            size: 2,
+                            color: 'grey' 
+                        }
+                    },
+                    {
+                        lineWidth: .5,
+                        markerOptions: {
+                            size: 2,
+                            color: 'green' 
+                        }
+                    }
+                ],
+                legend: {
+                    show: true,
+                    labels: legend_list,
+                    location: 'ne',
+                    rowSpacing: '0px'
+                },
+                cursor: {
+                    zoom: true,
+                    looseZoom: true,
+                    // showTooltip:true, 
+                    followMouse: true,
+                    showTooltipOutsideZoom: true,
+                    constrainOutsideZoom: false
+                }
+            });
+
+            $newDialog.dialog({
+                resize: function(event, ui) {
+                    $("#plot_" + name).height(Math.max(100, $newDialog.height() - 120));
+                    plot1.replot({
+                        resetAxes: true,
+                    });
+                }
+            });
+        }
+
+        function replotTimeline (table_name, column_name, table_name2, column_name2, end_time, length) {
+            console.log("replot victor's");
+            console.log("table_name2 :" + table_name2);
+            console.log("column_name2 :" + column_name2);
+            var table_number = $('#table_num option:selected').text();
+            var table_number2 = $('#table_num2 option:selected').text();
+            var addition = "";
+            var addition2 = "";
+            if (table_number != ''){
+                addition = "-" + table_number;
+            }
+            if (table_number2 != ""){
+                addition2 = "-" + table_number2;
+            }
+
+            $.getJSON('/api/' + ip_db + '/history/' + table_name + '/' + column_name + addition + '/' + (end_time - length) + '/' + end_time, function(data) {
+                datalist = [];
+                console.log(data);
+                var step = 1;
+                if (data.data && data.data.length > 50000){
+                    // step = data.data.length/5000;
+                    step = Math.floor(data.data.length/5000);
+                }
+                if (data.data_a && data.data_a.length > 50000){
+                    // step = data.data.length/5000;
+                    step = Math.floor(data.data_a.length/5000);
+                }
+                if (Object.keys(data).length == 2){
+                    // datalist = [data.data_a, data.data_b];
+                    new_data_a = [];
+                    for (var i =0; i< data.data_a.length; i += step){
+                        element = data.data_a[i];
+                        new_data_a.push([element[0] + timeZoneShift, element[1]]);
+                    }
+                    new_data_b = [];
+                    for (var i =0; i< data.data_b.length; i += step){
+                        element = data.data_b[i];
+                        new_data_b.push([element[0] + timeZoneShift, element[1]]);
+                    }
+                    console.log("before if statement");
+                    console.log(second_plot);
+                    if(second_plot){
+                        console.log("inside second_plot if");
+                        new_data_c=[];
+                        $.getJSON('/api/' + ip_db + '/history/' + table_name2 + '/' + column_name2 + addition2 + '/' + (end_time - length) + '/' + end_time, function(data) {
+                            console.log(data);
+                            var step2 = 1;
+                            if (data.data && data.data.length > 50000){
+                                // step = data.data.length/5000;
+                                step2 = Math.floor(data.data.length/5000);
+                            }
+                            if (data.data_a && data.data_a.length > 50000){
+                                // step = data.data.length/5000;
+                                step2 = Math.floor(data.data_a.length/5000);
+                            }
+                            if (Object.keys(data).length == 2){
+                                // datalist = [data.data_a, data.data_b];
+                                new_data_c = [];
+                                for (var i =0; i< data.data_a.length; i += step){
+                                    element = data.data_a[i];
+                                    new_data_c.push([element[0] + timeZoneShift, element[1]]);
+                                }
+                                new_data_d = [];
+                                for (var i =0; i< data.data_b.length; i += step2){
+                                    element = data.data_b[i];
+                                    new_data_d.push([element[0] + timeZoneShift, element[1]]);
+                                }
+                                datalist = [new_data_a, new_data_b, new_data_c, new_data_d];
+                                console.log(datalist);
+                                console.log("All four new_data")
+                                plot1.replot({
+                                    data: datalist
+                                });
+                            }else{
+                                for (var i =0; i< data.data.length; i += step2){
+                                    element = data.data[i];
+                                    new_data_c.push([element[0] + timeZoneShift, element[1]]);
+                                }
+                                datalist = [new_data_a, new_data_b, new_data_c];
+                                console.log(datalist);
+                                console.log("First two new_data are a&b, second is c")
+                                plot1.replot({
+                                    data: datalist
+                                });
+                            }
+                        });
+                    }
+                    else{
+                        datalist = [new_data_a, new_data_b];
+                        console.log(datalist);
+                        plot1.replot({
+                            data: datalist
+                        });
                     }
                 }else{
                     new_data_a = [];
