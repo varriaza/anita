@@ -985,6 +985,17 @@ $(document).ready(function() {
                             fontFamily: 'Tahoma',
                         }
                     },
+                    x2axis: {
+                        renderer: $.jqplot.CategoryAxisRenderer,
+                        rendererOptions: {
+                            tickRenderer: $.jqplot.CanvasAxisTickRenderer
+                        },
+                        tickOptions: {
+                            // formatString: '%M:%S%#N ',
+                            fontSize: '10pt',
+                            fontFamily: 'Tahoma',
+                        }
+                    },
                     yaxis: {
                         rendererOptions: {
                             tickRenderer: $.jqplot.CanvasAxisTickRenderer
@@ -993,11 +1004,45 @@ $(document).ready(function() {
                             fontSize: '10pt',
                             fontFamily: 'Tahoma',
                         }
-                    }
+                    },
+                    y2axis: {
+                        renderer: $.jqplot.CategoryAxisRenderer,
+                        rendererOptions: {
+                            tickRenderer: $.jqplot.CanvasAxisTickRenderer
+                        },
+                        tickOptions: {
+                            // formatString: '%M:%S%#N ',
+                            fontSize: '10pt',
+                            fontFamily: 'Tahoma',
+                        }
+                    },
+                    y3axis: {
+                        renderer: $.jqplot.CategoryAxisRenderer,
+                        rendererOptions: {
+                            tickRenderer: $.jqplot.CanvasAxisTickRenderer
+                        },
+                        tickOptions: {
+                            // formatString: '%M:%S%#N ',
+                            fontSize: '10pt',
+                            fontFamily: 'Tahoma',
+                        }
+                    },
+                    y4axis: {
+                        renderer: $.jqplot.CategoryAxisRenderer,
+                        rendererOptions: {
+                            tickRenderer: $.jqplot.CanvasAxisTickRenderer
+                        },
+                        tickOptions: {
+                            // formatString: '%M:%S%#N ',
+                            fontSize: '10pt',
+                            fontFamily: 'Tahoma',
+                        }
+                    },
                 },
                 series: [
                     {
                         lineWidth: .5,
+                        yaxis: "yaxis",
                         markerOptions: {
                             size: 2,
                             color: 'blue' 
@@ -1005,6 +1050,7 @@ $(document).ready(function() {
                     },
                     {
                         lineWidth: .5,
+                        yaxis: "y2axis",
                         markerOptions: {
                             size: 2,
                             color: 'orange' 
@@ -1012,6 +1058,7 @@ $(document).ready(function() {
                     },
                     {
                         lineWidth: .5,
+                        yaxis: "y3axis",
                         markerOptions: {
                             size: 2,
                             color: 'grey' 
@@ -1019,6 +1066,7 @@ $(document).ready(function() {
                     },
                     {
                         lineWidth: .5,
+                        yaxis: "y4axis",
                         markerOptions: {
                             size: 2,
                             color: 'green' 
@@ -1031,6 +1079,14 @@ $(document).ready(function() {
                     location: 'ne',
                     rowSpacing: '0px'
                 },
+                axesDefaults:{
+                    // color the axes baselines the same color as the series.
+                    useSeriesColor: true,
+                    rendererOptions: {
+                        // align ticks for each axis across the grid
+                        alignTicks: true
+                    }
+                }, 
                 cursor: {
                     zoom: true,
                     looseZoom: true,
