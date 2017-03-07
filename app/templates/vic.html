@@ -81,7 +81,7 @@
                         </tbody>
                     </table>
                     <button class="btn btn-primary" id = 'graph_button' type="button">Create Graph!</button>
-                    <button class="btn btn-primary" id = 'scatter_button' type="button">Create Scatter Graph!</button>
+                    <button class="btn btn-primary" id = 'scatter_button' type="button">Create Scatter Plot!</button>
                 </div>
             </div>
         </div>
@@ -369,7 +369,9 @@ $(document).ready(function() {
             //otherwise, stop all the requests.
             $('#connect').addClass('connect').addClass('btn-primary').removeClass('btn-warning');
             $('#connect').html('Connect');
-            $('.chosen-select').attr("disabled", false).trigger("chosen:updated");
+            //$('.chosen-select').attr("disabled", false).trigger("chosen:updated");
+            $('#ip').attr("disabled", false);
+            $('#db').attr("disabled", false);
             // if (switchery.isChecked()){
             //     $('.switchery').click();
             // };
@@ -423,20 +425,31 @@ $(document).ready(function() {
         }
     });
     $('#scatter_button').click(function(){
+        console.log("INSIDE SCATTER");
+        //test1 = eval_linear([2,0,8], [-2,0,6,8], [4,0,3,-3]);
+        //console.log(test1);
+
+        //console.log("printing time overlap");
+        //test2 = find_time_overlap([1,2,15.3], [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,15.2,15.5,16,17,18,19]);
+        //console.log(test2);
+
+
+
+
         var table_name = $('#table option:selected').text();
         var column_name = $('#table_data option:selected').text();
         var table_number = $('#table_num option:selected').text();
         var table_name2 = $('#table2 option:selected').text();
         var column_name2 = $('#table_data2 option:selected').text();
         var table_number2 = $('#table_num2 option:selected').text();
-        var name = table_name + '_' + column_name + table_number;
+        var name = "Scatter_plot_" + table_name + '_' + column_name + table_number + "_and_" + table_name2 + '_' + column_name2 + table_number2;
         if (table_name2 == 'None' || column_name2 == 'None'){
-            var name0 = table_name + '_' + column_name + table_number;
+            var name= table_name + '_' + column_name + table_number;
         }else{
-            var name0 = table_name + '_' + column_name + table_number + ' and ' + table_name2 + '_' + column_name2 + table_number2;
+            var name= table_name + '_' + column_name + table_number + ' and ' + table_name2 + '_' + column_name2 + table_number2;
         }
         
-        table_name0 = table_name.split('_')[0];
+
 
         if (table_name2 == 'None' || column_name2 == 'None'){
             console.log("there is nothing in dropdown 2");
@@ -446,11 +459,74 @@ $(document).ready(function() {
             second_plot = true;
         }
 
-        if (table_name0 == 'adu5' && (column_name!= 'numsats' || column_name!= 'd2mcm') ){
-            multi_plot = true;
+        table_name= table_name.split('_')[0];
+
+        var multi_plot_1;
+        var multi_plot_2;
+        if (table_name== 'adu5' && (column_name!= 'numsats' || column_name!= 'd2mcm') ){
+            multi_plot_1 = true;
         }else{
-            multi_plot = false;
+            multi_plot_1 = false;
         }
+
+        table_name00 = table_name2.split('_')[0];
+
+        if (table_name00 == 'adu5' && (column_name!= 'numsats' || column_name!= 'd2mcm') ){
+            multi_plot_2 = true;
+        }else{
+            multi_plot_2 = false;
+        }
+
+        console.log("scatter_button pressed");
+        var legend1 = true;
+        var legend2 = false;
+        var legend_list = [];
+        if (table_name2 != 'None'){
+            legend2 = true;
+            legend1 = false;
+            if (multi_plot_1 == true && multi_plot_2 == true){
+                legend_list[0] = column_name + ' adu5A';
+                legend_list[1] = column_name + ' adu5B';
+                legend_list[2] = column_name2 + ' adu5A';
+                legend_list[3] = column_name2 + ' adu5B';
+                yaxis1 = "yaxis";
+                yaxis2 = "yaxis";
+                yaxis3 = "y2axis";
+                yaxis4 = "y2axis";
+            } else if (multi_plot_1 == true && multi_plot_2 == false){
+                legend_list[0] = column_name + ' adu5A';
+                legend_list[1] = column_name + ' adu5B';
+                legend_list[2] = column_name2 + ' ' + table_number2;
+                yaxis1 = "yaxis";
+                yaxis2 = "yaxis";
+                yaxis3 = "y2axis";
+            } else if (multi_plot_1 == false && multi_plot_2 == true){
+                legend_list[0] = column_name + ' ' + table_number;
+                legend_list[1] = column_name2 + ' adu5A';
+                legend_list[2] = column_name2 + ' adu5B';
+                yaxis1 = "yaxis";
+                yaxis2 = "y2axis";
+                yaxis3 = "y2axis";
+            } else {
+                legend_list[0] = column_name + ' ' + table_number;
+                legend_list[1] = column_name2 + ' ' + table_number2;
+                yaxis1 = "yaxis";
+                yaxis2 = "y2axis";
+            } 
+        } else {
+            if (multi_plot_1 == true){
+                legend_list[0] = column_name + ' adu5A';
+                legend_list[1] = column_name + ' adu5B';
+                yaxis1 = "yaxis";
+                yaxis2 = "yaxis";
+            }else{
+                legend_list[0] = column_name + ' ' + table_number;
+                yaxis1 = "yaxis";
+            }
+        }
+
+        console.log(legend_list);
+        console.log(name);
 
         // console.log($(this).closest('.ibox').attr('id'));
         if ($("#dialog_" + name).length) {
@@ -462,7 +538,7 @@ $(document).ready(function() {
             var $newDialog = $('#dialog').clone();
             $newDialog.attr('id', 'dialog_' + name);
             $newDialog.removeClass('hide');
-            $newDialog.attr('title', name0);
+            $newDialog.attr('title', name);
             $newDialog.prepend('<div id="' + "plot_" + name + '"  class="dialog_plot" ></div>');
             $newDialog.find('input[id="reference_time"]').val(hk_nows[i]);
             $newDialog.dialog({
@@ -488,6 +564,17 @@ $(document).ready(function() {
                             fontFamily: 'Tahoma',
                         }
                     },
+                    x2axis: {
+                        renderer: $.jqplot.CategoryAxisRenderer,
+                        rendererOptions: {
+                            tickRenderer: $.jqplot.CanvasAxisTickRenderer
+                        },
+                        tickOptions: {
+                            // formatString: '%M:%S%#N ',
+                            fontSize: '10pt',
+                            fontFamily: 'Tahoma',
+                        }
+                    },
                     yaxis: {
                         rendererOptions: {
                             tickRenderer: $.jqplot.CanvasAxisTickRenderer
@@ -496,11 +583,45 @@ $(document).ready(function() {
                             fontSize: '10pt',
                             fontFamily: 'Tahoma',
                         }
-                    }
+                    },
+                    y2axis: {
+                        renderer: $.jqplot.CategoryAxisRenderer,
+                        rendererOptions: {
+                            tickRenderer: $.jqplot.CanvasAxisTickRenderer
+                        },
+                        tickOptions: {
+                            // formatString: '%M:%S%#N ',
+                            fontSize: '10pt',
+                            fontFamily: 'Tahoma',
+                        }
+                    },
+                    y3axis: {
+                        renderer: $.jqplot.CategoryAxisRenderer,
+                        rendererOptions: {
+                            tickRenderer: $.jqplot.CanvasAxisTickRenderer
+                        },
+                        tickOptions: {
+                            // formatString: '%M:%S%#N ',
+                            fontSize: '10pt',
+                            fontFamily: 'Tahoma',
+                        }
+                    },
+                    y4axis: {
+                        renderer: $.jqplot.CategoryAxisRenderer,
+                        rendererOptions: {
+                            tickRenderer: $.jqplot.CanvasAxisTickRenderer
+                        },
+                        tickOptions: {
+                            // formatString: '%M:%S%#N ',
+                            fontSize: '10pt',
+                            fontFamily: 'Tahoma',
+                        }
+                    },
                 },
                 series: [
                     {
                         lineWidth: .5,
+                        yaxis: yaxis1,
                         markerOptions: {
                             size: 2,
                             color: 'blue' 
@@ -508,38 +629,43 @@ $(document).ready(function() {
                     },
                     {
                         lineWidth: .5,
+                        yaxis: yaxis2,
                         markerOptions: {
                             size: 2,
-                            color: 'red' 
+                            color: 'orange' 
                         }
                     },
                     {
                         lineWidth: .5,
+                        yaxis: yaxis3,
+                        markerOptions: {
+                            size: 2,
+                            color: 'grey' 
+                        }
+                    },
+                    {
+                        lineWidth: .5,
+                        yaxis: yaxis4,
                         markerOptions: {
                             size: 2,
                             color: 'green' 
                         }
-                    },
-                    {
-                        lineWidth: .5,
-                        markerOptions: {
-                            size: 2,
-                            color: 'purple' 
-                        }
                     }
                 ],
                 legend: {
-                    show: multi_plot,
-                    labels: ['adu5_A', 'adu5_B'],
+                    show: true,
+                    labels: legend_list,
                     location: 'ne',
                     rowSpacing: '0px'
                 },
-                legend: {
-                    show: second_plot,
-                    labels: [column_name, column_name2],
-                    location: 'ne',
-                    rowSpacing: '0px'
-                },
+                axesDefaults:{
+                    // color the axes baselines the same color as the series.
+                    useSeriesColor: true,
+                    rendererOptions: {
+                        // align ticks for each axis across the grid
+                        alignTicks: true
+                    }
+                }, 
                 cursor: {
                     zoom: true,
                     looseZoom: true,
@@ -560,22 +686,174 @@ $(document).ready(function() {
             });
         }
 
+        //function eval_linear (array_times, array_x1, array_y1, array_x2, array_y2) {
+        function eval_linear (pointsToEvaluate, functionValuesX, functionValuesY) {
+            var results = [];
+            pointsToEvaluate.forEach(function (point) {
+                //console.log("Printing point");
+                //console.log(point);
+                var index = findIntervalLeftBorderIndex(point, functionValuesX);
+                //console.log("Printing index");
+                //console.log(index);
+                if (index == functionValuesX.length -1){
+                    index --;
+                }
+                results.push(linear_interp(point, functionValuesX[index], functionValuesY[index]
+      , functionValuesX[index + 1], functionValuesY[index + 1]));
+            });
+            return results
+        }
+
+        function findIntervalLeftBorderIndex (point, intervals) {
+            //If point is beyond given intervals
+            if (point < intervals[0]){
+              return 0;
+            }
+            if (point > intervals[intervals.length - 1]){
+              return intervals.length - 1;
+            }
+            //If point is inside interval
+            //Start searching on a full range of intervals
+            var indexOfNumberToCompare; 
+            var leftBorderIndex = 0;
+            var rightBorderIndex = intervals.length - 1;
+            //Reduce searching range till it find an interval point belongs to using binary search
+            while (rightBorderIndex - leftBorderIndex !== 1) {
+              indexOfNumberToCompare = leftBorderIndex + Math.floor((rightBorderIndex - leftBorderIndex)/2);
+              (point >= intervals[indexOfNumberToCompare]) ? leftBorderIndex=indexOfNumberToCompare:rightBorderIndex=indexOfNumberToCompare;
+            }
+            //console.log("printing leftBorderIndex");
+            //console.log(leftBorderIndex);
+            return leftBorderIndex
+        }
+
+        function linear_interp (x,x1,y1,x2,y2) {
+            var a = (y2 - y1) / (x2 - x1);
+            var b = -a * x1 + y1;
+            var c = a * x + b;
+            //console.log("printing c");
+            //console.log(c);
+            return c;
+        }
+
+        function find_time_overlap (time_array1, time_array2) {
+            // looks for a section of overlap of two time arrays and returns that overlap
+            //used for linear interpolation
+            var array_section = [];
+            // starting array is where we want to start
+            var starting_array = [];
+            // first array is the array that starts at the ealiest time
+            var first_array = [];
+            // ending array is the array that has the smallest ending time, thus where to stop at
+            var ending_array = [];
+
+            // Find array that begins second
+            if (time_array1[0] > time_array2[0]){
+                // array 1 starts later
+                starting_array = time_array1;
+                first_array = time_array2;
+            }
+            else if (time_array1[0] < time_array2[0]){
+                // array 1 starts first
+                starting_array = time_array2;
+                first_array = time_array1;
+            }
+            else{
+                //just start with array 1
+                starting_array = time_array1;
+                first_array = time_array2;
+            }
+
+            //find array that ends first
+            if (time_array1[time_array1.length-1] > time_array2[time_array2.length-1]){
+                // array 1 ends later
+                ending_array = time_array2;
+            }
+            else if (time_array1[time_array1.length-1] < time_array2[time_array2.length-1]){
+                // array 1 ends first
+                ending_array = time_array1;
+            }
+            else{
+                //just start with array 1
+                ending_array = time_array1;
+            }
+
+            // get the first array to be at the correct index
+            var get_synced = 0;
+            while (first_array[get_synced] < starting_array[0]){
+                get_synced++
+            }
+
+            //console.log("get_synced is: " + get_synced);
+            //console.log("getting first array synced: " + first_array[get_synced]);
+            //console.log(first_array);
+            //console.log(starting_array);
+            //console.log(ending_array);
+            //console.log("ending array length: "+(ending_array.length+get_synced));
+
+            step1 = 0;
+            step2 = get_synced;
+            var exit = false;
+            while (exit != true){
+
+                //get out of loop
+                if (first_array[step2] >= ending_array[ending_array.length-1] && starting_array[step1] >= ending_array[ending_array.length-1]){
+                    exit = true;
+                }
+                //(var step1 = 0; step1 < ending_array.length; step1++){
+                //console.log("array 1: " + starting_array[step1]+ " and step 1 is: "+step1);
+                //console.log("array 2: " + first_array[step2]+ " and step 2 is: "+step2);
+                if (starting_array[step1] < first_array[step2]){
+                    if (starting_array[step1] != array_section[array_section.length-1]){
+                        //console.log("array 1: " + starting_array[step1]);
+                        //console.log("array 2: " + first_array[step2]);
+                        array_section.push(starting_array[step1]);
+                    }
+                    //make sure not to go past the end!
+                    if (starting_array[step1] < ending_array[ending_array.length-1]){
+                        step1++;
+                    }
+                }
+                else if (starting_array[step1] > first_array[step2]){
+                    if (first_array[step2] != array_section[array_section.length-1]){
+                        //console.log("array 1: " + starting_array[step1]);
+                        //console.log("array 2: " + first_array[step2]);
+                        array_section.push(first_array[step2]);
+                    }
+                    if (first_array[step2] < ending_array[ending_array.length-1]){
+                        step2++;
+                    }
+                }
+                else{
+                    if (first_array[step2] != array_section[array_section.length-1]){
+                        //console.log("array 1: " + starting_array[step1]);
+                        //console.log("array 2: " + first_array[step2]);
+                        array_section.push(first_array[step2]);
+                    }
+                    if (first_array[step2] < ending_array[ending_array.length-1]){
+                        step2++;
+                    }
+                }
+            }
+            return array_section
+        }
+
         function replotTimeline (table_name, column_name, table_name2, column_name2, end_time, length) {
-            console.log("replot victor's");
-            console.log("table_name2 :" + table_name2);
-            console.log("column_name2 :" + column_name2);
+            console.log("replot scatter");
+            //console.log("table_name2 :" + table_name2);
+            //console.log("column_name2 :" + column_name2);
             var table_number = $('#table_num option:selected').text();
             var table_number2 = $('#table_num2 option:selected').text();
             var addition = "";
             var addition2 = "";
             if (table_number != ''){
-                addition = "-" + table_number;
+                column_name = column_name + "-" + table_number;
             }
-            if (table_number2 != ""){
-                addition2 = "-" + table_number2;
+            if (table_number2 != ''){
+                column_name2 = column_name2 + "-" + table_number2;
             }
 
-            $.getJSON('/api/' + ip_db + '/history/' + table_name + '/' + column_name + addition + '/' + (end_time - length) + '/' + end_time, function(data) {
+            $.getJSON('/api/' + ip_db + '/history/' + table_name + '/' + column_name + '/' + (end_time - length) + '/' + end_time, function(data) {
                 datalist = [];
                 console.log(data);
                 var step = 1;
@@ -649,6 +927,10 @@ $(document).ready(function() {
                     }
                     else{
                         datalist = [new_data_a, new_data_b];
+                        console.log(datalist);
+                        plot1.replot({
+                            data: datalist
+                        });
                     }
                 }else{
                     new_data_a = [];
@@ -694,6 +976,7 @@ $(document).ready(function() {
                                 datalist = [new_data_a, new_data_b];
                                 console.log(datalist);
                                 console.log("new_data a and b")
+
                                 plot1.replot({
                                     data: datalist
                                 });
@@ -875,11 +1158,12 @@ $(document).ready(function() {
         var table_name2 = $('#table2 option:selected').text();
         var column_name2 = $('#table_data2 option:selected').text();
         var table_number2 = $('#table_num2 option:selected').text();
-        var name = table_name + '_' + column_name + table_number + "_and_" + table_name2 + '_' + column_name2 + table_number2;
+        //var name = table_name + '_' + column_name + table_number + "_and_" + table_name2 + '_' + column_name2 + table_number2;
+        console.log('-'+table_number+'-');
         if (table_name2 == 'None' || column_name2 == 'None'){
-            var name0 = table_name + '_' + column_name + table_number;
+            var name= table_name + '_' + column_name + table_number;
         }else{
-            var name0 = table_name + '_' + column_name + table_number + ' and ' + table_name2 + '_' + column_name2 + table_number2;
+            var name= table_name + '_' + column_name + table_number + '_and_' + table_name2 + '_' + column_name2 + table_number2;
         }
         
 
@@ -892,11 +1176,11 @@ $(document).ready(function() {
             second_plot = true;
         }
 
-        table_name0 = table_name.split('_')[0];
+        table_name0= table_name.split('_')[0];
 
         var multi_plot_1;
         var multi_plot_2;
-        if (table_name0 == 'adu5' && (column_name!= 'numsats' || column_name!= 'd2mcm') ){
+        if (table_name0== 'adu5' && (column_name!= 'numsats' || column_name!= 'd2mcm') ){
             multi_plot_1 = true;
         }else{
             multi_plot_1 = false;
@@ -910,10 +1194,6 @@ $(document).ready(function() {
             multi_plot_2 = false;
         }
 
-        console.log("multi 1 is: " + multi_plot_1);
-        console.log("multi 2 is: " + multi_plot_2);
-        console.log("tab name0 is: " + table_name0);
-        console.log("tab name00 is: " + table_name00);
         var legend1 = true;
         var legend2 = false;
         var legend_list = [];
@@ -925,24 +1205,39 @@ $(document).ready(function() {
                 legend_list[1] = column_name + ' adu5B';
                 legend_list[2] = column_name2 + ' adu5A';
                 legend_list[3] = column_name2 + ' adu5B';
+                yaxis1 = "yaxis";
+                yaxis2 = "yaxis";
+                yaxis3 = "y2axis";
+                yaxis4 = "y2axis";
             } else if (multi_plot_1 == true && multi_plot_2 == false){
                 legend_list[0] = column_name + ' adu5A';
                 legend_list[1] = column_name + ' adu5B';
                 legend_list[2] = column_name2 + ' ' + table_number2;
+                yaxis1 = "yaxis";
+                yaxis2 = "yaxis";
+                yaxis3 = "y2axis";
             } else if (multi_plot_1 == false && multi_plot_2 == true){
                 legend_list[0] = column_name + ' ' + table_number;
                 legend_list[1] = column_name2 + ' adu5A';
                 legend_list[2] = column_name2 + ' adu5B';
+                yaxis1 = "yaxis";
+                yaxis2 = "y2axis";
+                yaxis3 = "y2axis";
             } else {
                 legend_list[0] = column_name + ' ' + table_number;
                 legend_list[1] = column_name2 + ' ' + table_number2;
+                yaxis1 = "yaxis";
+                yaxis2 = "y2axis";
             } 
         } else {
             if (multi_plot_1 == true){
                 legend_list[0] = column_name + ' adu5A';
                 legend_list[1] = column_name + ' adu5B';
+                yaxis1 = "yaxis";
+                yaxis2 = "yaxis";
             }else{
                 legend_list[0] = column_name + ' ' + table_number;
+                yaxis1 = "yaxis";
             }
         }
 
@@ -959,7 +1254,7 @@ $(document).ready(function() {
             var $newDialog = $('#dialog').clone();
             $newDialog.attr('id', 'dialog_' + name);
             $newDialog.removeClass('hide');
-            $newDialog.attr('title', name0);
+            $newDialog.attr('title', name);
             $newDialog.prepend('<div id="' + "plot_" + name + '"  class="dialog_plot" ></div>');
             $newDialog.find('input[id="reference_time"]').val(hk_nows[i]);
             $newDialog.dialog({
@@ -976,17 +1271,6 @@ $(document).ready(function() {
                 axes: {
                     xaxis: {
                         renderer: $.jqplot.DateAxisRenderer,
-                        rendererOptions: {
-                            tickRenderer: $.jqplot.CanvasAxisTickRenderer
-                        },
-                        tickOptions: {
-                            // formatString: '%M:%S%#N ',
-                            fontSize: '10pt',
-                            fontFamily: 'Tahoma',
-                        }
-                    },
-                    x2axis: {
-                        renderer: $.jqplot.CategoryAxisRenderer,
                         rendererOptions: {
                             tickRenderer: $.jqplot.CanvasAxisTickRenderer
                         },
@@ -1016,33 +1300,11 @@ $(document).ready(function() {
                             fontFamily: 'Tahoma',
                         }
                     },
-                    y3axis: {
-                        renderer: $.jqplot.CategoryAxisRenderer,
-                        rendererOptions: {
-                            tickRenderer: $.jqplot.CanvasAxisTickRenderer
-                        },
-                        tickOptions: {
-                            // formatString: '%M:%S%#N ',
-                            fontSize: '10pt',
-                            fontFamily: 'Tahoma',
-                        }
-                    },
-                    y4axis: {
-                        renderer: $.jqplot.CategoryAxisRenderer,
-                        rendererOptions: {
-                            tickRenderer: $.jqplot.CanvasAxisTickRenderer
-                        },
-                        tickOptions: {
-                            // formatString: '%M:%S%#N ',
-                            fontSize: '10pt',
-                            fontFamily: 'Tahoma',
-                        }
-                    },
                 },
                 series: [
                     {
                         lineWidth: .5,
-                        yaxis: "yaxis",
+                        yaxis: yaxis1,
                         markerOptions: {
                             size: 2,
                             color: 'blue' 
@@ -1050,7 +1312,7 @@ $(document).ready(function() {
                     },
                     {
                         lineWidth: .5,
-                        yaxis: "y2axis",
+                        yaxis: yaxis2,
                         markerOptions: {
                             size: 2,
                             color: 'orange' 
@@ -1058,7 +1320,7 @@ $(document).ready(function() {
                     },
                     {
                         lineWidth: .5,
-                        yaxis: "y3axis",
+                        yaxis: yaxis3,
                         markerOptions: {
                             size: 2,
                             color: 'grey' 
@@ -1066,7 +1328,7 @@ $(document).ready(function() {
                     },
                     {
                         lineWidth: .5,
-                        yaxis: "y4axis",
+                        yaxis: yaxis4,
                         markerOptions: {
                             size: 2,
                             color: 'green' 
@@ -1109,20 +1371,20 @@ $(document).ready(function() {
 
         function replotTimeline (table_name, column_name, table_name2, column_name2, end_time, length) {
             console.log("replot victor's");
-            console.log("table_name2 :" + table_name2);
-            console.log("column_name2 :" + column_name2);
+            //console.log("table_name2 :" + table_name2);
+            //console.log("column_name2 :" + column_name2);
             var table_number = $('#table_num option:selected').text();
             var table_number2 = $('#table_num2 option:selected').text();
             var addition = "";
             var addition2 = "";
             if (table_number != ''){
-                addition = "-" + table_number;
+                column_name = column_name + "-" + table_number;
             }
-            if (table_number2 != ""){
-                addition2 = "-" + table_number2;
+            if (table_number2 != ''){
+                column_name2 = column_name2 + "-" + table_number2;
             }
 
-            $.getJSON('/api/' + ip_db + '/history/' + table_name + '/' + column_name + addition + '/' + (end_time - length) + '/' + end_time, function(data) {
+            $.getJSON('/api/' + ip_db + '/history/' + table_name + '/' + column_name + '/' + (end_time - length) + '/' + end_time, function(data) {
                 datalist = [];
                 console.log(data);
                 var step = 1;
@@ -1245,6 +1507,7 @@ $(document).ready(function() {
                                 datalist = [new_data_a, new_data_b];
                                 console.log(datalist);
                                 console.log("new_data a and b")
+
                                 plot1.replot({
                                     data: datalist
                                 });
